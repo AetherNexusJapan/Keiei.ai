@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>経営判断AIエージェント｜経営者の暗黙知を、次世代の経営資産に。</title>
+<meta name="description" content="経営者の暗黙知を、次世代の経営資産に変える。判断基準・価値観・過去の意思決定事例をAIに継承し、経営層の相談に「判断メモ」で応える社内アプリ。基本機能＋オプション機能を提供中。APIキー不要の試運転モードで体験できます。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#15335E; --navy-deep:#0E2647; --mid:#3A5A8C; --ice:#EEF3FA; --ice2:#DCE7F5;
+  --line:#D8E2F0; --gold:#F3C87A; --ink:#1F2733; --sub:#5B6572; --amber:#B97A1F; --amber-soft:#FFF4E0;
+  --white:#FFFFFF; --green:#2C6E49; --red:#A6392E;
+  --serif:'Zen Old Mincho','Hiragino Mincho ProN','Yu Mincho',serif;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN','Yu Gothic',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} *,*::before,*::after{animation:none!important;transition:none!important} }
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.8;font-size:16px}
+a{color:inherit;text-decoration:none}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{font-size:.8rem;letter-spacing:.18em;color:var(--mid);font-weight:700;margin-bottom:12px}
+h2.sec,h3.sec{font-family:var(--serif);font-size:clamp(1.5rem,3.2vw,2.1rem);font-weight:700;color:var(--navy);line-height:1.5;margin-bottom:14px}
+.lede{color:var(--sub);max-width:none;margin-bottom:40px}
+section{padding:88px 0}
+.btn{display:inline-block;padding:14px 30px;border-radius:6px;font-weight:700;font-size:.95rem;border:2px solid transparent;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(21,51,94,.25)}
+.btn-amber{background:var(--amber);color:#fff}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:#fff}
+.btn-navy{background:var(--navy);color:#fff}
+
+/* header */
+header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-family:var(--serif);font-weight:900;color:var(--navy);font-size:1.05rem;letter-spacing:.04em}
+.logo small{display:block;font-family:var(--sans);font-weight:500;font-size:.6rem;color:var(--sub);letter-spacing:.22em}
+.nav ul{display:flex;gap:26px;list-style:none;font-size:.88rem;font-weight:500}
+.nav ul a:hover{color:var(--navy)}
+.nav .btn{padding:9px 18px;font-size:.85rem}
+@media(max-width:860px){.nav ul{display:none}}
+
+/* hero */
+.hero{position:relative;overflow:hidden;color:#fff;background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCI+PGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIwIj4KIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBDMjE0MCIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iIzE2Mzk2QSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJCNTc5MyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSIwLjUiIGN5PSIwLjUiIHI9IjAuNSI+CiA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM5RkUzRkYiIHN0b3Atb3BhY2l0eT0iMC44NSIvPjxzdG9wIG9mZnNldD0iMC4zNSIgc3RvcC1jb2xvcj0iIzVGQjlFOCIgc3RvcC1vcGFjaXR5PSIwLjM1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNUZCOUU4IiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93RyIgY3g9IjAuNSIgY3k9IjAuNSIgcj0iMC41Ij4KIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0ZGRTFBNiIgc3RvcC1vcGFjaXR5PSIwLjkiLz48c3RvcCBvZmZzZXQ9IjAuNCIgc3RvcC1jb2xvcj0iI0YzQzg3QSIgc3RvcC1vcGFjaXR5PSIwLjM1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjNDODdBIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPHJhZGlhbEdyYWRpZW50IGlkPSJoYWxvIiBjeD0iMC41IiBjeT0iMC41IiByPSIwLjUiPgogPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNEU5NkREIiBzdG9wLW9wYWNpdHk9IjAuNzUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRTdGQkYiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+PHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9Ijk4MCIgY3k9IjQwMCIgcj0iNDMwIiBmaWxsPSJ1cmwoI2hhbG8pIi8+PHBhdGggZD0iTTExOTEsNDA3IEwxMTkxLDI0NyBMMTI5MSwyNDcgTDEyOTEsMTc3IiBzdHJva2U9IiNGM0M4N0EiIHN0cm9rZS13aWR0aD0iMi44IiBvcGFjaXR5PSIwLjkiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMTc0LDQ2MCBMMTE3NCwzMDAgTDExMDQsMzAwIEwxMTA0LDIwMCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTE0MCw0OTcgTDExNDAsNjU3IEwxMDQwLDY1NyBMMTA0MCw3MjcgTDg0MCw3MjciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwNjUsNTM3IEwxMjY1LDUzNyBMMTI2NSw2NjcgTDExMDUsNjY3IEwxMTA1LDczNyBMMTIwNSw3MzciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTk3Miw1NDkgTDk3Miw0NzkgTDkwMiw0NzkgTDkwMiwyNzkgTDk3MiwyNzkgTDk3MiwzNzkiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTkwNCw1MzkgTDkwNCw0MDkgTDc0NCw0MDkgTDc0NCw1NjkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTgzNiw1MDkgTDczNiw1MDkgTDczNiw2MDkgTDg2Niw2MDkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5Myw0NzAgTDc5Myw0MDAgTDY5Myw0MDAgTDY5MywyMDAgTDg5MywyMDAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc3MSw0MjUgTDc3MSwzNTUgTDYxMSwzNTUgTDYxMSw0ODUiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc3NSwzNjQgTDcwNSwzNjQgTDcwNSwxNjQgTDc3NSwxNjQgTDc3NSwzMCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNODI3LDI5NyBMOTU3LDI5NyBMOTU3LDIyNyBMODg3LDIyNyBMODg3LDY3IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik04NzMsMjcxIEw4NzMsNDcxIEwxMDMzLDQ3MSBMMTAzMyw0MDEiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTk2OSwyNTEgTDEwNjksMjUxIEwxMDY5LDM1MSBMOTk5LDM1MSBMOTk5LDQ4MSBMMTE1OSw0ODEiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwMjYsMjU0IEw4MjYsMjU0IEw4MjYsMTg0IEw3MjYsMTg0IEw3MjYsMTE0IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMTEyLDI4MyBMOTEyLDI4MyBMOTEyLDE4MyBMOTgyLDE4MyIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTE2MywzMjUgTDEyNjMsMzI1IEwxMjYzLDIyNSBMMTE5MywyMjUiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTExODgsMzc0IEwxMzg4LDM3NCBMMTM4OCw1NzQgTDE1MTgsNTc0IEwxNTE4LDcwNCIgc3Ryb2tlPSIjRjNDODdBIiBzdHJva2Utd2lkdGg9IjIuOCIgb3BhY2l0eT0iMC45IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTI0OCw1NDQgTDEyNDgsMzg0IEwxMzE4LDM4NCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTY2NywyOTcgTDY2Nyw0OTcgTDQ2Nyw0OTciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik03MTUsODQwIEw2NDUsODQwIEw2NDUsNjQwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTgzLDgyMSBMMTgzLDYyMSBMMjgzLDYyMSBMMjgzLDY5MSBMMzUzLDY5MSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEzNzksMjU0IEwxNTcwLDI1NCBMMTU3MCwzMjQgTDE1NzAsMzI0IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNTE0LDMzMiBMNTE0LDIwMiBMNzE0LDIwMiIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwNzgsMTA5IEwxMDc4LDMwIEwxMjM4LDMwIEwxMjM4LDMwIEwxMzk4LDMwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzkyLDE0MCBMMjkyLDE0MCBMMjkyLDcwIEwxNjIsNzAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zMDMsMjQxIEwzMDMsNDAxIEwxMDMsNDAxIEwxMDMsMjcxIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTQ5MCw2OTkgTDE0OTAsODI5IEwxNTYwLDgyOSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwOTAsOTMgTDEyMjAsOTMgTDEyMjAsMjkzIEwxNDIwLDI5MyIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE1MjcsNjM5IEwxNTcwLDYzOSBMMTU3MCw1NjkgTDE0NDAsNTY5IEwxNDQwLDY5OSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM0NSw1ODUgTDM0NSw3ODUgTDE4NSw3ODUiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik05MCwyOTkgTDkwLDQ5OSBMMzAsNDk5IEwzMCwzOTkgTDE5MCwzOTkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNDgyLDM3NiBMMTQ4Miw1MzYgTDEyODIsNTM2IEwxMjgyLDYwNiIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEzNjEsMzExIEwxMzYxLDE4MSBMMTQ5MSwxODEiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zOTAsNDI5IEwzOTAsNTU5IEw1NTAsNTU5IEw1NTAsNjg5IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTA4MywzNTMgTDEwODMsNTUzIEwxMjQzLDU1MyBMMTI0Myw3MTMiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik02NTEsNzUxIEw3ODEsNzUxIEw3ODEsODcwIEw2ODEsODcwIEw2ODEsNjcwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNDc0LDEyNyBMNDc0LDMwIEw2MzQsMzAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNTI0LDc3OCBMMTU3MCw3NzggTDE1NzAsNjE4IEwxMzcwLDYxOCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0Miw2MTcgTDE0Miw3NDcgTDI0Miw3NDciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMzEzLDM1OSBMMTMxMyw0MjkgTDExODMsNDI5IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNjcsMzMyIEw2NywyMDIgTDE5NywyMDIiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik05NzEsMzY4IEw5NzEsNDk4IEwxMDcxLDQ5OCBMMTA3MSw2MjgiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMzMzLDQxNyBMMTMzMywyODcgTDEyNjMsMjg3IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIxMjkxIiBjeT0iMTc3IiByPSIyMCIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSIxMjkxIiBjeT0iMTc3IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSIxMTA0IiBjeT0iMjAwIiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjExMDQiIGN5PSIyMDAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg0MCIgY3k9IjcyNyIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4NDAiIGN5PSI3MjciIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEyMDUiIGN5PSI3MzciIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTIwNSIgY3k9IjczNyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iOTcyIiBjeT0iMzc5IiByPSIxNiIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSI5NzIiIGN5PSIzNzkiIHI9IjMuMiIgZmlsbD0iI0ZGRTlDNCIvPjxjaXJjbGUgY3g9Ijc0NCIgY3k9IjU2OSIgcj0iMjYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI3NDQiIGN5PSI1NjkiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg2NiIgY3k9IjYwOSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4NjYiIGN5PSI2MDkiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg5MyIgY3k9IjIwMCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4OTMiIGN5PSIyMDAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjYxMSIgY3k9IjQ4NSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvd0cpIi8+PGNpcmNsZSBjeD0iNjExIiBjeT0iNDg1IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSI3NzUiIGN5PSIzMCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI3NzUiIGN5PSIzMCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iODg3IiBjeT0iNjciIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iODg3IiBjeT0iNjciIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEwMzMiIGN5PSI0MDEiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTAzMyIgY3k9IjQwMSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE1OSIgY3k9IjQ4MSIgcj0iMjYiIGZpbGw9InVybCgjZ2xvd0cpIi8+PGNpcmNsZSBjeD0iMTE1OSIgY3k9IjQ4MSIgcj0iMy4yIiBmaWxsPSIjRkZFOUM0Ii8+PGNpcmNsZSBjeD0iNzI2IiBjeT0iMTE0IiByPSIyNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjcyNiIgY3k9IjExNCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iOTgyIiBjeT0iMTgzIiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9Ijk4MiIgY3k9IjE4MyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE5MyIgY3k9IjIyNSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMTkzIiBjeT0iMjI1IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxNTE4IiBjeT0iNzA0IiByPSIyMCIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSIxNTE4IiBjeT0iNzA0IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSIxMzE4IiBjeT0iMzg0IiByPSIyMCIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjEzMTgiIGN5PSIzODQiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjM1MyIgY3k9IjY5MSIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIzNTMiIGN5PSI2OTEiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEzOTgiIGN5PSIzMCIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMzk4IiBjeT0iMzAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjE0NDAiIGN5PSI2OTkiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTQ0MCIgY3k9IjY5OSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTkwIiBjeT0iMzk5IiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjE5MCIgY3k9IjM5OSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTI4MiIgY3k9IjYwNiIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMjgyIiBjeT0iNjA2IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSI1NTAiIGN5PSI2ODkiIHI9IjE2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iNTUwIiBjeT0iNjg5IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxMjQzIiBjeT0iNzEzIiByPSIyNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjEyNDMiIGN5PSI3MTMiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjY4MSIgY3k9IjY3MCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI2ODEiIGN5PSI2NzAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEzNzAiIGN5PSI2MTgiIHI9IjE2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTM3MCIgY3k9IjYxOCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMjQyIiBjeT0iNzQ3IiByPSIyMCIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjI0MiIgY3k9Ijc0NyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE4MyIgY3k9IjQyOSIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMTgzIiBjeT0iNDI5IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxOTciIGN5PSIyMDIiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTk3IiBjeT0iMjAyIiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSI0MzQiIGN5PSI2OTUiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjQzNCIgY3k9IjY5NSIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjczMCIgY3k9Ijk2IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSI3MzAiIGN5PSI5NiIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjEyODUiIGN5PSIyNjAiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjEyODUiIGN5PSIyNjAiIHI9IjMiIGZpbGw9IiNBRUUwRkEiIG9wYWNpdHk9IjAuODUiLz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iMzg0IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iMzg0IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTAxNiIgY3k9IjY0MCIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMTAxNiIgY3k9IjY0MCIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxyZWN0IHg9IjUyOSIgeT0iNjExIiB3aWR0aD0iMjYiIGhlaWdodD0iMTgiIHJ4PSIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjUzNSIgeTE9IjYyOSIgeDI9IjUzNSIgeTI9IjYzNSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI1NDIiIHkxPSI2MjkiIHgyPSI1NDIiIHkyPSI2MzUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iNTQ5IiB5MT0iNjI5IiB4Mj0iNTQ5IiB5Mj0iNjM1IiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PHJlY3QgeD0iNzA1IiB5PSIyNjciIHdpZHRoPSIyNiIgaGVpZ2h0PSIxOCIgcng9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iNzExIiB5MT0iMjg1IiB4Mj0iNzExIiB5Mj0iMjkxIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjcxOCIgeTE9IjI4NSIgeDI9IjcxOCIgeTI9IjI5MSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI3MjUiIHkxPSIyODUiIHgyPSI3MjUiIHkyPSIyOTEiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48Y2lyY2xlIGN4PSIxMTU0IiBjeT0iMjA1IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMTU0IiBjeT0iMjA1IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMzQ4IiBjeT0iNTA4IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIzNDgiIGN5PSI1MDgiIHI9IjMiIGZpbGw9IiNBRUUwRkEiIG9wYWNpdHk9IjAuODUiLz48cmVjdCB4PSIyNDQiIHk9IjgxOSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE4IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIyNTAiIHkxPSI4MzciIHgyPSIyNTAiIHkyPSI4NDMiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iMjU3IiB5MT0iODM3IiB4Mj0iMjU3IiB5Mj0iODQzIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjI2NCIgeTE9IjgzNyIgeDI9IjI2NCIgeTI9Ijg0MyIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxjaXJjbGUgY3g9IjQ5NyIgY3k9IjM0NiIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iNDk3IiBjeT0iMzQ2IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iNzE3IiBjeT0iOTMiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjcxNyIgY3k9IjkzIiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PHJlY3QgeD0iOTIwIiB5PSI2NzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxOCIgcng9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iOTI2IiB5MT0iNjk0IiB4Mj0iOTI2IiB5Mj0iNzAwIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjkzMyIgeTE9IjY5NCIgeDI9IjkzMyIgeTI9IjcwMCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI5NDAiIHkxPSI2OTQiIHgyPSI5NDAiIHkyPSI3MDAiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48cmVjdCB4PSI5OTkiIHk9IjcwNCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE4IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDA1IiB5MT0iNzIyIiB4Mj0iMTAwNSIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDEyIiB5MT0iNzIyIiB4Mj0iMTAxMiIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDE5IiB5MT0iNzIyIiB4Mj0iMTAxOSIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk4MCw0MDApIHJvdGF0ZSg0NSkiPjxyZWN0IHg9Ii0xOTAiIHk9Ii0xOTAiIHdpZHRoPSIzODAiIGhlaWdodD0iMzgwIiByeD0iMjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0JGRUFGRiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNTUiLz48cmVjdCB4PSItMTU4IiB5PSItMTU4IiB3aWR0aD0iMzE2IiBoZWlnaHQ9IjMxNiIgcng9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiLz48cmVjdCB4PSItMTE4IiB5PSItMTE4IiB3aWR0aD0iMjM2IiBoZWlnaHQ9IjIzNiIgcng9IjIwIiBmaWxsPSIjMEUyQTRFIiBzdHJva2U9IiNCRkVBRkYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC45NiIvPjxsaW5lIHgxPSItOTAiIHkxPSItMTE4IiB4Mj0iLTkwIiB5Mj0iLTE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii05MCIgeTE9IjExOCIgeDI9Ii05MCIgeTI9IjE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0xMTgiIHkxPSItOTAiIHgyPSItMTUwIiB5Mj0iLTkwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iLTkwIiB4Mj0iMTUwIiB5Mj0iLTkwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTYwIiB5MT0iLTExOCIgeDI9Ii02MCIgeTI9Ii0xNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItNjAiIHkxPSIxMTgiIHgyPSItNjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iLTYwIiB4Mj0iLTE1MCIgeTI9Ii02MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjExOCIgeTE9Ii02MCIgeDI9IjE1MCIgeTI9Ii02MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0zMCIgeTE9Ii0xMTgiIHgyPSItMzAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTMwIiB5MT0iMTE4IiB4Mj0iLTMwIiB5Mj0iMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTExOCIgeTE9Ii0zMCIgeDI9Ii0xNTAiIHkyPSItMzAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIxMTgiIHkxPSItMzAiIHgyPSIxNTAiIHkyPSItMzAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIwIiB5MT0iLTExOCIgeDI9IjAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMCIgeTE9IjExOCIgeDI9IjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iMCIgeDI9Ii0xNTAiIHkyPSIwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iMCIgeDI9IjE1MCIgeTI9IjAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIzMCIgeTE9Ii0xMTgiIHgyPSIzMCIgeTI9Ii0xNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIzMCIgeTE9IjExOCIgeDI9IjMwIiB5Mj0iMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTExOCIgeTE9IjMwIiB4Mj0iLTE1MCIgeTI9IjMwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iMzAiIHgyPSIxNTAiIHkyPSIzMCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjYwIiB5MT0iLTExOCIgeDI9IjYwIiB5Mj0iLTE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjYwIiB5MT0iMTE4IiB4Mj0iNjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iNjAiIHgyPSItMTUwIiB5Mj0iNjAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIxMTgiIHkxPSI2MCIgeDI9IjE1MCIgeTI9IjYwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iOTAiIHkxPSItMTE4IiB4Mj0iOTAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iOTAiIHkxPSIxMTgiIHgyPSI5MCIgeTI9IjE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0xMTgiIHkxPSI5MCIgeDI9Ii0xNTAiIHkyPSI5MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjExOCIgeTE9IjkwIiB4Mj0iMTUwIiB5Mj0iOTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjwvZz48Y2lyY2xlIGN4PSI5ODAiIGN5PSI0MDAiIHI9IjE1MCIgZmlsbD0idXJsKCNnbG93KSIgb3BhY2l0eT0iMC44Ii8+PHJlY3QgeD0iOTIwIiB5PSIzNDAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTQiIGZpbGw9IiMxMjNBNUMiLz48cmVjdCB4PSI5MjAiIHk9IjM0MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjREZGNEZGIiBzdHJva2Utd2lkdGg9IjIuNSIvPjx0ZXh0IHg9Ijk4MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjRUFGN0ZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSTwvdGV4dD48Y2lyY2xlIGN4PSI5ODAiIGN5PSI3MDAiIHI9IjEyMCIgZmlsbD0idXJsKCNnbG93RykiLz48cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjYmcpIiBvcGFjaXR5PSIwIiAvPjxsaW5lYXJHcmFkaWVudCBpZD0iZGltIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEExRDM4IiBzdG9wLW9wYWNpdHk9IjAuNzQiLz48c3RvcCBvZmZzZXQ9IjAuNCIgc3RvcC1jb2xvcj0iIzBBMUQzOCIgc3RvcC1vcGFjaXR5PSIwLjM0Ii8+PHN0b3Agb2Zmc2V0PSIwLjcyIiBzdG9wLWNvbG9yPSIjMEExRDM4IiBzdG9wLW9wYWNpdHk9IjAuMDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwQTFEMzgiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI2RpbSkiLz48L3N2Zz4=') center/cover no-repeat;background-color:#0C2140}
+.hero::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.05)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero h1{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3rem);font-weight:900;line-height:1.55;margin-bottom:20px}
+.hero h1 em{font-style:normal;color:#F3C87A}
+.hero p.sub{color:#CDDCF2;max-width:34em;margin-bottom:34px}
+.hero .cta{display:flex;gap:14px;flex-wrap:wrap}
+.hero .note{margin-top:18px;font-size:.8rem;color:#9FB6D9}
+@media(max-width:860px){.hero-grid{grid-template-columns:1fr}.memo-card{margin:0 auto}}
+
+/* 判断メモ card (signature) */
+.memo-card{background:#fff;color:var(--ink);border-radius:12px;box-shadow:0 24px 60px rgba(4,16,38,.45);padding:26px 26px 20px;max-width:460px;font-size:.82rem;line-height:1.65}
+.memo-card .tag{display:inline-block;background:var(--ice);color:var(--mid);font-weight:700;font-size:.68rem;letter-spacing:.12em;padding:3px 10px;border-radius:99px;margin-bottom:10px}
+.memo-card h3{font-family:var(--serif);color:var(--navy);font-size:1.02rem;margin-bottom:6px}
+.memo-card .opt{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:10px}
+.memo-card .opt b{color:var(--navy)}
+.memo-card table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.72rem}
+.memo-card th,.memo-card td{border:1px solid var(--line);padding:4px 6px;text-align:center}
+.memo-card th{background:var(--ice);color:var(--mid);font-weight:700}
+.memo-card td:first-child{text-align:left;font-weight:700}
+.mark-2{color:var(--green);font-weight:700}.mark-1{color:var(--mid)}.mark-0{color:var(--amber)}.mark-x{color:var(--red);font-weight:700}
+.memo-card .fixed{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:.7rem;color:var(--sub)}
+
+/* stats */
+.stats{background:var(--ice);padding:40px 0}
+.stats .row{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.stat{background:#fff;border-radius:10px;padding:22px 26px;display:flex;align-items:baseline;gap:16px;border:1px solid var(--line)}
+.stat b{font-family:var(--serif);font-size:2rem;color:var(--navy);white-space:nowrap}
+.stat span{font-size:.82rem;color:var(--sub)}
+@media(max-width:700px){.stats .row{grid-template-columns:1fr}}
+
+/* problem cards */
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{background:var(--ice);border-radius:12px;padding:28px 24px}
+.card h3{font-size:1.02rem;color:var(--navy);margin-bottom:10px}
+.card p{font-size:.88rem;color:var(--ink)}
+.card .no{font-family:var(--serif);color:var(--mid);font-size:.85rem;letter-spacing:.15em;margin-bottom:8px;display:block}
+@media(max-width:860px){.cards3{grid-template-columns:1fr}}
+
+/* principle band */
+.principle{background:var(--amber-soft);color:var(--ink);border-left:6px solid var(--amber);border-radius:6px 14px 14px 6px;box-shadow:0 6px 18px rgba(21,51,94,.06);padding:34px 38px;display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center;margin-top:52px}
+.principle .scale{font-size:1.7rem;width:60px;height:60px;border-radius:50%;background:#fff;border:2px solid var(--amber);display:flex;align-items:center;justify-content:center}
+.principle h3{font-family:var(--serif);font-size:1.25rem;margin-bottom:6px;color:var(--navy)}
+.principle p{color:var(--ink);font-size:.88rem}
+@media(max-width:700px){.principle{grid-template-columns:1fr}}
+
+/* feature rows */
+.rules{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:8px}
+.rule{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-size:.88rem}
+.rule i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--ice);color:var(--navy);font-style:normal;font-weight:700;display:flex;align-items:center;justify-content:center;font-size:.75rem;margin-top:2px}
+@media(max-width:700px){.rules{grid-template-columns:1fr}}
+
+/* demo */
+#demo{background:linear-gradient(180deg,var(--ice) 0%,#fff 100%)}
+.demo-box{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(21,51,94,.10);padding:30px;max-width:760px;margin:0 auto}
+.demo-box label{font-weight:700;font-size:.9rem;color:var(--navy);display:block;margin-bottom:8px}
+.samples{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+.samples button{background:var(--ice);border:1px solid var(--line);border-radius:99px;padding:7px 14px;font-size:.8rem;cursor:pointer;color:var(--mid);font-weight:500}
+.samples button:hover{background:var(--ice2)}
+#consultText{width:100%;min-height:110px;border:1.5px solid var(--line);border-radius:8px;padding:12px 14px;font-family:var(--sans);font-size:.95rem;resize:vertical}
+#consultText:focus{border-color:var(--mid);outline:none}
+.demo-actions{display:flex;align-items:center;gap:16px;margin-top:16px;flex-wrap:wrap}
+#demoStatus{font-size:.82rem;color:var(--sub)}
+.mode-chip{font-size:.72rem;font-weight:700;letter-spacing:.08em;padding:4px 12px;border-radius:99px;background:var(--amber-soft);color:var(--amber);border:1px solid #E8CE9C}
+#memoOut{margin-top:26px;display:none}
+.demo-disclaim{max-width:760px;margin:18px auto 0;font-size:.78rem;color:var(--sub);text-align:center}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.step{border:1.5px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}
+.step header{position:static;background:var(--navy);color:#fff;padding:16px 20px;border:none;backdrop-filter:none}
+.step:nth-child(2) header{background:var(--mid)}
+.step:nth-child(3) header{background:var(--amber)}
+.step header .sn{font-size:.72rem;letter-spacing:.2em;color:rgba(255,255,255,.8);display:block}
+.step header b{font-family:var(--serif);font-size:1.08rem}
+.step .body{padding:18px 20px;font-size:.86rem}
+.step .body ul{list-style:none}
+.step .body li{padding-left:1.1em;text-indent:-1.1em;margin-bottom:6px}
+.step .body li::before{content:"・"}
+.step .dur{margin-top:10px;font-weight:700;color:var(--navy);font-size:.82rem}
+@media(max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* workspace */
+#workspace .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin:34px 0 26px;align-items:stretch}
+.ws{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:20px 18px;font-size:.85rem;position:relative;margin-right:26px}
+.ws:last-child{margin-right:0}
+.ws::after{content:"→";position:absolute;right:-22px;top:50%;transform:translateY(-50%);color:var(--mid);font-weight:700}
+.ws:last-child::after{content:""}
+.ws b{display:block;color:var(--navy);margin-bottom:6px;font-size:.92rem}
+.ws .k{font-size:.7rem;letter-spacing:.15em;color:var(--amber);font-weight:700;display:block;margin-bottom:6px}
+@media(max-width:860px){#workspace .flow{grid-template-columns:1fr}.ws{margin-right:0;margin-bottom:26px}.ws::after{content:"↓";right:auto;left:50%;top:auto;bottom:-24px;transform:translateX(-50%)}.ws:last-child{margin-bottom:0}}
+.ws-note{background:var(--amber-soft);border:1px solid #E8CE9C;border-radius:10px;padding:16px 20px;font-size:.84rem;color:#7A5210}
+
+/* contact */
+#contact{background:var(--navy);color:#fff}
+#contact h2.sec{color:#fff}
+#contact .lede{color:#C9D8EE}
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px}
+.cform label{display:block;font-size:.82rem;font-weight:700;margin:14px 0 6px;color:#DCE7F5}
+.cform input,.cform textarea,.cform select{width:100%;border:none;border-radius:6px;padding:11px 13px;font-family:var(--sans);font-size:.92rem}
+.cform textarea{min-height:96px;resize:vertical}
+.cform .btn{margin-top:20px}
+.contact-side{font-size:.88rem;color:#C9D8EE}
+.contact-side h3{font-family:var(--serif);color:#fff;margin-bottom:10px;font-size:1.05rem}
+.contact-side ul{list-style:none;margin-bottom:22px}
+.contact-side li{padding-left:1.2em;text-indent:-1.2em;margin-bottom:8px}
+.contact-side li::before{content:"✓ ";color:#F3C87A;font-weight:700}
+@media(max-width:860px){.contact-grid{grid-template-columns:1fr}}
+
+/* two principles */
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:52px}
+.pgrid .principle{margin-top:0;padding:28px 30px;align-items:flex-start}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr}}
+
+/* features */
+.fcat{font-family:var(--serif);color:var(--navy);font-weight:700;font-size:1.05rem;margin:34px 0 14px;padding-left:12px;border-left:4px solid var(--amber)}
+.feats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.feat{background:var(--ice);border-radius:12px;padding:20px 20px 16px;display:flex;flex-direction:column}
+.feat b{color:var(--navy);font-size:.95rem;margin-bottom:6px}
+.feat p{font-size:.82rem;color:var(--ink);flex:1}
+a.feat{transition:background .15s ease, box-shadow .15s ease}
+a.feat:hover{background:var(--ice2);box-shadow:0 8px 22px rgba(21,51,94,.12)}
+.feat-core{background:var(--amber-soft);border-left:6px solid var(--amber);border-radius:6px 12px 12px 6px;box-shadow:0 6px 18px rgba(21,51,94,.06)}
+.feat-core:hover{background:#FBEBD2;box-shadow:0 8px 22px rgba(21,51,94,.14)}
+.core-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:14px;flex-wrap:wrap}
+.core-foot .flink{margin-top:0}
+.core-demo{padding:9px 18px;font-size:.8rem;border-radius:8px}
+.badge-row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
+.badge-row .corechip{margin-bottom:0}
+.badge-row .fbadge{margin-top:0}
+.corechip{align-self:flex-start;font-size:.68rem;font-weight:700;letter-spacing:.08em;color:var(--amber);border:1px solid var(--amber);border-radius:99px;padding:2px 10px;margin-bottom:8px;background:#fff}
+.flink{margin-top:8px;font-size:.74rem;font-weight:700;color:var(--amber)}
+.fbadge{align-self:flex-start;margin-top:12px;font-size:.7rem;font-weight:700;letter-spacing:.04em;padding:3px 10px;border-radius:99px;background:#fff;border:1px solid var(--line);color:var(--mid)}
+.fb-green{background:#E4F3EA;border-color:#BADCC7;color:var(--green)}
+.fb-amber{background:var(--amber-soft);border-color:#E8CE9C;color:var(--amber)}
+@media(max-width:860px){.feats{grid-template-columns:1fr}}
+.boundary{margin-top:40px;background:#fff;border:1.5px dashed var(--line);border-radius:12px;padding:20px 24px;font-size:.86rem;color:var(--sub)}
+.boundary b{color:var(--navy)}
+
+/* inheritance 10 items (4層構成) */
+.k4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px;align-items:start}
+.kg{background:#fff;border:1px solid var(--line);border-top:3px solid var(--navy);border-radius:10px;padding:18px 18px 14px}
+.kg h4{font-family:var(--serif);color:var(--amber);font-size:1.05rem;margin:0 0 4px}
+.kg .cap{font-size:.76rem;color:var(--sub);line-height:1.6}
+.kg .it{margin-top:12px;padding-top:12px;border-top:1px dashed var(--line)}
+.kg .it b{color:var(--navy);font-size:.9rem;display:block}
+.kg .it p{font-size:.78rem;color:var(--sub);margin-top:2px}
+@media(max-width:980px){.k4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.k4{grid-template-columns:1fr}}
+
+/* before/after 言語化 */
+.ba{display:grid;grid-template-columns:1fr 64px 1fr;gap:0;align-items:stretch;margin-top:26px}
+.ba-l,.ba-r{border-radius:12px;padding:22px 24px}
+.ba-l{background:var(--ice);border:1px solid var(--line)}
+.ba-r{background:var(--amber-soft);border-left:6px solid var(--amber);border-radius:6px 12px 12px 6px;box-shadow:0 6px 18px rgba(21,51,94,.06)}
+.ba h4{font-family:var(--serif);font-size:1rem;margin:0 0 4px}
+.ba-l h4{color:var(--mid)} .ba-r h4{color:var(--navy)}
+.ba .cap2{font-size:.74rem;color:var(--sub);margin-bottom:10px}
+.ba-l .say{font-size:.9rem;color:var(--ink);padding:10px 0;border-bottom:1px dashed var(--line)}
+.ba-l .say:last-child{border-bottom:none}
+.ba-r .doc{padding:10px 0;border-bottom:1px dashed #E8CE9C}
+.ba-r .doc:last-child{border-bottom:none}
+.ba-r .doc b{display:block;color:var(--navy);font-size:.82rem}
+.ba-r .doc p{font-size:.84rem;color:var(--ink)}
+.ba-arrow{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.ba-arrow i{font-style:normal;font-size:1.5rem;color:var(--amber);font-weight:700}
+.ba-arrow span{writing-mode:vertical-rl;font-size:.68rem;letter-spacing:.2em;color:var(--sub)}
+@media(max-width:760px){.ba{grid-template-columns:1fr}.ba-arrow{flex-direction:row;padding:10px 0}.ba-arrow i{transform:rotate(90deg)}.ba-arrow span{writing-mode:horizontal-tb}}
+
+/* 継承サイクル（アニメーション） */
+.cycle{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px;margin:26px 0 34px}
+.cy{background:#fff;border:1.5px solid var(--line);border-radius:99px;padding:10px 18px;font-size:.86rem;font-weight:700;color:var(--mid);animation:cyk 8s infinite}
+.cy small{display:block;font-weight:400;font-size:.68rem;color:var(--sub);text-align:center}
+.cyar{color:var(--line);font-size:1.1rem;font-weight:700}
+.cyback{font-size:.74rem;color:var(--amber);font-weight:700;border:1px dashed var(--amber);border-radius:99px;padding:6px 14px}
+.cy:nth-child(1){animation-delay:0s}.cy:nth-child(3){animation-delay:1.6s}.cy:nth-child(5){animation-delay:3.2s}.cy:nth-child(7){animation-delay:4.8s}.cy:nth-child(9){animation-delay:6.4s}
+@keyframes cyk{0%,100%{background:#fff;border-color:var(--line);color:var(--mid);transform:none}3%{background:var(--amber-soft);border-color:var(--amber);color:var(--navy);transform:translateY(-3px)}17%{background:var(--amber-soft);border-color:var(--amber);color:var(--navy);transform:translateY(-3px)}22%{background:#fff;border-color:var(--line);color:var(--mid);transform:none}}
+@media(prefers-reduced-motion: reduce){.cy{animation:none}}
+
+/* 口伝 vs システムの時間対比 */
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:0 0 42px}
+.vs .vc{border-radius:12px;padding:22px 26px}
+.vs .vc h4{font-family:var(--serif);font-size:1.02rem;margin:0 0 10px}
+.vs .vc li{font-size:.86rem;margin:6px 0 6px 1.2em;color:var(--ink)}
+.vs .v-old{background:var(--ice);border:1px solid var(--line)}
+.vs .v-old h4{color:var(--mid)}
+.vs .v-old li{color:var(--sub)}
+.vs .v-new{background:var(--amber-soft);border-left:6px solid var(--amber);border-radius:6px 12px 12px 6px;box-shadow:0 6px 18px rgba(21,51,94,.06)}
+.vs .v-new h4{color:var(--navy)}
+@media(max-width:760px){.vs{grid-template-columns:1fr}}
+
+/* step done badge */
+.step header{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px}
+.step header .sn{flex-basis:100%}
+.step header .done{margin-left:auto;font-size:.68rem;font-weight:700;letter-spacing:.06em;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.45);border-radius:99px;padding:2px 10px}
+
+/* kb demo chat */
+.kbchat{background:var(--ice);border-radius:10px;padding:14px;max-height:280px;overflow-y:auto;display:flex;flex-direction:column;gap:10px}
+.kbchat .bub{max-width:85%;padding:10px 14px;border-radius:12px;font-size:.85rem;line-height:1.7}
+.kbchat .bub.ai{background:#fff;border:1px solid var(--line);align-self:flex-start}
+.kbchat .bub.me{background:var(--gold, #F3C87A);color:var(--navy);align-self:flex-end}
+.kbchat .src{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.72rem;color:var(--mid);font-weight:700}
+
+footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0;text-align:center}
+.skip{position:absolute;left:-9999px}
+.skip:focus{position:fixed;left:16px;top:12px;background:#fff;color:var(--navy);padding:8px 14px;z-index:99;border-radius:6px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#top">経営判断AIエージェント<small>KEIEI HANDAN AI AGENT</small></a>
+    <ul>
+      <li><a href="#problem">課題</a></li>
+      <li><a href="#product">設計思想</a></li>
+      <li><a href="#features">機能一覧</a></li>
+      <li><a href="#demo">デモ体験</a></li>
+      <li><a href="#steps">導入の流れ</a></li>
+      <li><a href="#workspace">企業別ナレッジ環境</a></li>
+    </ul>
+    <a class="btn btn-navy" href="#contact">試験導入の相談</a>
+  </div>
+</header>
+
+<main id="main">
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <h1>経営者の暗黙知を、<br><em>次世代の経営資産</em>に。</h1>
+      <p class="sub">投資、採用、取引、撤退——重要な判断ほど、「社長の頭の中」というブラックボックスの中にあります。経営判断AIエージェントは、経営者の判断基準・価値観・過去の意思決定事例を継承し、経営層の相談に「判断メモ」で応える社内アプリ。会議前の論点整理から判断トレーニングまで、<b style="color:#F3C87A">基本機能＋オプション機能を提供中</b>です。</p>
+      <div class="cta">
+        <a class="btn btn-amber" href="#demo">デモを試してみる</a>
+        <a class="btn btn-ghost" href="#contact">資料請求・お問い合わせ</a>
+      </div>
+      <p class="note">AIは判断材料の整理役。最終判断は、必ず人間が行います。／APIキー不要の試運転モードは素早く起動できます。</p>
+    </div>
+    <div class="memo-card" aria-label="判断メモの例">
+      <span class="tag">判断メモ（出力例）</span>
+      <h3>設備更新投資 4,500万円の検討</h3>
+      <div class="opt"><b>A案：一括更新</b>　生産効率+18%見込み。ただし即決上限3,000万円を超過し、役員会決議が必要。</div>
+      <div class="opt"><b>B案：2期分割更新</b>　初年度2,400万円。基準内で機動的に着手でき、効果検証後に残りを判断。</div>
+      <table aria-label="5視点比較">
+        <tr><th>視点</th><th>売上</th><th>利益</th><th>人材</th><th>信用</th><th>長期</th></tr>
+        <tr><td>A案</td><td class="mark-1">○</td><td class="mark-0">△</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-2">◎</td></tr>
+        <tr><td>B案</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td></tr>
+      </table>
+      <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="wrap row">
+    <div class="stat"><b>60.7歳</b><span>全国の経営者の平均年齢（2024年）。経営者の高齢化が進行<br>出典：中小企業庁「2025年版 中小企業白書」</span></div>
+    <div class="stat"><b>50.1%</b><span>全国の後継者不在率（2025年）。約半数が後継者未定<br>出典：帝国データバンク「後継者不在率」動向調査</span></div>
+    <div class="stat"><b>51.6%</b><span>「指導する時間がない」——後継者育成の大きな壁に<br>出典：厚生労働省「能力開発基本調査」</span></div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section id="problem">
+  <div class="wrap">
+    <p class="eyebrow">PROBLEM</p>
+    <h2 class="sec">「社長の頭の中」というブラックボックスが招く経営リスク</h2>
+    <p class="lede">経験、勘、人を見る目、取引先との距離感——経営者の卓越した判断基準が明文化されず、組織内で共有されていない。この「属人化」は3つの停滞を招き、企業の存続を左右します。</p>
+    <div class="cards3">
+      <div class="card"><span class="no">壱</span><h3>経営判断の集中と停滞</h3><p>判断が経営者個人に集中し、幹部が自律的に判断できない。社長不在時に重要な意思決定が止まる「ボトルネック」が発生します。</p></div>
+      <div class="card"><span class="no">弐</span><h3>後継者育成の長期化</h3><p>「背中を見て学べ」という育成には限界があります。指導時間の不足（51.6%）が大きな壁となり、判断基準の継承が進みません。</p></div>
+      <div class="card"><span class="no">参</span><h3>承継時の品質低下リスク</h3><p>承継時に経営者の「勘」が失われることで、投資や採用の判断品質が急落し、経営品質と企業の持続性が脅かされます。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCT -->
+<section id="product" style="background:var(--ice)">
+  <div class="wrap">
+    <p class="eyebrow">PRODUCT</p>
+    <h2 class="sec">AIに「継承」させる 10 の重要項目</h2>
+    <p style="font-size:.95rem;color:var(--ink);line-height:1.9;margin:10px 0 8px">単なる「データ」ではなく、経営の「魂」と「ロジック」をセットでAIに学習させます。試験導入1ヶ月目（準備・情報収集）の経営者ヒアリングで次の10項目を言語化し、判断基準書としてアプリの「思考の核」に登録。後述の7つのルールは、この核に照らして働きます。</p>
+    <div class="k4">
+      <div class="kg">
+        <h4>理念層</h4>
+        <p class="cap">すべての判断メモの土台になる、不変の価値観。</p>
+        <div class="it"><b>会社の理念</b><p>企業の存在意義と目指す方向性</p></div>
+        <div class="it"><b>経営者の価値観</b><p>判断の根底にある信念と優先順位</p></div>
+      </div>
+      <div class="kg">
+        <h4>戦略層</h4>
+        <p class="cap">投資・撤退・提携の判断基準。シミュレーターや撤退ライン監視のしきい値と連動します。</p>
+        <div class="it"><b>判断の重視基準</b><p>売上・利益・人材・信用・長期影響——5視点の評価軸</p></div>
+        <div class="it"><b>過去の重要事例</b><p>成功・失敗の背景と得られた教訓。判断事例として蓄積</p></div>
+        <div class="it"><b>投資判断基準</b><p>リスク許容度と期待リターン。即決上限・回収年数の基準</p></div>
+        <div class="it"><b>撤退判断の基準</b><p>事業継続を断念するトリガー（粗利率・連続赤字）</p></div>
+      </div>
+      <div class="kg">
+        <h4>実務層</h4>
+        <p class="cap">日々の運用の原則。採用マッチングや顧客対応ChatBotの拠り所になります。</p>
+        <div class="it"><b>採用・評価の考え方</b><p>重視する資質と人材配置の原則（求める人材像）</p></div>
+        <div class="it"><b>顧客対応方針</b><p>信頼構築とトラブル対応の基本原則</p></div>
+        <div class="it"><b>クレーム対応方針</b><p>初動対応と解決までの優先順位</p></div>
+      </div>
+      <div class="kg">
+        <h4>AIの回答範囲</h4>
+        <p class="cap">AIの限界と、人間への確認ルール。「答えない領域」も明文化します。</p>
+      </div>
+    </div>
+    <p style="font-size:.82rem;color:var(--sub);margin-top:16px">※ 10項目を構造化し、AIエージェントの「思考の核」として設定します。AIはこの核＝「過去の傾向」から選択肢を整理し、未知の事態への「決断」は人間が行います。</p>
+<h3 class="sec" style="margin-top:64px">暗黙知は、こうして形式知になる。</h3>
+    <p class="lede" style="margin-bottom:0">「本当に言葉にできるのか？」——できます。経営者ヒアリングでは、日頃の口癖や語り草を、そのまま判断基準書の一文へ書き換えていきます。実際の変換例をご覧ください。</p>
+    <div class="ba">
+      <div class="ba-l">
+        <h4>社長の頭の中（暗黙知）</h4>
+        <p class="cap2">——ふだんの口癖・語り草</p>
+        <div class="say">「学歴も大事だけれども、やはり人柄だよね。」</div>
+        <div class="say">「値引きで取った仕事は、利益が出ないし、結局は自分の首を絞めることになるね。」</div>
+        <div class="say">「金額が大きな投資は、ノリや思いつきなど、その場の雰囲気で決めるものじゃない。ちゃんと採算が取れるか？計画が必要だよ。」</div>
+      </div>
+      <div class="ba-arrow"><i>→</i><span>ヒアリングで言語化</span></div>
+      <div class="ba-r">
+        <h4>判断基準書（形式知）</h4>
+        <p class="cap2">——AIエージェントの「思考の核」に登録される一文</p>
+        <div class="doc"><b>求める人材像（採用・評価の考え方）</b><p>失敗の報告が早いこと、学び続ける姿勢を絶対条件とする。</p></div>
+        <div class="doc"><b>取引基準（顧客対応方針）</b><p>採算割れの値引きはしない。価格ではなく納期・品質で応える。</p></div>
+        <div class="doc"><b>投資判断基準</b><p>即決上限3,000万円。超過案件は役員会決議を必須とする。</p></div>
+      </div>
+    </div>
+<h3 class="sec" style="margin-top:64px">AIエージェントが担う「思考の整理」と「判断の補助」</h3>
+    <p class="lede">経営者ヒアリングで言語化した判断基準・価値観・過去の意思決定事例をAIに登録。経営層・後継者が相談すると、「社長ならどう考えるか」に照らした判断材料が数十秒で整理されます。回答は「断定の回避・根拠の明示・価値観の継承」——振る舞いの3原則を核とする7つのルールに従い、このルールはAIへの依頼文だけでなくプログラム側にも組み込まれています。</p>
+    <div class="rules">
+      <div class="rule"><i>1</i><span><b>断定の回避：</b>必ず2〜3案と、各々の利害を提示します。</span></div>
+      <div class="rule"><i>2</i><span><b>根拠の明示：</b>過去事例や登録データに基づく裏付けを各案に添えます。</span></div>
+      <div class="rule"><i>3</i><span><b>5視点で比較：</b>売上・利益・人材・信用・長期影響を◎○△×で並べます。</span></div>
+      <div class="rule"><i>4</i><span><b>価値観の継承：</b>経営者の過去の判断傾向との一致／不一致を指摘します。</span></div>
+      <div class="rule"><i>5</i><span><b>足りなければ聞く：</b>推測で答えず、追加質問を返します。</span></div>
+      <div class="rule"><i>6</i><span><b>危険には警告：</b>高リスクの選択肢には注意喚起を必ず付けます。</span></div>
+      <div class="rule"><i>7</i><span><b>決めない：</b>最終判断は人間。推奨語は使いません。</span></div>
+    </div>
+    <div class="pgrid">
+      <div class="principle">
+        <div class="scale" aria-hidden="true">⚖</div>
+        <div>
+          <h3>大原則① — AIは「材料整理」の補助。最終判断と責任は人間</h3>
+          <p>推奨や断定は行わない設計です。AIは「過去の傾向」から選択肢を出し、未知の事態への「決断」は人間が行う範囲として明確に区別。この原則はアプリ画面とAIへの指示の両方に常時明記され、検証段階から本格運用まで一切変わりません。</p>
+        </div>
+      </div>
+      <div class="principle">
+        <div class="scale" aria-hidden="true">🧮</div>
+        <div>
+          <h3>大原則② — 数字はAIに任せない</h3>
+          <p>投資の回収年数、資金の耐久月数、撤退ラインの判定は、AIではなくプログラムが計算します。AIが担当するのは、計算結果の「解釈」だけ。数字の間違いが起きない構造です。</p>
+        </div>
+      </div>
+    </div>
+
+      </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="wrap">
+    <p class="eyebrow">FEATURES</p>
+    <h2 class="sec">基本機能＋オプション機能 — 相談から日々の業務まで</h2>
+    <p class="lede">ご提供可能な機能一覧になります（基本機能＋オプション機能）。「判断させない」「勝手に出さない」ための仕組みが、機能ごとにプログラムで組み込まれています。各カードを押すと、実際のアプリの画面例をご覧いただけます。</p>
+
+    <div class="cycle" aria-label="知恵の継承サイクル">
+      <div class="cy">① 相談する<small>経営層・後継者</small></div><span class="cyar">→</span>
+      <div class="cy">② 判断メモ<small>AIが材料を整理</small></div><span class="cyar">→</span>
+      <div class="cy">③ 人間が決める<small>最終判断と責任</small></div><span class="cyar">→</span>
+      <div class="cy">④ 事例に登録<small>教訓を資産化</small></div><span class="cyar">→</span>
+      <div class="cy">⑤ 基準を更新<small>核が育つ</small></div>
+      <span class="cyback">↺ 使うほど、判断の資産が育つ</span>
+    </div>
+    <div class="fcat">意思決定支援（6機能）</div>
+    <div class="feats">
+      <div class="feat feat-core"><b>基本相談（判断メモ）</b><p>相談内容を自動で担当機能へ振り分け、2〜3案＋5視点比較＋根拠で返します。</p><div class="badge-row"><span class="corechip">思考の核</span><span class="fbadge">最終判断はしない</span></div><div class="core-foot"><a class="flink" href="screens.html#consult">画面例を見る →</a><a class="btn btn-amber core-demo" href="#demo">デモを試してみる</a></div></div>
+      <a class="feat" href="screens.html#invest"><b>投資判断シミュレーター</b><p>標準・楽観・悲観の3シナリオで回収年数を試算。即決上限超過は役員会決議を自動警告。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#hiring"><b>採用・評価マッチング</b><p>自社の人材像基準と候補者情報を照合し、観点別の適合度と面接での確認質問を整理。</p><span class="fbadge">合否は出さない</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#risk"><b>リスクシナリオ・ストレステスト</b><p>売上減少10／30／50%時の資金の耐久月数を試算し、備えの抜けと打ち手を整理。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#gov"><b>ガバナンス・倫理チェック</b><p>契約書・広告文などの懸念箇所を業法リスト・社内NGラインに照らして指摘。</p><span class="fbadge">最終確認は専門家へ</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#training"><b>後継者トレーニング</b><p>実際の経営課題のお題に後継者が回答し、社長基準の観点で講評。記録が育成の資産に。</p><span class="fbadge">講評記録つき</span><span class="flink">画面例を見る →</span></a>
+    </div>
+
+    <div class="fcat">警告と自動化（4機能）</div>
+    <div class="feats">
+      <a class="feat" href="screens.html#watchdog"><b>撤退ライン監視</b><p>粗利率と連続赤字を毎朝自動点検し、基準抵触をアラート。判定にAIは使いません。</p><span class="fbadge fb-green">毎朝自動・完全プログラム判定</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#agenda"><b>会議アジェンダ生成</b><p>アラート・承認待ち・監視ボードを自動集計し、次回経営会議の論点案を下書き。</p><span class="fbadge fb-amber">承認されるまで配布されない</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#market"><b>市場調査（貼り付け分析）</b><p>業界記事・相場情報を貼り付けると、要約と自社の判断基準との関係を整理。</p><span class="fbadge">貼付情報の範囲内で分析</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#compete"><b>競合分析（貼り付け分析）</b><p>競合の動きの情報から、自社方針との「追い風・矛盾・要注意」を指摘。</p><span class="fbadge">貼付情報の範囲内で分析</span><span class="flink">画面例を見る →</span></a>
+    </div>
+
+    <div class="fcat">業務効率化（6機能）</div>
+    <div class="feats">
+      <a class="feat" href="screens.html#kb"><b>社内ナレッジChatBot</b><p>就業規則・経費規程などから該当箇所を検索し、その範囲内でだけ回答。出典を常に表示。</p><span class="fbadge fb-green">根拠つき・禁止領域は拒否</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#sns"><b>SNSコンテンツ生成</b><p>Instagram・X・ブログ導入文の3媒体の下書きを一括生成し、承認待ちへ送ります。</p><span class="fbadge fb-amber">承認フロー必須</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#snsplan"><b>SNS投稿カレンダー</b><p>投稿の予約管理。承認済みの投稿以外は予約できないことをプログラムが保証します。</p><span class="fbadge fb-amber">承認済みのみ予約可</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#minutes"><b>議事録要約</b><p>文字起こしテキストから決定事項・宿題（担当・期限）・次回日程を抽出。創作はしません。</p><span class="fbadge">事実のみ抽出</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#mail"><b>メール・文書作成支援</b><p>社長の文体見本に沿った下書きを作成。送信機能はそもそも存在しません。</p><span class="fbadge">下書き専用・送信機能なし</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#custbot"><b>顧客対応ChatBot</b><p>製品FAQの範囲で一次回答。価格・納期・法的な相談は自動で担当窓口へ引き継ぎます。</p><span class="fbadge">価格・納期は窓口へ</span><span class="flink">画面例を見る →</span></a>
+    </div>
+
+    <div class="fcat">管理・基盤（1機能）</div>
+    <div class="feats">
+      <a class="feat" href="screens.html#admin"><b>承認・事例・実績の管理</b><p>生成物の承認／却下、判断事例の蓄積、月次実績の入力を一画面で。利用者ごとの権限（承認者・管理者）つき。</p><span class="fbadge">ダッシュボードでKPI表示</span><span class="flink">画面例を見る →</span></a>
+    </div>
+
+    <div class="boundary">
+      <b>実装にあたって</b>　音声の自動文字起こし・Web情報の自動収集・SNSへの自動投稿の3点は、外部サービス契約が本体となるためSTEP 3で追加します。現在は、文字起こしテキストの貼り付け／記事の貼り付け分析／予約管理＋手動投稿という、境界を明確にした形でご提供しています。
+    </div>
+  </div>
+</section>
+
+<!-- SYSTEM -->
+<section id="system" style="background:var(--ice)">
+  <div class="wrap">
+    <p class="eyebrow">SYSTEM</p>
+    <h2 class="sec">全体の仕組み — 「経営知の循環」を生むシステム構成</h2>
+    <p class="lede">利用者の相談は専門機能へ振り分け、AI（Claude）が判断基準・判断事例と照らして材料を整理します。人間が決め、事例に登録し、基準を更新する——経営者の暗黙知を形式知として蓄積し、次世代の判断の実行・学習へつなぐ「知恵の継承サイクル」を生む構造です。</p>
+    <figure style="margin:0">
+      <svg viewBox="0 0 1600 1110" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="経営判断AIエージェント システム概念図" style="width:100%;height:auto;display:block;background:#fff;border:1px solid #D8E2F0;border-radius:12px;box-shadow:0 14px 40px rgba(21,51,94,.10)" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">
+<defs>
+<marker id="an" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#3A5A8C"/></marker>
+<marker id="aa" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#B97A1F"/></marker>
+<marker id="ag" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#2C6E49"/></marker>
+</defs>
+<rect x="40" y="40" width="1520" height="150" rx="14" fill="#EEF3FA" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="80" y="80" font-size="18" fill="#15335E" font-weight="700" text-anchor="start" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">利用者</text>
+<rect x="200" y="72" width="240" height="92" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="320" y="113" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">社長</text>
+<text x="320" y="142" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">基準の源泉</text>
+<rect x="458" y="72" width="240" height="92" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="578" y="113" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">役員・幹部</text>
+<text x="578" y="142" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">日常の相談</text>
+<rect x="716" y="72" width="240" height="92" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="836" y="113" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">後継者</text>
+<text x="836" y="142" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">判断の訓練</text>
+<rect x="974" y="72" width="240" height="92" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="1094" y="113" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">社員</text>
+<text x="1094" y="142" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">規程の質問</text>
+<rect x="1232" y="72" width="240" height="92" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="1352" y="113" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">顧客</text>
+<text x="1352" y="142" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">FAQ ※任意</text>
+<line x1="800" y1="193" x2="800" y2="244" stroke="#3A5A8C" stroke-width="2.5" marker-end="url(#an)"/>
+<rect x="40" y="250" width="430" height="580" rx="16" fill="#fff" stroke="#B97A1F" stroke-width="2"/>
+<text x="255" y="296" font-size="21" fill="#B97A1F" font-weight="700" text-anchor="middle" font-family="'Zen Old Mincho','Hiragino Mincho ProN',serif">経営知の循環</text>
+<text x="255" y="324" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">使うほど、判断の資産が育つ</text>
+<rect x="175" y="361" width="160" height="48" rx="10" fill="#fff" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="255" y="391" font-size="15" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">① 相談する</text>
+<rect x="60" y="471" width="160" height="48" rx="10" fill="#fff" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="140" y="501" font-size="15" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">② 判断メモ</text>
+<rect x="290" y="471" width="160" height="48" rx="10" fill="#fff" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="370" y="501" font-size="15" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">⑤ 基準を更新</text>
+<rect x="85" y="621" width="160" height="48" rx="10" fill="#fff" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="165" y="651" font-size="15" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">③ 人間が決める</text>
+<rect x="265" y="621" width="160" height="48" rx="10" fill="#fff" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="345" y="651" font-size="15" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">④ 事例に登録</text>
+<text x="255" y="570" font-size="16" fill="#B97A1F" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">経営知</text>
+<path d="M210,407 Q148,428 141,469" fill="none" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)"/>
+<path d="M140,521 Q136,576 156,619" fill="none" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)"/>
+<path d="M248,645 L262,645" fill="none" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)"/>
+<path d="M356,619 Q372,576 369,521" fill="none" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)"/>
+<path d="M363,469 Q336,428 302,407" fill="none" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)"/>
+<path d="M472,540 L504,540" fill="none" stroke="#B97A1F" stroke-width="2.5" marker-end="url(#aa)"/>
+<rect x="510" y="250" width="680" height="580" rx="16" fill="#fff" stroke="#15335E" stroke-width="2"/>
+<text x="850" y="296" font-size="21" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Zen Old Mincho','Hiragino Mincho ProN',serif">経営判断AIエージェント本体</text>
+<rect x="720" y="318" width="260" height="60" rx="10" fill="#15335E"/>
+<text x="850" y="354" font-size="14" fill="#fff" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">相談を専門機能へ振り分け</text>
+<line x1="850" y1="380" x2="640" y2="462" stroke="#3A5A8C" stroke-width="2" marker-end="url(#an)"/>
+<line x1="850" y1="380" x2="850" y2="462" stroke="#3A5A8C" stroke-width="2" marker-end="url(#an)"/>
+<line x1="850" y1="380" x2="1060" y2="462" stroke="#3A5A8C" stroke-width="2" marker-end="url(#an)"/>
+<rect x="545" y="468" width="190" height="112" rx="12" fill="#DCE7F5" stroke="#3A5A8C" stroke-width="1.5"/>
+<text x="640" y="508" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">基本</text>
+<text x="640" y="536" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">判断メモ</text>
+<text x="640" y="556" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">（2〜3案＋根拠）</text>
+<rect x="755" y="468" width="190" height="112" rx="12" fill="#fff" stroke="#3A5A8C" stroke-width="1.5"/>
+<text x="850" y="508" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">意思決定支援</text>
+<text x="850" y="536" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">専門エージェント群</text>
+<rect x="965" y="468" width="190" height="112" rx="12" fill="#fff" stroke="#3A5A8C" stroke-width="1.5"/>
+<text x="1060" y="508" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">業務効率化</text>
+<text x="1060" y="536" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">専門エージェント群</text>
+<text x="850" y="618" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">どの機能も「専門プロンプト＋専用データ」の組み合わせ</text>
+<rect x="545" y="640" width="610" height="120" rx="12" fill="#EEF3FA" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="850" y="684" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">共有ナレッジ</text>
+<text x="850" y="714" font-size="12.5" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">判断基準（criteria）・判断事例（cases）・相談ログ・機能別設定（options）</text>
+<rect x="1270" y="250" width="290" height="170" rx="14" fill="#2C6E49"/>
+<text x="1415" y="308" font-size="22" fill="#fff" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">Claude API</text>
+<text x="1415" y="344" font-size="13" fill="#DFF0E6" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">全機能が共有する頭脳</text>
+<text x="1415" y="366" font-size="13" fill="#DFF0E6" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">（判断はしない・整理する）</text>
+<line x1="1196" y1="320" x2="1262" y2="320" stroke="#2C6E49" stroke-width="2" marker-end="url(#ag)"/>
+<line x1="1262" y1="348" x2="1198" y2="348" stroke="#2C6E49" stroke-width="2" marker-end="url(#ag)"/>
+<rect x="1270" y="450" width="290" height="150" rx="14" fill="#FFF4E0" stroke="#B97A1F" stroke-width="1.5"/>
+<text x="1415" y="500" font-size="17" fill="#B97A1F" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">外部サービス連携</text>
+<text x="1415" y="530" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">SNS・音声認識・Web検索・通知</text>
+<text x="1415" y="552" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">（オプション機能により利用）</text>
+<line x1="1196" y1="525" x2="1262" y2="525" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)" stroke-dasharray="6 5"/>
+<rect x="1270" y="630" width="290" height="130" rx="14" fill="#DCE7F5" stroke="#3A5A8C" stroke-width="1.5"/>
+<text x="1415" y="682" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">スケジューラ</text>
+<text x="1415" y="710" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">監視・レポートの定期実行</text>
+<line x1="1262" y1="695" x2="1198" y2="695" stroke="#3A5A8C" stroke-width="2" marker-end="url(#an)"/>
+<rect x="40" y="860" width="1520" height="140" rx="14" fill="#EEF3FA" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="80" y="900" font-size="18" fill="#15335E" font-weight="700" text-anchor="start" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">運用基盤</text>
+<rect x="90" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="226" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">利用者認証・権限</text>
+<rect x="380" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="516" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">警告ログ</text>
+<rect x="670" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="806" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">自動バックアップ</text>
+<rect x="960" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="1096" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">費用モニタリング</text>
+<rect x="1250" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
+<text x="1386" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">版管理（基準の履歴）</text>
+<rect x="40" y="1024" width="1520" height="62" rx="12" fill="#0E2647"/>
+<text x="800" y="1066" font-size="18" fill="#F3C87A" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">大原則：AIは判断材料の整理役。最終判断は、どの機能でも必ず人間が行う。</text>
+</svg>
+      <figcaption style="font-size:.78rem;color:var(--sub);text-align:center;margin-top:12px">図の下段にある大原則のとおり、どの機能でも最終判断は必ず人間が行います。</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- DEMO -->
+<section id="demo">
+  <div class="wrap">
+    <p class="eyebrow">TRY IT</p>
+    <h2 class="sec"><span style="color:var(--amber)">デモ体験</span> — 相談を入力して「判断メモ」を受け取る</h2>
+    <p class="lede">架空企業「株式会社山紘製作所」の判断基準（即決上限3,000万円・人柄重視の採用・取引先との長期関係優先 など）が登録されたデモ環境です。応答の形式・ルールは実際のアプリと同じもの。サンプルを選ぶか、自由に入力してください。</p>
+    <div class="demo-box">
+      <label for="consultText">相談内容</label>
+      <div class="samples" aria-label="サンプル相談">
+        <button type="button" data-sample="老朽化した設備の更新に4,500万円の投資案が出ています。回収見込みは6年です。どう検討すべきでしょうか。">設備投資 4,500万円</button>
+        <button type="button" data-sample="経験は浅いものの人柄が非常に良い中途候補者がいます。即戦力の経験者と迷っています。">採用の迷い</button>
+        <button type="button" data-sample="新規の取引先から月800万円の大口注文の打診がありました。まだ信用調査はしていません。">新規大口取引</button>
+        <button type="button" data-sample="3年連続赤字の事業部門があります。撤退か継続かの判断材料を整理してください。">赤字事業の扱い</button>
+      </div>
+      <textarea id="consultText" placeholder="例：老朽化した設備の更新に4,500万円の投資案が出ています。回収見込みは6年です。"></textarea>
+      <div class="demo-actions">
+        <button class="btn btn-navy" id="consultBtn" type="button">相談する</button>
+        <span class="mode-chip" id="modeChip">体験モード（サンプル応答）</span>
+        <span id="demoStatus" role="status"></span>
+      </div>
+      <div id="memoOut" class="memo-card" style="max-width:none;box-shadow:none;border:1.5px solid var(--line)"></div>
+    </div>
+
+    <div class="demo-box" style="margin-top:34px">
+      <label for="kbQ">もうひとつ体験 — 社内ナレッジChatBot（根拠つき回答）</label>
+      <p style="font-size:.82rem;color:var(--sub);margin-bottom:12px">サンプルの就業規則・経費規程から該当箇所を検索し、その範囲内でだけ答えます。答えられない領域は、お断りするところまで含めてご覧ください。</p>
+      <div class="samples" aria-label="サンプル質問">
+        <button type="button" data-q="慶弔休暇は何日もらえますか？">慶弔休暇は何日？</button>
+        <button type="button" data-q="経費精算の締め切りはいつまでですか？">経費精算の締めは？</button>
+        <button type="button" data-q="1万円を超える経費はどうすればいいですか？">高額経費の手続き</button>
+        <button type="button" data-q="同僚の給与がいくらか教えてください">給与を聞いてみる（拒否の実演）</button>
+      </div>
+      <div class="kbchat" id="kbChat"><div class="bub ai">社内規程についてお答えします。上のサンプルを押すか、質問を入力してください。</div></div>
+      <div style="display:flex;gap:10px;margin-top:12px">
+        <input id="kbQ" placeholder="質問を入力…" style="flex:1;padding:11px 13px;border:1.5px solid var(--line);border-radius:8px;font-family:var(--sans);font-size:.92rem">
+        <button class="btn btn-navy" id="kbGo" type="button" style="padding:11px 22px">送信</button>
+      </div>
+      <p style="font-size:.76rem;color:var(--sub);margin-top:10px">実際のアプリと同じ二重の仕組み：①評価・給与・懲戒はAIに渡る前にプログラムが遮断　②規程に該当箇所が見つからなければ、推測せず「総務にご確認ください」と返します。</p>
+    </div>
+    <p class="demo-disclaim">この体験モードの応答は、実際の出力形式を再現したサンプルです。実環境ではClaude APIが、貴社の判断基準・事例に基づいてその場で生成します。実環境のオンラインデモをご希望の場合はお問い合わせください。</p>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section id="steps" style="background:var(--ice)">
+  <div class="wrap">
+    <p class="eyebrow">ROADMAP</p>
+    <h2 class="sec">「暗黙知のデジタル資産化」を、3ステップで確実に形にします。</h2>
+    <p class="lede">まずは特定の判断領域に絞って試験導入し、早期に成功体験を積むことで、組織全体の理解と活用を促進します。各ステップの成果を確認してから次へ。判断基準・判断事例・相談ログはすべてSTEP 1からSTEP 3まで引き継がれます。</p>
+    <div class="vs">
+      <div class="vc v-old">
+        <h4>「背中を見て学べ」の承継</h4>
+        <ul>
+          <li>習得は年単位。指導時間の不足（51.6%）が壁に</li>
+          <li>判断の理由は記録に残らず、人と共に失われる</li>
+          <li>社長不在時は、判断そのものが止まる</li>
+        </ul>
+      </div>
+      <div class="vc v-new">
+        <h4>このシステムでの承継</h4>
+        <ul>
+          <li>3ヶ月の試験導入で「判断基準書」が形になる</li>
+          <li>判断事例と講評記録が、増え続ける資産として蓄積</li>
+          <li>不在時も、経営層が基準に照らして検討を進められる</li>
+        </ul>
+      </div>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <header><span class="sn">STEP 1</span><b>試験導入（3ヶ月）</b></header>
+        <div class="body">
+          <ul>
+            <li>経営者ヒアリングで判断基準・価値観・過去の意思決定事例を言語化し、アプリに登録</li>
+            <li>PC1台・追加ソフト不要で各機能が動作（Node.jsのみ）</li>
+            <li>APIキー不要の試運転モードで、各機能の画面と流れを確認可能</li>
+            <li>経営会議・幹部相談で試験運用し、成果指標で本格導入を判断</li>
+          </ul>
+          <p class="dur">1ヶ月目 準備・情報収集 → 2ヶ月目 AI構築・調整 → 3ヶ月目 試験運用・評価</p>
+        </div>
+      </div>
+      <div class="step">
+        <header><span class="sn">STEP 2</span><b>社内共有版（2〜3ヶ月）</b></header>
+        <div class="body">
+          <ul>
+            <li>ID・パスワード認証と権限管理（承認者／管理者）</li>
+            <li>生成物の承認フロー — 承認されるまで配布・予約されない</li>
+            <li>撤退ラインを毎朝自動点検（スケジューラ内蔵）</li>
+            <li>社内LANで役員・幹部3〜10名が利用、判断事例を40件超へ蓄積</li>
+          </ul>
+          <p class="dur">役員会の「たたき台」が変わります（HTTPS・監査ログはSTEP 3で追加）</p>
+        </div>
+      </div>
+      <div class="step">
+        <header><span class="sn">STEP 3</span><b>本格運用版（3〜6ヶ月）</b></header>
+        <div class="body">
+          <ul>
+            <li>クラウド化・SSO・監査ログ</li>
+            <li>外部連携：音声の自動文字起こし・Web自動収集・SNS自動投稿</li>
+            <li>数百件の事例から関連事例を自動参照（RAG）</li>
+          </ul>
+          <p class="dur">全社のナレッジ基盤が完成します</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORKSPACE -->
+<section id="workspace">
+  <div class="wrap">
+    <p class="eyebrow">KNOWLEDGE WORKSPACE</p>
+    <h2 class="sec">企業ごとに独立した「ナレッジ環境」をご用意</h2>
+    <p class="lede">STEP 3以降の拡張として、ご契約企業ごとに他社と完全に分離された専用ワークスペースを用意します。貴社の判断基準・判断事例・相談ログは貴社の環境だけに保存され、AIの学習に使われることはありません。</p>
+    <div class="flow">
+      <div class="ws"><span class="k">STEP A</span><b>ワークスペース開設</b>貴社専用の環境を開設　→　利用者アカウントと権限（閲覧／管理）を発行</div>
+      <div class="ws"><span class="k">STEP B</span><b>データの持ち込み</b>ヒアリング結果・社内規程・過去の稟議など　→　判断に関わる資料を登録</div>
+      <div class="ws"><span class="k">STEP C</span><b>ナレッジ化</b>資料を「判断基準」と「判断事例」の形式に整理・構造化　→ 検索できる知識</div>
+      <div class="ws"><span class="k">STEP D</span><b>相談・改善</b>経営層が日常的に相談しログを月次で振り返る　→ 基準そのものを更新継続</div>
+    </div>
+    <div class="ws-note"><b>データの取り扱いについて：</b>企業単位でデータベース・保存領域を分離し、通信は暗号化。判断基準は経営の機密として、アクセス権限・監査ログ・バックアップの運用ルールとあわせてご提供します。詳細はお問い合わせ時に「データ取扱説明書」をお渡しします。</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <p class="eyebrow" style="color:#F3C87A">CONTACT</p>
+    <h2 class="sec">人間中心のAI活用で、経営者の想いを「経営資産」にする。</h2>
+    <p class="lede">この取り組みは、単なるAI導入ではありません。経営者の「知恵」を、次世代へ引き継げる「経営資産」へ変えるプロジェクトです。まずは「3ヶ月の試験導入」からご相談ください。言語化された判断基準書と事例記録は、それ自体が承継資料になります。</p>
+    <div class="contact-grid">
+      <form class="cform" id="contactForm">
+        <label for="f-company">会社名</label>
+        <input id="f-company" name="company" type="text" autocomplete="organization" required>
+        <label for="f-name">お名前</label>
+        <input id="f-name" name="name" type="text" autocomplete="name" required>
+        <label for="f-email">メールアドレス</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" required>
+        <label for="f-topic">ご相談内容</label>
+        <select id="f-topic" name="topic">
+          <option>試験導入について相談したい</option>
+          <option>実環境のオンラインデモを見たい</option>
+          <option>資料がほしい</option>
+          <option>その他</option>
+        </select>
+        <label for="f-msg">メッセージ（任意）</label>
+        <textarea id="f-msg" name="message"></textarea>
+        <button class="btn btn-amber" type="submit">送信する</button>
+        <p id="formStatus" style="margin-top:12px;font-size:.85rem;color:#F3C87A" role="status"></p>
+      </form>
+      <div class="contact-side">
+        <h3>お問い合わせ後の流れ</h3>
+        <ul>
+          <li>2営業日以内にご連絡します。</li>
+          <li>初回打ち合わせ（30分・オンライン可）で、現状と目的を確認します。</li>
+          <li>試験導入のお見積り（費用構造と実測ベースのAI利用料見込み）をご提示します。</li>
+        </ul>
+        <h3>よくあるご質問</h3>
+        <ul>
+          <li><b>AIが勝手に決めてしまいませんか？</b>　決めません。複数案と根拠の提示までが役割で、推奨語も使わない設計です。</li>
+          <li><b>自社のデータは他社やAIの学習に使われますか？</b>　使われません。企業ごとに分離した環境で保管します。</li>
+          <li><b>ITに詳しい担当者がいなくても大丈夫？</b>　試験導入は実装ガイドに沿って伴走支援します。</li>
+          <li><b>契約前に動くものを見られますか？</b>　見られます。APIキー不要の試運転モードで、各機能の画面と流れを、ご確認いただけます。</li>
+          <li><b>メール送信やSNS投稿を勝手にしませんか？</b>　しません。送信・自動投稿の機能そのものが存在しない設計で、SNSは承認済みの投稿だけを予約し、投稿は必ず人が行います。</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">経営判断AIエージェント — AIは判断材料の整理役。最終判断は必ず人間が行います。<br>© 2026 AetherNexus. All rights reserved.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  /* ---------- デモ ---------- */
+  const btn = document.getElementById("consultBtn");
+  const ta = document.getElementById("consultText");
+  const out = document.getElementById("memoOut");
+  const status = document.getElementById("demoStatus");
+  const chip = document.getElementById("modeChip");
+  let live = false; // /api/consult が使えるか
+
+  // サンプルボタン
+  document.querySelectorAll(".samples button[data-sample]").forEach(b=>{
+    b.addEventListener("click", ()=>{ ta.value = b.dataset.sample; ta.focus(); });
+  });
+
+  // 実環境の有無を起動時に確認（demo-server.js を立てると自動で実AIに切替）
+  fetch("/api/health",{method:"GET"}).then(r=>r.ok?r.json():null).then(j=>{
+    if(j && j.ok){ live = true; chip.textContent = "実環境デモ（Claude API）"; chip.style.background="#E4F3EA"; chip.style.color="#2C6E49"; chip.style.borderColor="#BADCC7"; }
+  }).catch(()=>{});
+
+  const M = {"◎":"mark-2","○":"mark-1","△":"mark-0","×":"mark-x"};
+  function esc(s){ const d=document.createElement("div"); d.textContent=s??""; return d.innerHTML; }
+
+  function render(memo){
+    let h = '<span class="tag">判断メモ</span>';
+    h += "<h3>"+esc(memo.title)+"</h3>";
+    h += '<p style="font-size:.85rem;color:var(--sub);margin-top:2px">'+esc(memo.summary)+"</p>";
+    (memo.options||[]).forEach(o=>{
+      h += '<div class="opt"><b>'+esc(o.name)+"："+esc(o.label)+"</b>　"+esc(o.detail)+
+           '<br><span style="color:var(--sub);font-size:.78rem">根拠：'+esc(o.basis)+"</span></div>";
+    });
+    if((memo.options||[]).length){
+      h += '<table aria-label="5視点比較"><tr><th>視点</th><th>売上</th><th>利益</th><th>人材</th><th>信用</th><th>長期</th></tr>';
+      memo.options.forEach(o=>{
+        h += "<tr><td>"+esc(o.name)+"</td>"+(o.scores||[]).map(s=>'<td class="'+(M[s]||"")+'">'+esc(s)+"</td>").join("")+"</tr>";
+      });
+      h += "</table>";
+    }
+    if(memo.tendency) h += '<p style="margin-top:12px;font-size:.82rem"><b style="color:var(--navy)">過去の判断傾向との照合：</b>'+esc(memo.tendency)+"</p>";
+    if((memo.warnings||[]).length) h += '<p style="margin-top:10px;font-size:.82rem;background:var(--amber-soft);border-radius:8px;padding:10px 12px;color:#7A5210"><b>⚠ リスク警告：</b>'+memo.warnings.map(esc).join("／")+"</p>";
+    if((memo.questions||[]).length) h += '<p style="margin-top:10px;font-size:.82rem"><b style="color:var(--navy)">検討のための追加質問：</b>'+memo.questions.map(esc).join("　")+"</p>";
+    h += '<p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>';
+    out.innerHTML = h; out.style.display = "block";
+    out.scrollIntoView({behavior:"smooth", block:"nearest"});
+  }
+
+  /* 体験モード：カテゴリ判定してサンプル判断メモを組み立てる */
+  function sampleMemo(text){
+    const t = text;
+    const has = (...ws)=>ws.some(w=>t.includes(w));
+    const amount = (t.match(/([0-9,，]+)\s*万円/)||[])[1];
+    const over = amount ? parseInt(amount.replace(/[,，]/g,""),10) > 3000 : false;
+
+    if(has("投資","設備","購入","更新","導入")){
+      return {
+        title:"設備・投資案件の検討"+(amount?"（"+amount+"万円）":""),
+        summary:"投資基準（即決上限3,000万円・回収目安5年）に照らして選択肢を整理しました。",
+        options:[
+          {name:"A案",label:"一括実行",detail:"効果を最速で取り込めますが、"+(over?"即決上限3,000万円を超えるため役員会決議が前提です。":"基準の範囲内で機動的に実行できます。"),basis:"判断基準「投資基準」：3,000万円超は役員会決議",scores:["○","△","○","○","◎"]},
+          {name:"B案",label:"分割・段階実行",detail:"初期投資を基準内に抑え、効果検証後に残りを判断します。実行は遅れますが撤退余地を残せます。",basis:"過去事例：2工場の設備更新は分割方式で実施",scores:["○","○","○","○","○"]},
+          {name:"C案",label:"今期は見送り・再検討",detail:"代替手段（修繕・リース）の費用対効果を比較してから判断します。",basis:"判断基準「価値観の優先順位」：無理な資金繰りをしない",scores:["△","○","△","○","△"]}
+        ],
+        tendency:"過去の類似判断では、回収期間が5年を超える案件は分割または見送りを選ぶ傾向があります。本件"+(t.includes("6年")?"の回収見込み6年はこの傾向に該当します。":"も回収期間の確認が判断の分かれ目です。"),
+        warnings: over?["即決上限3,000万円を超過しています。役員会決議と資金繰り確認が必要です。"]:[],
+        questions:["自己資金と借入の割合は？","更新しない場合の故障リスク・機会損失は年間いくらと見積もれますか？"]
+      };
+    }
+    if(has("採用","候補者","人材","登用","中途")){
+      return {
+        title:"採用・登用の検討",
+        summary:"人の判断基準（人柄・価値観との一致を最重視、スキルは育成可能とみなす）に照らして整理しました。",
+        options:[
+          {name:"A案",label:"人柄重視の候補者を採用",detail:"立ち上がりに時間はかかりますが、定着と周囲への好影響が見込めます。",basis:"判断基準「人の判断」：人柄＞スキル。過去事例でも人柄採用の定着率が高い",scores:["△","△","◎","○","◎"]},
+          {name:"B案",label:"即戦力の経験者を採用",detail:"短期の成果は得やすい一方、価値観の不一致が後から問題化した事例があります。",basis:"過去事例：スキル優先採用が1年で退職し引き継ぎ費用が発生",scores:["◎","○","△","○","△"]},
+          {name:"C案",label:"両名とも見送り、要件を再定義",detail:"任せたい業務と評価基準を明文化してから再募集します。",basis:"判断基準「採用の考え方」：迷ったら要件定義に戻る",scores:["△","○","○","○","○"]}
+        ],
+        tendency:"過去の判断では、迷った場合に「人柄側」を選ぶ傾向が明確です（登録事例3件中3件）。",
+        warnings:[],
+        questions:["どの業務を1年後に任せたいですか？","現場メンバーとの面談は実施済みですか？"]
+      };
+    }
+    if(has("取引","注文","受注","契約","口座")){
+      const noCheck = has("信用調査はして","調査なし","調査はまだ","していません");
+      return {
+        title:"新規取引の検討",
+        summary:"取引先方針（長期関係優先・新規大口は信用調査必須）に照らして整理しました。",
+        options:[
+          {name:"A案",label:"信用調査後に段階的に取引開始",detail:"初回は小口・前払い条件で開始し、支払い実績を見て拡大します。",basis:"判断基準「取引先方針」：新規大口は信用調査＋段階拡大",scores:["○","○","○","◎","◎"]},
+          {name:"B案",label:"打診どおり大口で受注",detail:"売上インパクトは大きい一方、与信・生産能力の両面にリスクがあります。",basis:"過去事例：信用調査を省略した大口取引で回収遅延が発生",scores:["◎","○","△","△","△"]},
+          {name:"C案",label:"辞退し既存顧客を優先",detail:"生産能力が逼迫している場合は、既存顧客への供給責任を優先します。",basis:"判断基準「価値観の優先順位」：信用＞短期売上",scores:["△","△","○","◎","○"]}
+        ],
+        tendency:"過去の判断では、売上規模より支払い条件・信用を優先する傾向が一貫しています。",
+        warnings: noCheck?["信用調査未実施の大口取引は、判断基準で明確に警告対象とされています。調査完了までは契約に進まないでください。"]:[],
+        questions:["先方の希望する支払いサイトは？","現在の生産ラインの稼働率は何％ですか？"]
+      };
+    }
+    if(has("撤退","赤字","縮小","閉鎖","廃止")){
+      return {
+        title:"事業撤退・継続の検討",
+        summary:"撤退基準（3期連続赤字かつ改善計画なしは撤退検討、雇用への影響を必ず併記）に照らして整理しました。",
+        options:[
+          {name:"A案",label:"1年の改善期限付きで継続",detail:"黒字化の必達条件と月次チェックポイントを設定し、未達なら撤退へ移行します。",basis:"判断基準「撤退基準」：撤退前に期限付き改善機会を1回設ける",scores:["△","△","○","○","○"]},
+          {name:"B案",label:"段階的に縮小・撤退",detail:"人員は他部門へ配置転換し、顧客には移行期間を設けて信用を守ります。",basis:"判断基準「価値観」：雇用と取引先への責任を最後まで果たす",scores:["△","○","△","◎","○"]},
+          {name:"C案",label:"事業譲渡・提携先を探す",detail:"自社では続けられなくても、事業と雇用が残る選択肢を検討します。",basis:"過去事例：不採算部門の譲渡で雇用を全員維持",scores:["△","○","◎","◎","○"]}
+        ],
+        tendency:"3期連続赤字は撤退基準の検討ラインに達しています。一方、過去の判断では雇用維持を伴う選択肢を優先する傾向があります。",
+        warnings:["撤退判断は従業員・取引先への影響が大きい高リスク案件です。情報管理と発表順序の設計を先に行ってください。"],
+        questions:["赤字の主因は構造的（市場縮小）ですか、一時的（特定顧客の減少）ですか？","改善計画の具体案は現場から出ていますか？"]
+      };
+    }
+    return {
+      title:"ご相談内容の整理",
+      summary:"登録された判断基準から、本件に関わる可能性が高い基準を抽出しました。詳細な比較のため、下記の追加情報をご確認ください。",
+      options:[
+        {name:"A案",label:"すぐ着手する",detail:"スピードを優先する選択肢です。基準「即決できる範囲」に収まるかの確認が前提です。",basis:"判断基準「価値観の優先順位」",scores:["○","○","△","○","△"]},
+        {name:"B案",label:"情報を集めてから判断する",detail:"下の追加質問に答えられる状態になってから決める選択肢です。",basis:"振る舞いルール：情報不足時は推測しない",scores:["△","○","○","○","○"]}
+      ],
+      tendency:"相談内容のカテゴリを特定できるほどの情報がまだありません。",
+      warnings:[],
+      questions:["金額・期限・関係者など、判断に必要な数字を教えてください。","この判断で最も守りたいもの（売上／利益／人／信用）はどれですか？"]
+    };
+  }
+
+  async function consult(){
+    const text = ta.value.trim();
+    if(!text){ status.textContent = "相談内容を入力してください。"; ta.focus(); return; }
+    btn.disabled = true; status.textContent = "判断基準に照らしています…";
+    try{
+      if(live){
+        const r = await fetch("/api/consult",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({text})});
+        if(!r.ok) throw new Error("api");
+        render(await r.json());
+      }else{
+        await new Promise(res=>setTimeout(res,900)); // 思考時間の演出
+        render(sampleMemo(text));
+      }
+      status.textContent = "";
+    }catch(e){
+      status.textContent = "生成に失敗しました。もう一度お試しください。";
+    }finally{
+      btn.disabled = false;
+    }
+  }
+  btn.addEventListener("click", consult);
+
+  /* ---------- 社内ナレッジChatBot 体験（実装版の kbSearch と同じ考え方） ---------- */
+  const KB_DOCS = [
+    {src:"就業規則（サンプル）", paras:[
+      "第28条（年次有給休暇）　年次有給休暇は入社6ヶ月経過後に10日付与し、以後勤続年数に応じて最大20日を付与する。",
+      "第31条（慶弔休暇）　慶弔休暇は、配偶者の死亡で10日、父母・子の死亡で7日、祖父母・兄弟姉妹の死亡で3日とする。"
+    ]},
+    {src:"経費規程（サンプル）", paras:[
+      "第8条（精算期限）　経費精算は発生月の翌月5営業日までに申請しなければならない。",
+      "第12条（事前申請）　1万円を超える経費は事前申請を必要とする。"
+    ]}
+  ];
+  const kbChat = document.getElementById("kbChat");
+  const kbQ = document.getElementById("kbQ");
+  const kbGo = document.getElementById("kbGo");
+  function kbBub(cls, html){
+    const d = document.createElement("div"); d.className = "bub "+cls; d.innerHTML = html;
+    kbChat.appendChild(d); kbChat.scrollTop = kbChat.scrollHeight;
+  }
+  function kbSearch(q){
+    let best = {score:0, para:"", src:""};
+    KB_DOCS.forEach(doc=>doc.paras.forEach(para=>{
+      let score = 0;
+      for(const ch of q){ if(/[一-龠ぁ-んァ-ン]/.test(ch) && para.includes(ch)) score++; }
+      for(let i=0;i<q.length-1;i++){ if(para.includes(q.slice(i,i+2))) score += 3; }
+      if(score > best.score) best = {score, para, src:doc.src};
+    }));
+    return best.score >= 4 ? best : null;
+  }
+  function kbAsk(){
+    const q = (kbQ.value||"").trim(); if(!q) return;
+    kbBub("me", esc(q)); kbQ.value = "";
+    setTimeout(()=>{
+      if(/評価|給料|給与|賞与|懲戒/.test(q)){
+        kbBub("ai", esc("その内容（評価・給与・懲戒の個別事項）にはお答えできない決まりです。総務の担当窓口へご相談ください。")+
+          '<span class="src">実際のアプリと同じ動き：この遮断はAIではなくプログラムが行っています</span>');
+        return;
+      }
+      const hit = kbSearch(q);
+      if(!hit){
+        kbBub("ai", esc("規程に該当の記載が見つかりませんでした。推測ではお答えせず、総務にご確認ください。"));
+        return;
+      }
+      kbBub("ai", esc(hit.para)+'<span class="src">根拠文書：'+esc(hit.src)+"</span>");
+    }, 500);
+  }
+  kbGo.addEventListener("click", kbAsk);
+  kbQ.addEventListener("keydown", e=>{ if(e.key==="Enter") kbAsk(); });
+  document.querySelectorAll('[data-q]').forEach(b=>{
+    b.addEventListener("click", ()=>{ kbQ.value = b.dataset.q; kbQ.focus(); kbAsk(); });
+  });
+
+  /* ---------- 問い合わせフォーム ---------- */
+  const form = document.getElementById("contactForm");
+  const fs = document.getElementById("formStatus");
+  form.addEventListener("submit", async (ev)=>{
+    ev.preventDefault();
+    const data = Object.fromEntries(new FormData(form).entries());
+    try{
+      const r = await fetch("/api/contact",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(data)});
+      if(!r.ok) throw new Error();
+      fs.textContent = "送信しました。2営業日以内にご連絡します。"; form.reset();
+    }catch(e){
+      // バックエンド未設置時はメール作成にフォールバック
+      const subject = encodeURIComponent("【経営判断AIエージェント】お問い合わせ："+(data.topic||""));
+      const body = encodeURIComponent("会社名: "+data.company+"\nお名前: "+data.name+"\nメール: "+data.email+"\n内容: "+(data.message||""));
+      location.href = "mailto:eri.kamioka@outlook.jp?subject="+subject+"&body="+body; // TODO: 貴社アドレスに変更
+      fs.textContent = "メールソフトが開きます。開かない場合は eri.kamioka@outlook.jp 宛にご連絡ください。";
+    }
+  });
+})();
+</script>
+</body>
+</html>
