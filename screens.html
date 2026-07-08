@@ -115,18 +115,17 @@ footer{background:var(--deep);color:#9FB6D9;font-size:.78rem;padding:26px 0;text
     <a class="back" href="index.html#features" id="backLink">← 機能一覧へ戻る</a>
   </div>
 </div>
-<div class="hcnote">このページはアプリ画面のハードコピー（見本）です。ボタンや入力は動作しません。実際の操作は「デモ体験」または試験導入でお試しください。</div>
+<div class="hcnote">このページは主要9画面のハードコピー（見本）です。ボタンや入力は動作しません。実際の操作は「デモ体験」または試験導入でお試しください。</div>
 
 <main id="main" class="wrap">
 
 <div class="toc">
-  <b>掲載している画面</b>
+  <b>掲載している画面（9画面）</b>
   <div class="links">
-    <a href="#consult">基本相談</a><a href="#invest">投資判断</a><a href="#hiring">採用マッチング</a><a href="#risk">リスクシナリオ</a><a href="#gov">ガバナンス</a><a href="#training">後継者トレーニング</a><a href="#watchdog">撤退ライン監視</a><a href="#agenda">会議アジェンダ</a><a href="#market">市場調査</a><a href="#compete">競合分析</a><a href="#kb">社内ナレッジBot</a><a href="#sns">SNS生成</a><a href="#snsplan">SNSカレンダー</a><a href="#minutes">議事録要約</a><a href="#mail">メール支援</a><a href="#custbot">顧客対応Bot</a><a href="#admin">承認・管理</a>
+    <a href="#consult">基本相談（判断メモ）</a><a href="#invest">投資判断シミュレーター</a><a href="#hiring">採用・評価マッチング</a><a href="#risk">リスクシナリオ</a><a href="#gov">ガバナンス・倫理チェック</a><a href="#training">後継者トレーニング</a><a href="#settings">思考の核 設定ファイル管理</a><a href="#voice">音声・テキスト取込</a><a href="#excel">Excel一括登録</a>
   </div>
+  <p class="small" style="margin-top:10px;color:var(--sub);font-size:.8rem">このほかの画面（全21機能）は、初回打ち合わせの際に資料でご案内します。</p>
 </div>
-
-<!-- ================= 意思決定支援 ================= -->
 
 <section class="shot" id="consult">
   <span class="cat">意思決定支援</span>
@@ -303,289 +302,90 @@ footer{background:var(--deep);color:#9FB6D9;font-size:.78rem;padding:26px 0;text
   </div>
 </section>
 
-<!-- ================= 監視・自動 ================= -->
-
-<section class="shot" id="watchdog">
-  <span class="cat">警告と自動化</span>
-  <h2>撤退ライン監視</h2>
-  <p class="desc">粗利率と連続赤字をしきい値と照合。判定は完全にプログラムが行い、毎朝自動で点検します。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>不採算事業・撤退ライン監視</h3><p>しきい値（粗利率15%割れ／2期連続赤字＝危険信号、3期＝撤退検討）との照合。判定は完全にサーバーのプログラムが行います。</p><span class="agent">担当：撤退ライン監視</span></div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">監視ボード</b>
-        <table><tr><th style="text-align:left">事業</th><th>粗利率</th><th>連続赤字</th><th>状態</th></tr>
-        <tr><td>○○事業部</td><td>21.4%</td><td>0期</td><td><span class="badge bdg-ok">正常</span></td></tr>
-        <tr><td>△△店舗</td><td>13.2%</td><td>2期</td><td><span class="badge bdg-warn">危険信号</span></td></tr>
-        <tr><td>EC事業</td><td>17.8%</td><td>1期</td><td><span class="badge bdg-info">注意</span></td></tr></table>
-        <span class="btn">いま点検を実行する</span><span class="small">　毎朝06:00に自動点検（スケジューラ内蔵）</span>
-      </div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">未確認アラート</b>
-        <div class="qitem"><div class="ic">⚠</div><div><b>△△店舗：危険信号</b><div class="small">粗利率 13.2%（下限 15%）／連続赤字 2期。基準に抵触しています。</div></div><div class="bt"><span class="b1">確認済みにする</span></div></div>
-      </div>
-      <div class="card tint">
-        <b style="color:var(--navy);font-size:.85rem">月次実績の入力（管理権限）</b>
-        <div class="grid4" style="margin-top:8px">
-          <div><label>事業名</label><div class="inp">△△店舗</div></div>
-          <div><label>年月</label><div class="inp">2026-07</div></div>
-          <div><label>粗利率（%）</label><div class="inp">14.1</div></div>
-          <div><label>連続赤字（期）</label><div class="inp">3</div></div>
-        </div>
-        <span class="btn sub">実績を登録する</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="agenda">
-  <span class="cat">警告と自動化</span>
-  <h2>会議アジェンダ生成</h2>
-  <p class="desc">アラート・承認待ち・監視ボードをサーバーが自動集計し、次回経営会議の論点案を下書き。承認されるまで配布されません。</p>
+<section class="shot" id="settings">
+  <span class="cat">管理・思考の核</span>
+  <h2>思考の核 設定ファイル管理</h2>
+  <p class="desc">AI整形 → 差分確認 → 保存 が基本の流れ。保存のたびに履歴（最大5世代）へ自動退避され、いつでも戻せます。</p>
   <div class="frame">
     <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
     <div class="vw">
-      <div class="ph"><h3>会議アジェンダ生成</h3><p>前回からの状況（アラート・承認待ち・監視ボード）を自動集計して、論点案を作ります。</p><span class="agent">担当：会議アジェンダ生成</span></div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">経営会議（月1回・第2月曜10:00）アジェンダ案</b>
-        <div class="opt"><b>1. △△店舗の危険信号について</b>　粗利率が下限を割り、連続赤字2期目。撤退監視アラートと連動した論点です。</div>
-        <div class="opt"><b>2. 承認待ち生成物 2件の処理</b>　SNS投稿案・議事録案が承認待ちです。</div>
-        <div class="opt"><b>3. 第2工場 設備更新（分割2期目）の実行判断</b>　初年度の効果検証結果の確認。</div>
-        <div class="opt"><b>4. 持ち越し：後継者育成の四半期レビュー</b>　トレーニング講評記録の振り返り。</div>
-        <p class="small" style="margin-top:10px">添付資料：監視ボードサマリー／相談ログ抜粋</p>
-        <span class="btn">承認待ちへ送る</span>
-        <p class="fixed">承認されるまで配布されません。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="market">
-  <span class="cat">警告と自動化</span>
-  <h2>市場調査（貼り付け分析）</h2>
-  <p class="desc">業界記事・相場情報を貼り付けると、要約と自社の判断基準との関係（追い風・矛盾・要注意）を整理します。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 誠（専務・後継者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>市場調査レポート（貼り付け分析）</h3><p>貼り付けられた情報の範囲内で分析します。外部の事実は創作しません。</p><span class="agent">担当：市場調査（貼り付け分析）</span></div>
+      <div class="ph"><h3>思考の核 設定ファイル管理</h3><p>判断基準・人材像・しきい値など、AIの「頭の中」を管理者が直接メンテナンスできます。</p><span class="agent">管理者専用画面</span></div>
       <div class="card tint">
-        <label>記事・メモの貼り付け</label>
-        <div class="ta" style="background:#fff">（業界紙より）国内の金属加工市場は前年比2%縮小。一方、多品種小ロット対応の受注は伸長しており、短納期体制を持つ中小に追い風…</div>
-        <span class="btn">自社基準と照らして分析する</span>
+        <b style="color:var(--navy);font-size:.85rem">🤖 AIアシスト整形</b>
+        <p class="small" style="margin-top:4px">社長の口頭メモや会議録を貼り付けると、AIが既存の書式に合わせて整形。結果を確認して「反映」→「保存」します。</p>
+        <div class="ta" style="margin-top:8px;background:#fff">採用は人柄を重視。誠実さと報告の早さが必須。即決上限を2000万円に変えたい。</div>
+        <span class="btn" style="background:var(--amber)">AI整形</span> <span class="btn sub">反映</span>
       </div>
       <div class="card">
-        <p class="small"><b style="color:var(--navy)">要約：</b>市場全体は縮小傾向（出典：貼付情報）だが、多品種小ロット・短納期分野は成長。</p>
-        <table><tr><th>区分</th><th style="text-align:left">自社基準・方針との関係</th></tr>
-        <tr><td><span class="badge bdg-ok">追い風</span></td><td style="text-align:left">短納期・品質で応じる当社の付加価値方針（値引きでなく納期・品質）と成長分野が一致</td></tr>
-        <tr><td><span class="badge bdg-warn">要注意</span></td><td style="text-align:left">市場縮小2%（出典：貼付情報）は、撤退基準の監視対象である△△店舗の回復シナリオに影響し得る</td></tr></table>
-        <p class="fixed">Webの自動収集はSTEP 3（外部連携）で追加します。現在は記事やメモを貼り付けて分析します。</p>
+        <label>ファイル内容（判断基準・理念・価値観）</label>
+        <div class="ta" style="min-height:110px;font-family:Menlo,Consolas,monospace;font-size:.78rem;background:#F3F6FA"># 株式会社山紘製作所 判断基準<br>1. 品質と納期の信頼を最優先する<br>2. 従業員とその家族の生活を守る<br>3. 借入は年商の3割を超えない …</div>
+        <span class="btn sub">再読込</span> <span class="btn sub">直接編集を解除</span>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:14px">
+          <span class="btn" style="margin-top:0">保存</span>
+          <span class="small">保存前に差分を確認できます</span>
+          <span class="btn sub" style="margin-top:0;margin-left:auto">履歴</span>
+        </div>
+        <div class="fixed">保存すると直前の内容が履歴（最大5世代）へ自動退避されます。「履歴」ボタンからいつでも戻せます。</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="shot" id="compete">
-  <span class="cat">警告と自動化</span>
-  <h2>競合分析（貼り付け分析）</h2>
-  <p class="desc">競合の動きに関する情報から、自社方針との「追い風・矛盾・要注意」を指摘します。</p>
+<section class="shot" id="voice">
+  <span class="cat">管理・思考の核</span>
+  <h2>音声・テキスト取込</h2>
+  <p class="desc">社長の音声（またはボイスメモの書き起こし）から、AIが各設定項目へ自動で振り分け。書き起こしのExcel保存・記入済みExcelの作成・そのまま一括反映のいずれにも対応します。</p>
   <div class="frame">
     <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
     <div class="vw">
-      <div class="ph"><h3>競合分析（貼り付け分析）</h3><p>貼り付けられた情報の範囲内で、自社の判断基準との矛盾・要注意点を整理します。</p><span class="agent">担当：競合分析（貼り付け分析）</span></div>
-      <div class="card tint">
-        <label>競合情報の貼り付け</label>
-        <div class="ta" style="background:#fff">（営業メモ）競合B社が主要製品を一律10%値下げとの情報。複数の取引先に案内が届いている模様。</div>
-        <span class="btn">自社基準と照らして分析する</span>
+      <div class="ph"><h3>音声・テキスト取込</h3><p>ヒアリング音声が、そのまま「思考の核」の材料になります。</p><span class="agent">管理者専用画面</span></div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">① 音声ファイルから文字起こし</b>
+        <p class="small" style="margin-top:4px">m4a・mp3・wav などを選ぶだけで自動で文字起こし。　<span class="badge bdg-ok">✓ 文字起こしが完了しました</span></p>
       </div>
       <div class="card">
-        <p class="small"><b style="color:var(--navy)">要約：</b>競合B社が一律10%値下げを展開中（出典：貼付情報）。</p>
-        <table><tr><th>区分</th><th style="text-align:left">自社基準・方針との関係</th></tr>
-        <tr><td><span class="badge bdg-ng">矛盾</span></td><td style="text-align:left">追随値下げは「採算割れの値引きはしない（信用＞短期売上）」の基準と正面から矛盾</td></tr>
-        <tr><td><span class="badge bdg-warn">要注意</span></td><td style="text-align:left">主要顧客からの値下げ要請が増える可能性。基本相談の判断メモ（値下げ要請対応）と併せた準備を推奨</td></tr></table>
-        <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
+        <b style="color:var(--navy);font-size:.85rem">② 社長の発言（書き起こしテキスト）</b>
+        <div class="ta" style="margin-top:8px">投資はね、回収5年を超えるものは基本やらない。ただし設備は7年まで見る。採用で一番大事なのは誠実さ。数字をごまかす人間は絶対に採らない。それと粗利15%を切ったら赤信号だと思ってくれ…</div>
+        <span class="btn">AIで振り分ける</span> <span class="btn sub">書き起こしをExcelへ保存</span>
+        <p class="small" style="margin-top:8px">「書き起こしをExcelへ保存」は、一括読み込みファイルと同じ形式のExcelに全文を保存。内容を整えて「Excel一括登録」からそのまま反映できます。</p>
+      </div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">③ 振り分け結果の確認（3件）</b>
+        <table><tr><th style="width:30%">設定項目</th><th style="text-align:left">内容（先頭部分）</th><th style="width:14%">状態</th></tr>
+        <tr><td>投資判断しきい値</td><td style="text-align:left;font-weight:400">回収上限_通常: 5 ／ 回収上限_設備: 7 …</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>求める人材像</td><td style="text-align:left;font-weight:400"># 絶対条件：誠実さ。数字をごまかさない…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>撤退ライン警告しきい値</td><td style="text-align:left;font-weight:400">gpMin: 0.15（粗利率15%を下回ると警告）…</td><td><span class="badge bdg-ok">反映済</span></td></tr></table>
+        <div class="fixed">反映のたびに履歴（最大5世代）へ自動退避。反映前に必ず内容を確認する設計です。</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= 業務効率化 ================= -->
-
-<section class="shot" id="kb">
-  <span class="cat">業務効率化</span>
-  <h2>社内ナレッジChatBot</h2>
-  <p class="desc">就業規則・経費規程から該当箇所を検索し、その範囲内でだけ回答。出典を常に表示し、禁止領域はお断りします。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>社内ナレッジChatBot</h3><p>規程文書から該当箇所をサーバーが検索し、AIがその範囲内でだけ回答します（根拠つき）。</p><span class="agent">担当：社内ナレッジChatBot</span></div>
-      <div class="card">
-        <div class="chat">
-          <div class="bub me">慶弔休暇は何日もらえますか？</div>
-          <div class="bub ai">慶弔休暇は、配偶者の死亡で10日、父母・子の死亡で7日、祖父母・兄弟姉妹の死亡で3日です。<span class="src">根拠文書：就業規則 第31条（慶弔休暇）</span></div>
-          <div class="bub me">私の評価と給与について教えて</div>
-          <div class="bub ai">その内容（評価・給与・懲戒の個別事項）にはお答えできない決まりです。総務の担当窓口へご相談ください。</div>
-        </div>
-        <p class="small" style="margin-top:10px">評価・給与・懲戒の個別事項には回答しません（AIに渡る前にプログラムが遮断）。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="sns">
-  <span class="cat">業務効率化</span>
-  <h2>SNSコンテンツ生成</h2>
-  <p class="desc">3媒体の投稿下書きを一括生成。そのままでは公開されず、承認待ちキューへ送られます。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>SNSコンテンツ生成</h3><p>誇大表現・他社批判・価格の断定はしない設定で下書きします。</p><span class="agent">担当：SNSコンテンツ生成</span></div>
-      <div class="card tint">
-        <div class="grid2">
-          <div><label>商品・トピック</label><div class="inp">新型ブラケット YK-70</div></div>
-          <div><label>トーン</label><div class="sel">誠実・職人気質</div></div>
-        </div>
-        <span class="btn">3媒体の下書きを作る</span>
-      </div>
-      <div class="card">
-        <div class="opt"><b>Instagram</b>　職人の手から、次の定番へ。新型ブラケット「YK-70」、本日ご紹介します。#ものづくり</div>
-        <div class="opt"><b>X</b>　「YK-70」を公開しました。小さな工場の、確かな一歩です。</div>
-        <div class="opt"><b>ブログ導入</b>　本日は「YK-70」の開発背景をご紹介します。試作は47回。こだわったのは…</div>
-        <span class="btn">承認待ちへ送る</span>
-        <p class="fixed">これは下書きです。承認されるまで公開されません。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="snsplan">
-  <span class="cat">業務効率化</span>
-  <h2>SNS投稿カレンダー</h2>
-  <p class="desc">承認済みの投稿だけを予約できます（サーバー側で強制）。投稿は人が行う「予約管理＋手動投稿」方式です。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>SNS投稿カレンダー</h3><p>承認済みの投稿だけを予約登録できます。SNS APIによる自動投稿はSTEP 3で追加予定。</p><span class="agent">担当：SNS予約・分析</span></div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">承認済みの投稿（予約できるもの）</b>
-        <div class="qitem"><div class="ic">✓</div><div><b>「YK-70」投稿3案</b><div class="small">承認：山田 紘一（社長）</div></div><div class="bt"><span class="inp" style="width:130px;padding:7px">2026-07-10</span><span class="b1">この日に予約</span></div></div>
-      </div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">投稿カレンダー</b>
-        <table><tr><th>日付</th><th style="text-align:left">投稿</th><th>状態</th></tr>
-        <tr><td>2026-07-10</td><td style="text-align:left">「YK-70」投稿3案</td><td><span class="badge bdg-info">予約済み（手動投稿）</span></td></tr></table>
-        <p class="fixed">未承認の投稿は予約できません（承認フローを先に）。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="minutes">
-  <span class="cat">業務効率化</span>
-  <h2>議事録要約</h2>
-  <p class="desc">文字起こしテキストから、決定事項・宿題（担当・期限）・次回日程を抽出。事実のみで創作しません。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>議事録要約</h3><p>音声→テキスト化は外部の音声認識サービスをご利用ください。本機能はテキストから抽出します。</p><span class="agent">担当：議事録要約</span></div>
-      <div class="card tint">
-        <div class="grid2"><div><label>会議名</label><div class="inp">7月度 経営会議</div></div><div></div></div>
-        <label>文字起こしテキスト（貼り付け）</label>
-        <div class="ta" style="background:#fff">…では設備更新は分割2期目を9月に実行する方向で。佐藤さん、見積の再取得を8月末までにお願いします。次回は8月10日の10時で…</div>
-        <span class="btn">要約する</span>
-      </div>
-      <div class="card">
-        <p class="small"><b style="color:var(--navy)">決定事項：</b>設備更新の分割2期目を9月に実行する方向で進める</p>
-        <table><tr><th style="text-align:left">宿題</th><th>担当</th><th>期限</th></tr>
-        <tr><td>設備更新 見積の再取得</td><td>佐藤</td><td>8月末</td></tr></table>
-        <p class="small" style="margin-top:10px"><b style="color:var(--navy)">次回日程：</b>8月10日（月）10:00</p>
-        <span class="btn">承認待ちへ送る</span>
-        <p class="fixed">出席者確認を経てから確定してください。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="shot" id="mail">
-  <span class="cat">業務効率化</span>
-  <h2>メール・文書作成支援</h2>
-  <p class="desc">社長の文体見本（結論先出し・簡潔）に沿った下書きを作成。送信機能はそもそも存在しません。</p>
+<section class="shot" id="excel">
+  <span class="cat">管理・思考の核</span>
+  <h2>Excel一括登録</h2>
+  <p class="desc">Excelフォーマットに記入した思考の核を、まとめて設定ファイルへ自動反映。記入しなかった行は反映されず、既存の設定が保持されます。</p>
   <div class="frame">
     <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
     <div class="vw">
-      <div class="ph"><h3>メール・文書作成支援</h3><p>文体見本のトーンを再現します。事実の創作・要点にない約束は入れません。</p><span class="agent">担当：メール・文書作成支援</span></div>
-      <div class="card tint">
-        <div class="grid2"><div><label>用途</label><div class="sel">取引先への値上げ改定のお願い</div></div><div></div></div>
-        <label>入れたい要点</label><div class="inp">10月出荷分から3%改定／原材料高騰が理由／個別説明に伺う</div>
-        <span class="btn">下書きを作る</span>
+      <div class="ph"><h3>Excel一括登録</h3><p>使い慣れたExcelで記入 → 読み込むだけ。ITが得意でなくても運用できます。</p><span class="agent">管理者専用画面</span></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="card" style="margin-top:0"><b style="color:var(--navy);font-size:.85rem">① フォーマットをダウンロード</b><p class="small" style="margin-top:6px">「文章設定」「しきい値設定」の2シートに記入して保存します。</p><span class="btn sub">フォーマット（.xlsx）をダウンロード</span></div>
+        <div class="card" style="margin-top:0"><b style="color:var(--navy);font-size:.85rem">② 記入済みExcelを読み込む</b><p class="small" style="margin-top:6px"><span class="badge bdg-ok">✓ 4件の設定を読み取りました</span>　下で内容を確認してから反映します。</p><span class="btn">一括反映する</span></div>
       </div>
       <div class="card">
-        <div class="opt" style="white-space:pre-line">株式会社◯◯　購買部長　□□様
-
-いつもお引き立てを賜り、ありがとうございます。山紘製作所の山田です。
-
-結論から申し上げます。原材料価格の高騰を受け、10月出荷分より価格を3%改定させていただきたく、お願いに上がります。
-
-内訳と経緯は、来週中にご訪問のうえ直接ご説明いたします。日程の候補を2〜3いただけますと幸いです。
-
-引き続き、品質と納期でお応えしてまいります。</div>
-        <p class="fixed">下書き専用です。送信は必ず人間が行ってください。</p>
+        <b style="color:var(--navy);font-size:.85rem">③ 反映内容の確認（4件）</b>
+        <table><tr><th style="width:30%">設定項目</th><th style="text-align:left">反映される内容（先頭部分）</th><th style="width:14%">状態</th></tr>
+        <tr><td>判断基準・理念・価値観</td><td style="text-align:left;font-weight:400"># 株式会社山紘製作所 判断基準 1. 品質と納期の…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>想定リスクと現在の備え</td><td style="text-align:left;font-weight:400"># 想定リスク 1. 主要取引先の発注減 → 新規開拓…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>投資判断しきい値</td><td style="text-align:left;font-weight:400">即決上限_万円: 3000 ／ 回収上限_通常: 5 …</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>自動実行スケジュール</td><td style="text-align:left;font-weight:400">watchdogDaily: 06:00</td><td><span class="badge bdg-ok">反映済</span></td></tr></table>
+        <div class="fixed">各ファイルは保存前の内容が履歴（最大5世代）へ自動退避されます。「判断基準・理念・価値観」を含む場合のみ、反映後にサーバーの再起動が必要です。</div>
       </div>
     </div>
   </div>
 </section>
 
-<section class="shot" id="custbot">
-  <span class="cat">業務効率化</span>
-  <h2>顧客対応ChatBot</h2>
-  <p class="desc">製品FAQの範囲で一次回答。価格・納期・法的な相談は、自動で担当窓口へ引き継ぎます。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>ゲスト（顧客向け画面）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>顧客対応ChatBot</h3><p>FAQに根拠がある内容だけを回答します。</p><span class="agent">担当：顧客対応ChatBot</span></div>
-      <div class="card">
-        <div class="chat">
-          <div class="bub me">YK-70の耐荷重を教えてください</div>
-          <div class="bub ai">YK-70の耐荷重は500kgです。詳細はカタログ12ページをご覧ください。<span class="src">根拠文書：製品FAQ</span></div>
-          <div class="bub me">いくらまで値引きできますか？</div>
-          <div class="bub ai">価格・納期・法的なご相談は担当者よりご案内します。お問い合わせフォームまたはお電話（営業時間内）をご利用ください。</div>
-        </div>
-        <p class="small" style="margin-top:10px">価格・納期・法的な内容は自動で窓口へ引き継ぎます（エスカレーション）。</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= 管理・基盤 ================= -->
-
-<section class="shot" id="admin">
-  <span class="cat">管理・基盤</span>
-  <h2>承認・事例・実績の管理</h2>
-  <p class="desc">生成物の承認／却下、判断事例の蓄積、KPIをダッシュボードで一元管理。利用者ごとの権限つきです。</p>
-  <div class="frame">
-    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
-    <div class="vw">
-      <div class="ph"><h3>ダッシュボード／承認・事例・実績</h3><p>おかえりなさい。今日の判断材料はこちらです。</p></div>
-      <div class="grid4" style="margin-top:14px">
-        <div class="kpi"><b>128</b><span>累計の相談数</span></div>
-        <div class="kpi"><b>42</b><span>蓄積された判断事例</span></div>
-        <div class="kpi warn"><b>2</b><span>承認待ちの生成物</span></div>
-        <div class="kpi warn"><b>1</b><span>未確認アラート</span></div>
-      </div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">承認待ちの生成物</b>
-        <div class="qitem"><div class="ic">📄</div><div><b>SNS投稿案：「YK-70」投稿3案</b><div class="small">申請：佐藤（導入担当者）　2026-07-04</div></div><div class="bt"><span class="b1">承認</span><span class="b2">却下</span></div></div>
-        <div class="qitem"><div class="ic">📄</div><div><b>議事録：7月度 経営会議 議事録案</b><div class="small">申請：佐藤（導入担当者）　2026-07-05</div></div><div class="bt"><span class="b1">承認</span><span class="b2">却下</span></div></div>
-      </div>
-      <div class="card">
-        <b style="color:var(--navy);font-size:.85rem">最近の判断事例</b>
-        <table><tr><th>日付</th><th style="text-align:left">事例</th><th>分類</th></tr>
-        <tr><td>2026-06-28</td><td style="text-align:left">第2工場 設備更新（分割方式を採用）</td><td>投資</td></tr>
-        <tr><td>2026-06-14</td><td style="text-align:left">新規取引先B社 段階的取引開始</td><td>取引</td></tr></table>
-      </div>
-    </div>
-  </div>
-</section>
 
 <div class="toc" style="margin-top:44px">
   <b>気になる画面はありましたか？</b>

@@ -1,10 +1,21 @@
 <!DOCTYPE html>
+<!--
+  ============================================================
+  Copyright (c) 2026 藤田利江 (Rie Fujita). All rights reserved.
+  本ページのHTML・CSS・JavaScript・デザイン・文章・図版は著作物です。
+  著作権者に無断での複製・転載・改変・再配布を禁じます。
+  Unauthorized copying, reproduction, or imitation is prohibited.
+  内部識別コード: ANX-LP-V32 / owner:rie-fujita / origin:2026
+  ============================================================
+-->
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="藤田利江 (Rie Fujita)">
+<meta name="copyright" content="© 2026 藤田利江. All rights reserved. 無断転載・複製を禁じます。">
 <title>経営判断AIエージェント｜経営者の暗黙知を、次世代の経営資産に。</title>
-<meta name="description" content="経営者の暗黙知を、次世代の経営資産に変える。判断基準・価値観・過去の意思決定事例をAIに継承し、経営層の相談に「判断メモ」で応える社内アプリ。基本機能＋オプション機能を提供中。APIキー不要の試運転モードで体験できます。">
+<meta name="description" content="経営者の暗黙知を、次世代の経営資産に変える。経営者ヒアリングで判断基準を言語化し、「判断基準書」と経営判断AIエージェントとして納品。試験導入は60日・39.8万円（税別）。APIキー不要のデモを今すぐ体験できます。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@600;700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
@@ -47,7 +58,8 @@ header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.94);backdro
 /* hero */
 .hero{position:relative;overflow:hidden;color:#fff;background:url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNjAwIDkwMCI+PGRlZnM+CjxsaW5lYXJHcmFkaWVudCBpZD0iYmciIHgxPSIwIiB5MT0iMCIgeDI9IjEiIHkyPSIwIj4KIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iIzBDMjE0MCIvPjxzdG9wIG9mZnNldD0iMC40MCIgc3RvcC1jb2xvcj0iIzE2Mzk2QSIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzJCNTc5MyIvPgo8L2xpbmVhckdyYWRpZW50Pgo8cmFkaWFsR3JhZGllbnQgaWQ9Imdsb3ciIGN4PSIwLjUiIGN5PSIwLjUiIHI9IjAuNSI+CiA8c3RvcCBvZmZzZXQ9IjAiIHN0b3AtY29sb3I9IiM5RkUzRkYiIHN0b3Atb3BhY2l0eT0iMC44NSIvPjxzdG9wIG9mZnNldD0iMC4zNSIgc3RvcC1jb2xvcj0iIzVGQjlFOCIgc3RvcC1vcGFjaXR5PSIwLjM1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjNUZCOUU4IiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPHJhZGlhbEdyYWRpZW50IGlkPSJnbG93RyIgY3g9IjAuNSIgY3k9IjAuNSIgcj0iMC41Ij4KIDxzdG9wIG9mZnNldD0iMCIgc3RvcC1jb2xvcj0iI0ZGRTFBNiIgc3RvcC1vcGFjaXR5PSIwLjkiLz48c3RvcCBvZmZzZXQ9IjAuNCIgc3RvcC1jb2xvcj0iI0YzQzg3QSIgc3RvcC1vcGFjaXR5PSIwLjM1Ii8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjRjNDODdBIiBzdG9wLW9wYWNpdHk9IjAiLz4KPC9yYWRpYWxHcmFkaWVudD4KPHJhZGlhbEdyYWRpZW50IGlkPSJoYWxvIiBjeD0iMC41IiBjeT0iMC41IiByPSIwLjUiPgogPHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjNEU5NkREIiBzdG9wLW9wYWNpdHk9IjAuNzUiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMzRTdGQkYiIHN0b3Atb3BhY2l0eT0iMCIvPgo8L3JhZGlhbEdyYWRpZW50Pgo8L2RlZnM+PHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI2JnKSIvPjxjaXJjbGUgY3g9Ijk4MCIgY3k9IjQwMCIgcj0iNDMwIiBmaWxsPSJ1cmwoI2hhbG8pIi8+PHBhdGggZD0iTTExOTEsNDA3IEwxMTkxLDI0NyBMMTI5MSwyNDcgTDEyOTEsMTc3IiBzdHJva2U9IiNGM0M4N0EiIHN0cm9rZS13aWR0aD0iMi44IiBvcGFjaXR5PSIwLjkiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMTc0LDQ2MCBMMTE3NCwzMDAgTDExMDQsMzAwIEwxMTA0LDIwMCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTE0MCw0OTcgTDExNDAsNjU3IEwxMDQwLDY1NyBMMTA0MCw3MjcgTDg0MCw3MjciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwNjUsNTM3IEwxMjY1LDUzNyBMMTI2NSw2NjcgTDExMDUsNjY3IEwxMTA1LDczNyBMMTIwNSw3MzciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTk3Miw1NDkgTDk3Miw0NzkgTDkwMiw0NzkgTDkwMiwyNzkgTDk3MiwyNzkgTDk3MiwzNzkiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTkwNCw1MzkgTDkwNCw0MDkgTDc0NCw0MDkgTDc0NCw1NjkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTgzNiw1MDkgTDczNiw1MDkgTDczNiw2MDkgTDg2Niw2MDkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc5Myw0NzAgTDc5Myw0MDAgTDY5Myw0MDAgTDY5MywyMDAgTDg5MywyMDAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc3MSw0MjUgTDc3MSwzNTUgTDYxMSwzNTUgTDYxMSw0ODUiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTc3NSwzNjQgTDcwNSwzNjQgTDcwNSwxNjQgTDc3NSwxNjQgTDc3NSwzMCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNODI3LDI5NyBMOTU3LDI5NyBMOTU3LDIyNyBMODg3LDIyNyBMODg3LDY3IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik04NzMsMjcxIEw4NzMsNDcxIEwxMDMzLDQ3MSBMMTAzMyw0MDEiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTk2OSwyNTEgTDEwNjksMjUxIEwxMDY5LDM1MSBMOTk5LDM1MSBMOTk5LDQ4MSBMMTE1OSw0ODEiIHN0cm9rZT0iI0YzQzg3QSIgc3Ryb2tlLXdpZHRoPSIyLjgiIG9wYWNpdHk9IjAuOSIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwMjYsMjU0IEw4MjYsMjU0IEw4MjYsMTg0IEw3MjYsMTg0IEw3MjYsMTE0IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMTEyLDI4MyBMOTEyLDI4MyBMOTEyLDE4MyBMOTgyLDE4MyIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjIuNiIgb3BhY2l0eT0iMC44IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTE2MywzMjUgTDEyNjMsMzI1IEwxMjYzLDIyNSBMMTE5MywyMjUiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIyLjYiIG9wYWNpdHk9IjAuOCIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTExODgsMzc0IEwxMzg4LDM3NCBMMTM4OCw1NzQgTDE1MTgsNTc0IEwxNTE4LDcwNCIgc3Ryb2tlPSIjRjNDODdBIiBzdHJva2Utd2lkdGg9IjIuOCIgb3BhY2l0eT0iMC45IiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTI0OCw1NDQgTDEyNDgsMzg0IEwxMzE4LDM4NCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTY2NywyOTcgTDY2Nyw0OTcgTDQ2Nyw0OTciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik03MTUsODQwIEw2NDUsODQwIEw2NDUsNjQwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTgzLDgyMSBMMTgzLDYyMSBMMjgzLDYyMSBMMjgzLDY5MSBMMzUzLDY5MSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEzNzksMjU0IEwxNTcwLDI1NCBMMTU3MCwzMjQgTDE1NzAsMzI0IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNTE0LDMzMiBMNTE0LDIwMiBMNzE0LDIwMiIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwNzgsMTA5IEwxMDc4LDMwIEwxMjM4LDMwIEwxMjM4LDMwIEwxMzk4LDMwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMzkyLDE0MCBMMjkyLDE0MCBMMjkyLDcwIEwxNjIsNzAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zMDMsMjQxIEwzMDMsNDAxIEwxMDMsNDAxIEwxMDMsMjcxIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTQ5MCw2OTkgTDE0OTAsODI5IEwxNTYwLDgyOSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEwOTAsOTMgTDEyMjAsOTMgTDEyMjAsMjkzIEwxNDIwLDI5MyIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE1MjcsNjM5IEwxNTcwLDYzOSBMMTU3MCw1NjkgTDE0NDAsNTY5IEwxNDQwLDY5OSIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTM0NSw1ODUgTDM0NSw3ODUgTDE4NSw3ODUiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik05MCwyOTkgTDkwLDQ5OSBMMzAsNDk5IEwzMCwzOTkgTDE5MCwzOTkiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNDgyLDM3NiBMMTQ4Miw1MzYgTDEyODIsNTM2IEwxMjgyLDYwNiIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTEzNjEsMzExIEwxMzYxLDE4MSBMMTQ5MSwxODEiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0zOTAsNDI5IEwzOTAsNTU5IEw1NTAsNTU5IEw1NTAsNjg5IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNMTA4MywzNTMgTDEwODMsNTUzIEwxMjQzLDU1MyBMMTI0Myw3MTMiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik02NTEsNzUxIEw3ODEsNzUxIEw3ODEsODcwIEw2ODEsODcwIEw2ODEsNjcwIiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNDc0LDEyNyBMNDc0LDMwIEw2MzQsMzAiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xNTI0LDc3OCBMMTU3MCw3NzggTDE1NzAsNjE4IEwxMzcwLDYxOCIgc3Ryb2tlPSIjN0ZEOEZGIiBzdHJva2Utd2lkdGg9IjEuNiIgb3BhY2l0eT0iMC40MiIgZmlsbD0ibm9uZSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+PHBhdGggZD0iTTE0Miw2MTcgTDE0Miw3NDcgTDI0Miw3NDciIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMzEzLDM1OSBMMTMxMyw0MjkgTDExODMsNDI5IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48cGF0aCBkPSJNNjcsMzMyIEw2NywyMDIgTDE5NywyMDIiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik05NzEsMzY4IEw5NzEsNDk4IEwxMDcxLDQ5OCBMMTA3MSw2MjgiIHN0cm9rZT0iIzdGRDhGRiIgc3Ryb2tlLXdpZHRoPSIxLjYiIG9wYWNpdHk9IjAuNDIiIGZpbGw9Im5vbmUiIHN0cm9rZS1saW5lY2FwPSJyb3VuZCIvPjxwYXRoIGQ9Ik0xMzMzLDQxNyBMMTMzMywyODcgTDEyNjMsMjg3IiBzdHJva2U9IiM3RkQ4RkYiIHN0cm9rZS13aWR0aD0iMS42IiBvcGFjaXR5PSIwLjQyIiBmaWxsPSJub25lIiBzdHJva2UtbGluZWNhcD0icm91bmQiLz48Y2lyY2xlIGN4PSIxMjkxIiBjeT0iMTc3IiByPSIyMCIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSIxMjkxIiBjeT0iMTc3IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSIxMTA0IiBjeT0iMjAwIiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjExMDQiIGN5PSIyMDAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg0MCIgY3k9IjcyNyIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4NDAiIGN5PSI3MjciIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEyMDUiIGN5PSI3MzciIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTIwNSIgY3k9IjczNyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iOTcyIiBjeT0iMzc5IiByPSIxNiIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSI5NzIiIGN5PSIzNzkiIHI9IjMuMiIgZmlsbD0iI0ZGRTlDNCIvPjxjaXJjbGUgY3g9Ijc0NCIgY3k9IjU2OSIgcj0iMjYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI3NDQiIGN5PSI1NjkiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg2NiIgY3k9IjYwOSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4NjYiIGN5PSI2MDkiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9Ijg5MyIgY3k9IjIwMCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI4OTMiIGN5PSIyMDAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjYxMSIgY3k9IjQ4NSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvd0cpIi8+PGNpcmNsZSBjeD0iNjExIiBjeT0iNDg1IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSI3NzUiIGN5PSIzMCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI3NzUiIGN5PSIzMCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iODg3IiBjeT0iNjciIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iODg3IiBjeT0iNjciIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEwMzMiIGN5PSI0MDEiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTAzMyIgY3k9IjQwMSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE1OSIgY3k9IjQ4MSIgcj0iMjYiIGZpbGw9InVybCgjZ2xvd0cpIi8+PGNpcmNsZSBjeD0iMTE1OSIgY3k9IjQ4MSIgcj0iMy4yIiBmaWxsPSIjRkZFOUM0Ii8+PGNpcmNsZSBjeD0iNzI2IiBjeT0iMTE0IiByPSIyNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjcyNiIgY3k9IjExNCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iOTgyIiBjeT0iMTgzIiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9Ijk4MiIgY3k9IjE4MyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE5MyIgY3k9IjIyNSIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMTkzIiBjeT0iMjI1IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxNTE4IiBjeT0iNzA0IiByPSIyMCIgZmlsbD0idXJsKCNnbG93RykiLz48Y2lyY2xlIGN4PSIxNTE4IiBjeT0iNzA0IiByPSIzLjIiIGZpbGw9IiNGRkU5QzQiLz48Y2lyY2xlIGN4PSIxMzE4IiBjeT0iMzg0IiByPSIyMCIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjEzMTgiIGN5PSIzODQiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjM1MyIgY3k9IjY5MSIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIzNTMiIGN5PSI2OTEiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEzOTgiIGN5PSIzMCIgcj0iMjAiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMzk4IiBjeT0iMzAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjE0NDAiIGN5PSI2OTkiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTQ0MCIgY3k9IjY5OSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTkwIiBjeT0iMzk5IiByPSIxNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjE5MCIgY3k9IjM5OSIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTI4MiIgY3k9IjYwNiIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMjgyIiBjeT0iNjA2IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSI1NTAiIGN5PSI2ODkiIHI9IjE2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iNTUwIiBjeT0iNjg5IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxMjQzIiBjeT0iNzEzIiByPSIyNiIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjEyNDMiIGN5PSI3MTMiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjY4MSIgY3k9IjY3MCIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSI2ODEiIGN5PSI2NzAiIHI9IjMuMiIgZmlsbD0iI0Q5RjNGRiIvPjxjaXJjbGUgY3g9IjEzNzAiIGN5PSI2MTgiIHI9IjE2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTM3MCIgY3k9IjYxOCIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMjQyIiBjeT0iNzQ3IiByPSIyMCIgZmlsbD0idXJsKCNnbG93KSIvPjxjaXJjbGUgY3g9IjI0MiIgY3k9Ijc0NyIgcj0iMy4yIiBmaWxsPSIjRDlGM0ZGIi8+PGNpcmNsZSBjeD0iMTE4MyIgY3k9IjQyOSIgcj0iMTYiIGZpbGw9InVybCgjZ2xvdykiLz48Y2lyY2xlIGN4PSIxMTgzIiBjeT0iNDI5IiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSIxOTciIGN5PSIyMDIiIHI9IjI2IiBmaWxsPSJ1cmwoI2dsb3cpIi8+PGNpcmNsZSBjeD0iMTk3IiBjeT0iMjAyIiByPSIzLjIiIGZpbGw9IiNEOUYzRkYiLz48Y2lyY2xlIGN4PSI0MzQiIGN5PSI2OTUiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjQzNCIgY3k9IjY5NSIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjczMCIgY3k9Ijk2IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSI3MzAiIGN5PSI5NiIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxjaXJjbGUgY3g9IjEyODUiIGN5PSIyNjAiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjEyODUiIGN5PSIyNjAiIHI9IjMiIGZpbGw9IiNBRUUwRkEiIG9wYWNpdHk9IjAuODUiLz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iMzg0IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMjAwIiBjeT0iMzg0IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMTAxNiIgY3k9IjY0MCIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iMTAxNiIgY3k9IjY0MCIgcj0iMyIgZmlsbD0iI0FFRTBGQSIgb3BhY2l0eT0iMC44NSIvPjxyZWN0IHg9IjUyOSIgeT0iNjExIiB3aWR0aD0iMjYiIGhlaWdodD0iMTgiIHJ4PSIzIiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjUzNSIgeTE9IjYyOSIgeDI9IjUzNSIgeTI9IjYzNSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI1NDIiIHkxPSI2MjkiIHgyPSI1NDIiIHkyPSI2MzUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iNTQ5IiB5MT0iNjI5IiB4Mj0iNTQ5IiB5Mj0iNjM1IiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PHJlY3QgeD0iNzA1IiB5PSIyNjciIHdpZHRoPSIyNiIgaGVpZ2h0PSIxOCIgcng9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iNzExIiB5MT0iMjg1IiB4Mj0iNzExIiB5Mj0iMjkxIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjcxOCIgeTE9IjI4NSIgeDI9IjcxOCIgeTI9IjI5MSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI3MjUiIHkxPSIyODUiIHgyPSI3MjUiIHkyPSIyOTEiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48Y2lyY2xlIGN4PSIxMTU0IiBjeT0iMjA1IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIxMTU0IiBjeT0iMjA1IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iMzQ4IiBjeT0iNTA4IiByPSI5IiBmaWxsPSJub25lIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjciLz48Y2lyY2xlIGN4PSIzNDgiIGN5PSI1MDgiIHI9IjMiIGZpbGw9IiNBRUUwRkEiIG9wYWNpdHk9IjAuODUiLz48cmVjdCB4PSIyNDQiIHk9IjgxOSIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE4IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIyNTAiIHkxPSI4MzciIHgyPSIyNTAiIHkyPSI4NDMiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iMjU3IiB5MT0iODM3IiB4Mj0iMjU3IiB5Mj0iODQzIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjI2NCIgeTE9IjgzNyIgeDI9IjI2NCIgeTI9Ijg0MyIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxjaXJjbGUgY3g9IjQ5NyIgY3k9IjM0NiIgcj0iOSIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43Ii8+PGNpcmNsZSBjeD0iNDk3IiBjeT0iMzQ2IiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PGNpcmNsZSBjeD0iNzE3IiBjeT0iOTMiIHI9IjkiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNyIvPjxjaXJjbGUgY3g9IjcxNyIgY3k9IjkzIiByPSIzIiBmaWxsPSIjQUVFMEZBIiBvcGFjaXR5PSIwLjg1Ii8+PHJlY3QgeD0iOTIwIiB5PSI2NzYiIHdpZHRoPSIyNiIgaGVpZ2h0PSIxOCIgcng9IjMiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48bGluZSB4MT0iOTI2IiB5MT0iNjk0IiB4Mj0iOTI2IiB5Mj0iNzAwIiBzdHJva2U9IiM4RkNGRjIiIHN0cm9rZS13aWR0aD0iMS44IiBvcGFjaXR5PSIwLjc1Ii8+PGxpbmUgeDE9IjkzMyIgeTE9IjY5NCIgeDI9IjkzMyIgeTI9IjcwMCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSI5NDAiIHkxPSI2OTQiIHgyPSI5NDAiIHkyPSI3MDAiIHN0cm9rZT0iIzhGQ0ZGMiIgc3Ryb2tlLXdpZHRoPSIxLjgiIG9wYWNpdHk9IjAuNzUiLz48cmVjdCB4PSI5OTkiIHk9IjcwNCIgd2lkdGg9IjI2IiBoZWlnaHQ9IjE4IiByeD0iMyIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDA1IiB5MT0iNzIyIiB4Mj0iMTAwNSIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDEyIiB5MT0iNzIyIiB4Mj0iMTAxMiIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxsaW5lIHgxPSIxMDE5IiB5MT0iNzIyIiB4Mj0iMTAxOSIgeTI9IjcyOCIgc3Ryb2tlPSIjOEZDRkYyIiBzdHJva2Utd2lkdGg9IjEuOCIgb3BhY2l0eT0iMC43NSIvPjxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDk4MCw0MDApIHJvdGF0ZSg0NSkiPjxyZWN0IHg9Ii0xOTAiIHk9Ii0xOTAiIHdpZHRoPSIzODAiIGhlaWdodD0iMzgwIiByeD0iMjYiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI0JGRUFGRiIgc3Ryb2tlLXdpZHRoPSIyLjIiIG9wYWNpdHk9IjAuNTUiLz48cmVjdCB4PSItMTU4IiB5PSItMTU4IiB3aWR0aD0iMzE2IiBoZWlnaHQ9IjMxNiIgcng9IjI2IiBmaWxsPSJub25lIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMi42IiBvcGFjaXR5PSIwLjgiLz48cmVjdCB4PSItMTE4IiB5PSItMTE4IiB3aWR0aD0iMjM2IiBoZWlnaHQ9IjIzNiIgcng9IjIwIiBmaWxsPSIjMEUyQTRFIiBzdHJva2U9IiNCRkVBRkYiIHN0cm9rZS13aWR0aD0iMyIgb3BhY2l0eT0iMC45NiIvPjxsaW5lIHgxPSItOTAiIHkxPSItMTE4IiB4Mj0iLTkwIiB5Mj0iLTE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii05MCIgeTE9IjExOCIgeDI9Ii05MCIgeTI9IjE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0xMTgiIHkxPSItOTAiIHgyPSItMTUwIiB5Mj0iLTkwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iLTkwIiB4Mj0iMTUwIiB5Mj0iLTkwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTYwIiB5MT0iLTExOCIgeDI9Ii02MCIgeTI9Ii0xNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItNjAiIHkxPSIxMTgiIHgyPSItNjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iLTYwIiB4Mj0iLTE1MCIgeTI9Ii02MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjExOCIgeTE9Ii02MCIgeDI9IjE1MCIgeTI9Ii02MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0zMCIgeTE9Ii0xMTgiIHgyPSItMzAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTMwIiB5MT0iMTE4IiB4Mj0iLTMwIiB5Mj0iMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTExOCIgeTE9Ii0zMCIgeDI9Ii0xNTAiIHkyPSItMzAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIxMTgiIHkxPSItMzAiIHgyPSIxNTAiIHkyPSItMzAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIwIiB5MT0iLTExOCIgeDI9IjAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMCIgeTE9IjExOCIgeDI9IjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iMCIgeDI9Ii0xNTAiIHkyPSIwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iMCIgeDI9IjE1MCIgeTI9IjAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIzMCIgeTE9Ii0xMTgiIHgyPSIzMCIgeTI9Ii0xNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIzMCIgeTE9IjExOCIgeDI9IjMwIiB5Mj0iMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iLTExOCIgeTE9IjMwIiB4Mj0iLTE1MCIgeTI9IjMwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMTE4IiB5MT0iMzAiIHgyPSIxNTAiIHkyPSIzMCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjYwIiB5MT0iLTExOCIgeDI9IjYwIiB5Mj0iLTE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjYwIiB5MT0iMTE4IiB4Mj0iNjAiIHkyPSIxNTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSItMTE4IiB5MT0iNjAiIHgyPSItMTUwIiB5Mj0iNjAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjxsaW5lIHgxPSIxMTgiIHkxPSI2MCIgeDI9IjE1MCIgeTI9IjYwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iOTAiIHkxPSItMTE4IiB4Mj0iOTAiIHkyPSItMTUwIiBzdHJva2U9IiM5RkUzRkYiIHN0cm9rZS13aWR0aD0iMy42IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iOTAiIHkxPSIxMTgiIHgyPSI5MCIgeTI9IjE1MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9Ii0xMTgiIHkxPSI5MCIgeDI9Ii0xNTAiIHkyPSI5MCIgc3Ryb2tlPSIjOUZFM0ZGIiBzdHJva2Utd2lkdGg9IjMuNiIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjExOCIgeTE9IjkwIiB4Mj0iMTUwIiB5Mj0iOTAiIHN0cm9rZT0iIzlGRTNGRiIgc3Ryb2tlLXdpZHRoPSIzLjYiIG9wYWNpdHk9IjAuOSIvPjwvZz48Y2lyY2xlIGN4PSI5ODAiIGN5PSI0MDAiIHI9IjE1MCIgZmlsbD0idXJsKCNnbG93KSIgb3BhY2l0eT0iMC44Ii8+PHJlY3QgeD0iOTIwIiB5PSIzNDAiIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIiByeD0iMTQiIGZpbGw9IiMxMjNBNUMiLz48cmVjdCB4PSI5MjAiIHk9IjM0MCIgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIHJ4PSIxNCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjREZGNEZGIiBzdHJva2Utd2lkdGg9IjIuNSIvPjx0ZXh0IHg9Ijk4MCIgeT0iNDIwIiBmb250LWZhbWlseT0iQXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjRUFGN0ZGIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj5BSTwvdGV4dD48Y2lyY2xlIGN4PSI5ODAiIGN5PSI3MDAiIHI9IjEyMCIgZmlsbD0idXJsKCNnbG93RykiLz48cmVjdCB3aWR0aD0iMTYwMCIgaGVpZ2h0PSI5MDAiIGZpbGw9InVybCgjYmcpIiBvcGFjaXR5PSIwIiAvPjxsaW5lYXJHcmFkaWVudCBpZD0iZGltIiB4MT0iMCIgeTE9IjAiIHgyPSIxIiB5Mj0iMCI+PHN0b3Agb2Zmc2V0PSIwIiBzdG9wLWNvbG9yPSIjMEExRDM4IiBzdG9wLW9wYWNpdHk9IjAuNzQiLz48c3RvcCBvZmZzZXQ9IjAuNCIgc3RvcC1jb2xvcj0iIzBBMUQzOCIgc3RvcC1vcGFjaXR5PSIwLjM0Ii8+PHN0b3Agb2Zmc2V0PSIwLjcyIiBzdG9wLWNvbG9yPSIjMEExRDM4IiBzdG9wLW9wYWNpdHk9IjAuMDgiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMwQTFEMzgiIHN0b3Atb3BhY2l0eT0iMCIvPjwvbGluZWFyR3JhZGllbnQ+PHJlY3Qgd2lkdGg9IjE2MDAiIGhlaWdodD0iOTAwIiBmaWxsPSJ1cmwoI2RpbSkiLz48L3N2Zz4=') center/cover no-repeat;background-color:#0C2140}
 .hero::after{content:"";position:absolute;right:-140px;top:-140px;width:420px;height:420px;border-radius:50%;background:rgba(255,255,255,.05)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;position:relative;z-index:1}
+.hero-grid{display:grid;grid-template-columns:1fr;gap:0;align-items:center;position:relative;z-index:1}
+.hero .sub{max-width:44em}
 .hero h1{font-family:var(--serif);font-size:clamp(1.9rem,4.4vw,3rem);font-weight:900;line-height:1.55;margin-bottom:20px}
 .hero h1 em{font-style:normal;color:#F3C87A}
 .hero p.sub{color:#CDDCF2;max-width:34em;margin-bottom:34px}
@@ -248,6 +260,72 @@ a.feat:hover{background:var(--ice2);box-shadow:0 8px 22px rgba(21,51,94,.12)}
 .kbchat .bub.me{background:var(--gold, #F3C87A);color:var(--navy);align-self:flex-end}
 .kbchat .src{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.72rem;color:var(--mid);font-weight:700}
 
+
+/* hearing / 核メーター */
+#hearing .hgrid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.meterbox{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 14px 40px rgba(21,51,94,.10);padding:22px 24px}
+.meterbox .mtitle{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:6px;margin-bottom:14px}
+.meterbox .mtitle b{font-family:var(--serif);color:var(--navy);font-size:1.02rem}
+.meterbox .mtitle span{font-size:.75rem;color:var(--sub)}
+.mrow{display:grid;grid-template-columns:11.5em 1fr 3.4em;gap:10px;align-items:center;margin:10px 0;font-size:.82rem}
+.mrow .lbl{color:var(--ink);font-weight:500}
+.mrow .pct{text-align:right;color:var(--mid);font-weight:700;font-size:.78rem}
+.mbar{height:12px;background:var(--ice);border-radius:99px;overflow:hidden}
+.mbar i{display:block;height:100%;border-radius:99px;background:var(--green);width:0;transition:width 1.6s cubic-bezier(.2,.7,.3,1)}
+.mbar i.warn{background:var(--amber)}.mbar i.empty{background:var(--red)}
+.meterbox .mfoot{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);font-size:.74rem;color:var(--sub)}
+@media(max-width:860px){#hearing .hgrid{grid-template-columns:1fr}.mrow{grid-template-columns:8.5em 1fr 3.4em}}
+@media(prefers-reduced-motion: reduce){.mbar i{transition:none}}
+.deliver{margin-top:22px;background:var(--amber-soft);border:1px solid #E8CE9C;border-radius:10px;padding:16px 20px;font-size:.86rem;color:#7A5210}
+.deliver b{color:var(--navy)}
+.fquote{margin-top:22px;padding:20px 24px;background:#fff;border:1px solid var(--line);border-radius:12px;font-family:var(--serif);font-size:1.02rem;line-height:1.9;color:var(--navy)}
+.fquote em{font-style:normal;color:var(--amber);font-weight:700}
+.fquote cite{display:block;margin-top:10px;font-family:var(--sans);font-style:normal;font-size:.78rem;color:var(--sub)}
+.fquote cite a{color:var(--amber);text-decoration:underline}
+/* price */
+#price .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:8px}
+.price{background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:26px 24px;display:flex;flex-direction:column}
+.price.main{border-color:var(--amber);box-shadow:0 14px 40px rgba(185,122,31,.16)}
+.price .pk{font-size:.7rem;letter-spacing:.15em;color:var(--amber);font-weight:700}
+.price h3{font-family:var(--serif);color:var(--navy);font-size:1.08rem;margin:6px 0 0}
+.price .amount{font-family:var(--serif);color:var(--navy);font-size:1.85rem;font-weight:700;margin:8px 0 2px}
+.price .amount small{font-size:.8rem;color:var(--sub);font-weight:400;margin-left:6px}
+.price ul{list-style:none;margin-top:12px;flex:1}
+.price li{font-size:.84rem;padding-left:1.2em;text-indent:-1.2em;margin-bottom:8px}
+.price li::before{content:"✓ ";color:var(--green);font-weight:700}
+.price .btn{margin-top:18px;text-align:center}
+.price-note{margin-top:18px;font-size:.78rem;color:var(--sub)}
+@media(max-width:860px){#price .prices{grid-template-columns:1fr}}
+/* company */
+.cogrid{display:grid;grid-template-columns:1fr 1.15fr;gap:40px;align-items:stretch}
+.cogrid .cotable{height:100%}
+.cotable{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;border:1px solid var(--line);font-size:.88rem}
+.cotable th,.cotable td{padding:13px 18px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.cotable tr:last-child th,.cotable tr:last-child td{border-bottom:none}
+.cotable th{width:8em;background:var(--ice);color:var(--navy);font-weight:700;white-space:nowrap}
+.founder{background:var(--ice);border:1px solid var(--line);border-radius:12px;padding:26px 28px}
+.founder .fhead{display:flex;gap:18px;align-items:center;margin-bottom:14px}
+.founder .avatar{width:72px;height:72px;border-radius:50%;background:var(--ice2);color:var(--navy);display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-weight:700;font-size:1.3rem;flex-shrink:0;overflow:hidden}
+.founder .avatar img{width:100%;height:100%;object-fit:cover}
+.founder .fhead b{font-family:var(--serif);color:var(--navy);font-size:1.05rem;display:block}
+.founder .fhead span{font-size:.78rem;color:var(--sub)}
+.founder p{font-size:.88rem;margin-bottom:10px}
+.founder p:last-child{margin-bottom:0}
+@media(max-width:860px){.cogrid{grid-template-columns:1fr}}
+/* このほかの機能 */
+.otherfeat{margin-top:34px;background:var(--ice);border:1.5px solid var(--line);border-radius:12px;padding:24px 28px}
+.otherfeat b{color:var(--navy)}
+.otherfeat p{font-size:.86rem;margin-top:6px}
+.otherfeat .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.otherfeat .chips span{font-size:.76rem;background:#fff;border:1px solid var(--line);border-radius:99px;padding:4px 12px;color:var(--mid)}
+
+/* 画面例モーダル */
+.smodal{position:fixed;inset:0;z-index:200;background:rgba(10,25,50,.62);display:flex;align-items:center;justify-content:center;padding:20px}
+.smodal[hidden]{display:none}
+.smodal-box{position:relative;width:min(1100px,96vw);height:min(92vh,900px);background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.4);display:flex;flex-direction:column}
+.smodal-close{position:absolute;top:10px;right:10px;z-index:2;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:9px 16px;font-family:var(--sans);font-weight:700;font-size:.85rem;cursor:pointer}
+.smodal-close:hover{background:var(--navy-deep)}
+.smodal iframe{flex:1;width:100%;border:0}
 footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0;text-align:center}
 .skip{position:absolute;left:-9999px}
 .skip:focus{position:fixed;left:16px;top:12px;background:#fff;color:var(--navy);padding:8px 14px;z-index:99;border-radius:6px}
@@ -261,10 +339,11 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
     <ul>
       <li><a href="#problem">課題</a></li>
       <li><a href="#product">設計思想</a></li>
-      <li><a href="#features">機能一覧</a></li>
+      <li><a href="#features">主要機能</a></li>
       <li><a href="#demo">デモ体験</a></li>
+      <li><a href="#price">料金</a></li>
       <li><a href="#steps">導入の流れ</a></li>
-      <li><a href="#workspace">企業別ナレッジ環境</a></li>
+      <li><a href="#company">開発者紹介</a></li>
     </ul>
     <a class="btn btn-navy" href="#contact">試験導入の相談</a>
   </div>
@@ -275,25 +354,13 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
 <section class="hero" id="top">
   <div class="wrap hero-grid">
     <div>
-      <h1>経営者の暗黙知を、<br><em>次世代の経営資産</em>に。</h1>
-      <p class="sub">投資、採用、取引、撤退——重要な判断ほど、「社長の頭の中」というブラックボックスの中にあります。経営判断AIエージェントは、経営者の判断基準・価値観・過去の意思決定事例を継承し、経営層の相談に「判断メモ」で応える社内アプリ。会議前の論点整理から判断トレーニングまで、<b style="color:#F3C87A">基本機能＋オプション機能を提供中</b>です。</p>
+      <h1>教える　伝える　時間がない<br>だから　<em>残せる仕組み</em>にした</h1>
+      <p class="sub">経営者の暗黙知を、次世代の経営資産に。投資、採用、取引、撤退——重要な判断ほど、「社長の頭の中」というブラックボックスの中にあります。経営判断AIエージェントは、経営者の判断基準・価値観・過去の意思決定事例を継承し、経営層の相談に「判断メモ」で応える社内アプリ。まず<b style="color:#F3C87A">60日・39.8万円（税別）の試験導入</b>で、社長の判断基準を「判断基準書」という1冊の形にします。</p>
       <div class="cta">
         <a class="btn btn-amber" href="#demo">デモを試してみる</a>
-        <a class="btn btn-ghost" href="#contact">資料請求・お問い合わせ</a>
+        <a class="btn btn-ghost" href="#price">料金と導入の流れ</a>
       </div>
       <p class="note">AIは判断材料の整理役。最終判断は、必ず人間が行います。／APIキー不要の試運転モードは素早く起動できます。</p>
-    </div>
-    <div class="memo-card" aria-label="判断メモの例">
-      <span class="tag">判断メモ（出力例）</span>
-      <h3>設備更新投資 4,500万円の検討</h3>
-      <div class="opt"><b>A案：一括更新</b>　生産効率+18%見込み。ただし即決上限3,000万円を超過し、役員会決議が必要。</div>
-      <div class="opt"><b>B案：2期分割更新</b>　初年度2,400万円。基準内で機動的に着手でき、効果検証後に残りを判断。</div>
-      <table aria-label="5視点比較">
-        <tr><th>視点</th><th>売上</th><th>利益</th><th>人材</th><th>信用</th><th>長期</th></tr>
-        <tr><td>A案</td><td class="mark-1">○</td><td class="mark-0">△</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-2">◎</td></tr>
-        <tr><td>B案</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td><td class="mark-1">○</td></tr>
-      </table>
-      <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
     </div>
   </div>
 </section>
@@ -356,7 +423,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
     </div>
     <p style="font-size:.82rem;color:var(--sub);margin-top:16px">※ 10項目を構造化し、AIエージェントの「思考の核」として設定します。AIはこの核＝「過去の傾向」から選択肢を整理し、未知の事態への「決断」は人間が行います。</p>
 <h3 class="sec" style="margin-top:64px">暗黙知は、こうして形式知になる。</h3>
-    <p class="lede" style="margin-bottom:0">「本当に言葉にできるのか？」——できます。経営者ヒアリングでは、日頃の口癖や語り草を、そのまま判断基準書の一文へ書き換えていきます。実際の変換例をご覧ください。</p>
+    <p class="lede" style="margin-bottom:0">「本当に言葉にできるのか？」——できます。話し手の語る力には頼りません。決まった質問の手順が、日頃の口癖や語り草を、そのまま判断基準書の一文へ書き換えていきます。実際の変換例をご覧ください。</p>
     <div class="ba">
       <div class="ba-l">
         <h4>社長の頭の中（暗黙知）</h4>
@@ -410,7 +477,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
   <div class="wrap">
     <p class="eyebrow">FEATURES</p>
     <h2 class="sec">基本機能＋オプション機能 — 相談から日々の業務まで</h2>
-    <p class="lede">ご提供可能な機能一覧になります（基本機能＋オプション機能）。「判断させない」「勝手に出さない」ための仕組みが、機能ごとにプログラムで組み込まれています。各カードを押すと、実際のアプリの画面例をご覧いただけます。</p>
+    <p class="lede">中核となる「意思決定支援」と「思考の核の管理」をご紹介します。「判断させない」「勝手に出さない」ための仕組みが、機能ごとにプログラムで組み込まれています。</p>
 
     <div class="cycle" aria-label="知恵の継承サイクル">
       <div class="cy">① 相談する<small>経営層・後継者</small></div><span class="cyar">→</span>
@@ -422,39 +489,31 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
     </div>
     <div class="fcat">意思決定支援（6機能）</div>
     <div class="feats">
-      <div class="feat feat-core"><b>基本相談（判断メモ）</b><p>相談内容を自動で担当機能へ振り分け、2〜3案＋5視点比較＋根拠で返します。</p><div class="badge-row"><span class="corechip">思考の核</span><span class="fbadge">最終判断はしない</span></div><div class="core-foot"><a class="flink" href="screens.html#consult">画面例を見る →</a><a class="btn btn-amber core-demo" href="#demo">デモを試してみる</a></div></div>
-      <a class="feat" href="screens.html#invest"><b>投資判断シミュレーター</b><p>標準・楽観・悲観の3シナリオで回収年数を試算。即決上限超過は役員会決議を自動警告。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#hiring"><b>採用・評価マッチング</b><p>自社の人材像基準と候補者情報を照合し、観点別の適合度と面接での確認質問を整理。</p><span class="fbadge">合否は出さない</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#risk"><b>リスクシナリオ・ストレステスト</b><p>売上減少10／30／50%時の資金の耐久月数を試算し、備えの抜けと打ち手を整理。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#gov"><b>ガバナンス・倫理チェック</b><p>契約書・広告文などの懸念箇所を業法リスト・社内NGラインに照らして指摘。</p><span class="fbadge">最終確認は専門家へ</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#training"><b>後継者トレーニング</b><p>実際の経営課題のお題に後継者が回答し、社長基準の観点で講評。記録が育成の資産に。</p><span class="fbadge">講評記録つき</span><span class="flink">画面例を見る →</span></a>
+      <div class="feat feat-core"><b>基本相談（判断メモ）</b><p>相談内容を自動で担当機能へ振り分け、2〜3案＋5視点比較＋根拠で返します。</p><div class="badge-row"><span class="corechip">思考の核</span><span class="fbadge">最終判断はしない</span></div><div class="core-foot"><a class="flink" href="screens.html#consult" data-screen="consult">画面例を見る →</a><a class="btn btn-amber core-demo" href="#demo">デモを試してみる</a></div></div>
+      <a class="feat" href="screens.html#invest" data-screen="invest"><b>投資判断シミュレーター</b><p>標準・楽観・悲観の3シナリオで回収年数を試算。即決上限超過は役員会決議を自動警告。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#hiring" data-screen="hiring"><b>採用・評価マッチング</b><p>自社の人材像基準と候補者情報を照合し、観点別の適合度と面接での確認質問を整理。</p><span class="fbadge">合否は出さない</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#risk" data-screen="risk"><b>リスクシナリオ・ストレステスト</b><p>売上減少10／30／50%時の資金の耐久月数を試算し、備えの抜けと打ち手を整理。</p><span class="fbadge fb-green">計算はプログラム</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#gov" data-screen="gov"><b>ガバナンス・倫理チェック</b><p>契約書・広告文などの懸念箇所を業法リスト・社内NGラインに照らして指摘。</p><span class="fbadge">最終確認は専門家へ</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#training" data-screen="training"><b>後継者トレーニング</b><p>実際の経営課題のお題に後継者が回答し、社長基準の観点で講評。記録が育成の資産に。</p><span class="fbadge">講評記録つき</span><span class="flink">画面例を見る →</span></a>
     </div>
 
-    <div class="fcat">警告と自動化（4機能）</div>
+    <div class="fcat">思考の核を、安全に育てる</div>
     <div class="feats">
-      <a class="feat" href="screens.html#watchdog"><b>撤退ライン監視</b><p>粗利率と連続赤字を毎朝自動点検し、基準抵触をアラート。判定にAIは使いません。</p><span class="fbadge fb-green">毎朝自動・完全プログラム判定</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#agenda"><b>会議アジェンダ生成</b><p>アラート・承認待ち・監視ボードを自動集計し、次回経営会議の論点案を下書き。</p><span class="fbadge fb-amber">承認されるまで配布されない</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#market"><b>市場調査（貼り付け分析）</b><p>業界記事・相場情報を貼り付けると、要約と自社の判断基準との関係を整理。</p><span class="fbadge">貼付情報の範囲内で分析</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#compete"><b>競合分析（貼り付け分析）</b><p>競合の動きの情報から、自社方針との「追い風・矛盾・要注意」を指摘。</p><span class="fbadge">貼付情報の範囲内で分析</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#settings" data-screen="settings"><b>思考の核 設定ファイル管理</b><p>社長の口頭メモをAIが既存書式へ整形。差分を確認してから保存し、履歴（5世代）へ自動退避。いつでも戻せます。</p><span class="fbadge fb-green">差分確認・5世代履歴</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#voice" data-screen="voice"><b>音声・テキスト取込</b><p>ヒアリングの録音を文字起こしし、AIが判断基準・人材像などの各項目へ自動振り分け。反映前に必ず内容を確認します。</p><span class="fbadge">反映前に必ず内容確認</span><span class="flink">画面例を見る →</span></a>
+      <a class="feat" href="screens.html#excel" data-screen="excel"><b>Excel一括登録</b><p>Excelフォーマットに記入した思考の核を、まとめて反映。記入しなかった行は既存設定を保持します。</p><span class="fbadge fb-green">反映は履歴つきで安全</span><span class="flink">画面例を見る →</span></a>
     </div>
 
-    <div class="fcat">業務効率化（6機能）</div>
-    <div class="feats">
-      <a class="feat" href="screens.html#kb"><b>社内ナレッジChatBot</b><p>就業規則・経費規程などから該当箇所を検索し、その範囲内でだけ回答。出典を常に表示。</p><span class="fbadge fb-green">根拠つき・禁止領域は拒否</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#sns"><b>SNSコンテンツ生成</b><p>Instagram・X・ブログ導入文の3媒体の下書きを一括生成し、承認待ちへ送ります。</p><span class="fbadge fb-amber">承認フロー必須</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#snsplan"><b>SNS投稿カレンダー</b><p>投稿の予約管理。承認済みの投稿以外は予約できないことをプログラムが保証します。</p><span class="fbadge fb-amber">承認済みのみ予約可</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#minutes"><b>議事録要約</b><p>文字起こしテキストから決定事項・宿題（担当・期限）・次回日程を抽出。創作はしません。</p><span class="fbadge">事実のみ抽出</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#mail"><b>メール・文書作成支援</b><p>社長の文体見本に沿った下書きを作成。送信機能はそもそも存在しません。</p><span class="fbadge">下書き専用・送信機能なし</span><span class="flink">画面例を見る →</span></a>
-      <a class="feat" href="screens.html#custbot"><b>顧客対応ChatBot</b><p>製品FAQの範囲で一次回答。価格・納期・法的な相談は自動で担当窓口へ引き継ぎます。</p><span class="fbadge">価格・納期は窓口へ</span><span class="flink">画面例を見る →</span></a>
-    </div>
-
-    <div class="fcat">管理・基盤（1機能）</div>
-    <div class="feats">
-      <a class="feat" href="screens.html#admin"><b>承認・事例・実績の管理</b><p>生成物の承認／却下、判断事例の蓄積、月次実績の入力を一画面で。利用者ごとの権限（承認者・管理者）つき。</p><span class="fbadge">ダッシュボードでKPI表示</span><span class="flink">画面例を見る →</span></a>
+    <div class="otherfeat">
+      <b>このほかにも、日々の経営を支える機能群を搭載しています。</b>
+      <p>撤退ラインの毎朝自動監視、経営会議のアジェンダ下書き、市場・競合情報の貼り付け分析、社内規程ChatBot、SNS・議事録・文書の下書き支援、承認フローと権限管理など——全21機能。いずれも「承認されるまで外に出ない」「規程にないことは答えない」という境界がプログラムで担保されています。</p>
+      <div class="chips"><span>撤退ライン監視</span><span>会議アジェンダ生成</span><span>市場・競合の貼り付け分析</span><span>社内ナレッジChatBot</span><span>SNS・議事録・文書支援</span><span>承認・権限管理　ほか</span></div>
+      <p style="margin-top:20px"><b>全機能カタログ（画面例つき）は、初回打ち合わせの際に資料でお渡しします。</b></p>
+      <a class="btn btn-amber" href="#contact" style="font-size:.85rem;padding:11px 22px;margin-top:18px">打ち合わせを申し込む</a>
     </div>
 
     <div class="boundary">
-      <b>実装にあたって</b>　音声の自動文字起こし・Web情報の自動収集・SNSへの自動投稿の3点は、外部サービス契約が本体となるためSTEP 3で追加します。現在は、文字起こしテキストの貼り付け／記事の貼り付け分析／予約管理＋手動投稿という、境界を明確にした形でご提供しています。
+      <b>実装にあたって</b>　音声の文字起こしは標準搭載済みです（音声ファイルを選ぶだけで書き起こし、AIが各設定項目へ振り分けます）。Web情報の自動収集・SNSへの自動投稿の2点は、外部サービス契約が本体となるためSTEP 3で追加します。現在は、記事の貼り付け分析／予約管理＋手動投稿という、境界を明確にした形でご提供しています。
     </div>
   </div>
 </section>
@@ -540,7 +599,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
 <rect x="1270" y="450" width="290" height="150" rx="14" fill="#FFF4E0" stroke="#B97A1F" stroke-width="1.5"/>
 <text x="1415" y="500" font-size="17" fill="#B97A1F" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">外部サービス連携</text>
 <text x="1415" y="530" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">SNS・音声認識・Web検索・通知</text>
-<text x="1415" y="552" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">（オプション機能により利用）</text>
+<text x="1415" y="552" font-size="13" fill="#5B6572" font-weight="400" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">（オプションにより利用）</text>
 <line x1="1196" y1="525" x2="1262" y2="525" stroke="#B97A1F" stroke-width="2" marker-end="url(#aa)" stroke-dasharray="6 5"/>
 <rect x="1270" y="630" width="290" height="130" rx="14" fill="#DCE7F5" stroke="#3A5A8C" stroke-width="1.5"/>
 <text x="1415" y="682" font-size="17" fill="#15335E" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">スケジューラ</text>
@@ -551,7 +610,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
 <rect x="90" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
 <text x="226" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">利用者認証・権限</text>
 <rect x="380" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
-<text x="516" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">警告ログ</text>
+<text x="516" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">監査ログ</text>
 <rect x="670" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
 <text x="806" y="950" font-size="16" fill="#1F2733" font-weight="700" text-anchor="middle" font-family="'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif">自動バックアップ</text>
 <rect x="960" y="908" width="272" height="66" rx="10" fill="#fff" stroke="#D8E2F0" stroke-width="1.5"/>
@@ -609,6 +668,76 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
   </div>
 </section>
 
+<!-- HEARING -->
+<section id="hearing">
+  <div class="wrap">
+    <p class="eyebrow">HEARING</p>
+    <h2 class="sec">導入は、ヒアリングから始まります。</h2>
+    <div class="hgrid">
+      <div>
+        <p style="font-size:.95rem;line-height:1.9;margin-bottom:16px">アプリの操作を覚えることからではなく、<b>経営者ヒアリング（60分・3回）</b>から始めます。社長が話した言葉はその場で10項目へ仕分けられ、「思考の核」がどこまで埋まったかが右の<b>核メーター</b>で見えていきます。</p>
+        <p style="font-size:.95rem;line-height:1.9;margin-bottom:16px">空欄が残ることも隠しません。空欄は「次のヒアリングで聞くべき問い」そのものだからです。3回のヒアリングを終える頃には、社長の判断基準が目に見える資産に変わっています。</p>
+        <div class="deliver"><b>手元に残るのは「判断基準書」という1冊。</b>　承継の話し合いや幹部教育の資料としてそのまま使えます。アプリのご利用をやめても、この資料は貴社に残ります。</div>
+        <blockquote class="fquote">「私自身、言葉にして経営の知識を誰かに伝えることは苦手でした。だから、このヒアリングは話し手の才能に頼りません。苦手な人間でもできる<em>手順</em>として作ってあります。」<cite>— 開発者（元・IT企業経営者）　<a href="#company">経歴を見る</a></cite></blockquote>
+      </div>
+      <div class="meterbox" id="meterBox" aria-label="核メーターの例">
+        <div class="mtitle"><b>核メーター — 充填度 68%</b><span>（前回 41%）架空企業・佐々木製作所の例</span></div>
+        <div class="mrow"><span class="lbl">判断基準・理念・価値観</span><span class="mbar"><i data-w="90"></i></span><span class="pct">90%</span></div>
+        <div class="mrow"><span class="lbl">求める人材像</span><span class="mbar"><i data-w="85"></i></span><span class="pct">85%</span></div>
+        <div class="mrow"><span class="lbl">投資のしきい値</span><span class="mbar"><i data-w="80"></i></span><span class="pct">80%</span></div>
+        <div class="mrow"><span class="lbl">過去の判断事例（8件）</span><span class="mbar"><i class="warn" data-w="60"></i></span><span class="pct">60%</span></div>
+        <div class="mrow"><span class="lbl">想定リスクと備え</span><span class="mbar"><i class="warn" data-w="45"></i></span><span class="pct">45%</span></div>
+        <div class="mrow"><span class="lbl">撤退ライン</span><span class="mbar"><i class="empty" data-w="8"></i></span><span class="pct">空欄</span></div>
+        <p class="mfoot">赤い空欄も、そのままお見せします。「まだ聴けていないこと」が明確になることが、このヒアリングの価値です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICE -->
+<section id="price" style="background:var(--ice)">
+  <div class="wrap">
+    <p class="eyebrow">PRICE</p>
+    <h2 class="sec">料金 — 迷わず決められる、明朗なひとつの入口。</h2>
+    <p class="lede">大きな契約から始める必要はありません。まず60日の試験導入で「言葉が形になる」ことを確認してから、次を決めてください。</p>
+    <div class="prices">
+      <div class="price main">
+        <span class="pk">まずはここから</span>
+        <h3>試験導入パイロット</h3>
+        <div class="amount">39.8万円<small>（税別）</small></div>
+        <ul>
+          <li>期間60日・経営者ヒアリング3回</li>
+          <li>「判断基準書」＋思考の核データを納品</li>
+          <li>本体アプリの試運転（動きをその場で確認）</li>
+          <li>終了後の継続義務はありません</li>
+        </ul>
+        <a class="btn btn-amber" href="#contact">試験導入を相談する</a>
+      </div>
+      <div class="price">
+        <span class="pk">言葉を、仕組みへ</span>
+        <h3>本格導入（継承プロジェクト）</h3>
+        <div class="amount">個別お見積り<small>目安 60万円〜</small></div>
+        <ul>
+          <li>ヒアリングを追加し、思考の核を拡充</li>
+          <li>後継者・幹部との「読み合わせ会」</li>
+          <li>本体アプリの導入・初期設定・操作研修</li>
+        </ul>
+      </div>
+      <div class="price">
+        <span class="pk">核を、育て続ける</span>
+        <h3>継続サポート</h3>
+        <div class="amount">月3万円〜<small>（税別）</small></div>
+        <ul>
+          <li>四半期ごとの訪問と判断基準の更新</li>
+          <li>新しい判断事例の蓄積レビュー</li>
+          <li>ご希望の企業のみ（任意契約）</li>
+        </ul>
+      </div>
+    </div>
+    <p class="price-note">※ 表示価格は税別です。AIの利用料（API実費）は、試験導入のお見積り時に実測に基づく見込み額をあわせてご提示します。</p>
+  </div>
+</section>
+
 <!-- STEPS -->
 <section id="steps" style="background:var(--ice)">
   <div class="wrap">
@@ -638,7 +767,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
         <header><span class="sn">STEP 1</span><b>試験導入（3ヶ月）</b></header>
         <div class="body">
           <ul>
-            <li>経営者ヒアリングで判断基準・価値観・過去の意思決定事例を言語化し、アプリに登録</li>
+            <li>経営者ヒアリングで判断基準・価値観・過去の意思決定事例を言語化し、アプリに登録（音声の取込・Excelでの一括登録に対応）</li>
             <li>PC1台・追加ソフト不要で各機能が動作（Node.jsのみ）</li>
             <li>APIキー不要の試運転モードで、各機能の画面と流れを確認可能</li>
             <li>経営会議・幹部相談で試験運用し、成果指標で本格導入を判断</li>
@@ -655,7 +784,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
             <li>撤退ラインを毎朝自動点検（スケジューラ内蔵）</li>
             <li>社内LANで役員・幹部3〜10名が利用、判断事例を40件超へ蓄積</li>
           </ul>
-          <p class="dur">役員会の「たたき台」が変わります（HTTPS・監査ログはSTEP 3で追加）</p>
+          <p class="dur">役員会の「たたき台」が変わります（通信保護・監査ログは運用規模に合わせて段階導入）</p>
         </div>
       </div>
       <div class="step">
@@ -663,7 +792,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
         <div class="body">
           <ul>
             <li>クラウド化・SSO・監査ログ</li>
-            <li>外部連携：音声の自動文字起こし・Web自動収集・SNS自動投稿</li>
+            <li>外部連携：Web自動収集・SNS自動投稿（音声の文字起こしは標準搭載済み）</li>
             <li>数百件の事例から関連事例を自動参照（RAG）</li>
           </ul>
           <p class="dur">全社のナレッジ基盤が完成します</p>
@@ -680,12 +809,38 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
     <h2 class="sec">企業ごとに独立した「ナレッジ環境」をご用意</h2>
     <p class="lede">STEP 3以降の拡張として、ご契約企業ごとに他社と完全に分離された専用ワークスペースを用意します。貴社の判断基準・判断事例・相談ログは貴社の環境だけに保存され、AIの学習に使われることはありません。</p>
     <div class="flow">
-      <div class="ws"><span class="k">STEP A</span><b>ワークスペース開設</b>貴社専用の環境を開設　→　利用者アカウントと権限（閲覧／管理）を発行</div>
-      <div class="ws"><span class="k">STEP B</span><b>データの持ち込み</b>ヒアリング結果・社内規程・過去の稟議など　→　判断に関わる資料を登録</div>
-      <div class="ws"><span class="k">STEP C</span><b>ナレッジ化</b>資料を「判断基準」と「判断事例」の形式に整理・構造化　→ 検索できる知識</div>
-      <div class="ws"><span class="k">STEP D</span><b>相談・改善</b>経営層が日常的に相談しログを月次で振り返る　→ 基準そのものを更新継続</div>
+      <div class="ws"><span class="k">STEP A</span><b>ワークスペース開設</b>貴社専用の環境を開設。利用者アカウントと権限（閲覧／管理）を発行します。</div>
+      <div class="ws"><span class="k">STEP B</span><b>データの持ち込み</b>ヒアリング結果・社内規程・過去の稟議など、判断に関わる資料を登録します。</div>
+      <div class="ws"><span class="k">STEP C</span><b>ナレッジ化</b>資料を「判断基準」と「判断事例」の形式に整理・構造化。検索できる知識になります。</div>
+      <div class="ws"><span class="k">STEP D</span><b>相談・改善</b>経営層が日常的に相談。ログを月次で振り返り、基準そのものを更新し続けます。</div>
     </div>
     <div class="ws-note"><b>データの取り扱いについて：</b>企業単位でデータベース・保存領域を分離し、通信は暗号化。判断基準は経営の機密として、アクセス権限・監査ログ・バックアップの運用ルールとあわせてご提供します。詳細はお問い合わせ時に「データ取扱説明書」をお渡しします。</div>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section id="company">
+  <div class="wrap">
+    <p class="eyebrow">DEVELOPER</p>
+    <h2 class="sec">開発者紹介</h2>
+    <div class="cogrid">
+      <table class="cotable">
+        <tr><th>開発者</th><td>藤田　利江</td></tr>
+        <tr><th>略歴</th><td>IT企業を創業し、20年間の経営・事業売却までを経験。その経験をもとに本サービスを開発。</td></tr>
+        <tr><th>活動内容</th><td>経営判断AIエージェントの開発・導入支援／経営者ヒアリングによる判断基準の言語化（判断基準書の作成）</td></tr>
+        <tr><th>連絡先</th><td><a class="js-maillink" href="#">メールで問い合わせる</a></td></tr>
+      </table>
+      <div class="founder">
+        <div class="fhead">
+          <div class="avatar"><!-- 写真を使う場合：<img src="face.jpg" alt="写真"> に差し替え --></div>
+          <div><b>開発者より — 会社は渡せても、経験は渡せなかった。</b><span>藤田　利江（元・IT企業創業者）</span></div>
+        </div>
+        <p>私はひとつのIT企業を創業し、20年間経営し、売却まで経験しました。法人の有する資産は次の担い手に渡せます。しかし、判断の基準、迷ったときの拠り所、失敗から学んだ勘どころ。わたくしの心に残っている汗をかいた経験は、最後まで渡しきれませんでした。</p>
+        <p>「継承」と一言で表すことのできない、言葉に表現し伝えることができない、そんな苦しみの中にこそ答えがある。そんな気持ちが、この事業の原点です。</p>
+        <p>もうひとつ、正直にお話しします。私は言葉にするのがとても苦手です。「勘と経験！」と言いたくなる側の人間でした。だからこそこのサービスは、話し手の才能に頼りません。決まった質問の手順と、言葉をその場で仕分けるAIの仕組みで、<b>言語化が苦手な人でも判断基準が形になる</b>ように設計しています。</p>
+        <p>会社を経営し、手放すことの重みを知る者として、同じ椅子に座った経験のある者として、社長のお話を伺います。まずは60日の試験導入で、ご自身の言葉が「判断基準書」という形になるところをご覧ください。</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -694,7 +849,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
   <div class="wrap">
     <p class="eyebrow" style="color:#F3C87A">CONTACT</p>
     <h2 class="sec">人間中心のAI活用で、経営者の想いを「経営資産」にする。</h2>
-    <p class="lede">この取り組みは、単なるAI導入ではありません。経営者の「知恵」を、次世代へ引き継げる「経営資産」へ変えるプロジェクトです。まずは「3ヶ月の試験導入」からご相談ください。言語化された判断基準書と事例記録は、それ自体が承継資料になります。</p>
+    <p class="lede">この取り組みは、単なるAI導入ではありません。経営者の「知恵」を、次世代へ引き継げる「経営資産」へ変えるプロジェクトです。会社を経営し、手放した経験を持つ開発者が、同じ経営者の目線でお話を伺います。まずは「3ヶ月の試験導入」からご相談ください。</p>
     <div class="contact-grid">
       <form class="cform" id="contactForm">
         <label for="f-company">会社名</label>
@@ -714,6 +869,7 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
         <textarea id="f-msg" name="message"></textarea>
         <button class="btn btn-amber" type="submit">送信する</button>
         <p id="formStatus" style="margin-top:12px;font-size:.85rem;color:#F3C87A" role="status"></p>
+        <p style="margin-top:10px;font-size:.8rem;color:#C9D8EE">フォームが動作しない場合は <a class="js-maillink" href="#" style="color:#F3C87A;text-decoration:underline">こちら</a> からメールでご連絡ください。</p>
       </form>
       <div class="contact-side">
         <h3>お問い合わせ後の流れ</h3>
@@ -736,13 +892,89 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
 </section>
 </main>
 
+<!-- 画面例モーダル(単一ファイルで動作) -->
+<div id="screenModal" class="smodal" hidden>
+  <div class="smodal-box" role="dialog" aria-modal="true" aria-label="画面例">
+    <button type="button" id="screenClose" class="smodal-close" aria-label="閉じる">× 閉じる</button>
+    <iframe id="screenFrame" title="画面例"></iframe>
+  </div>
+</div>
+
 <footer>
-  <div class="wrap">経営判断AIエージェント — AIは判断材料の整理役。最終判断は必ず人間が行います。<br>© 2026 AetherNexus. All rights reserved.</div>
+  <div class="wrap">経営判断AIエージェント — AIは判断材料の整理役。最終判断は必ず人間が行います。<br>&copy; 2026 藤田利江　All rights reserved.　無断転載・複製を禁じます。　<a href="#company" style="text-decoration:underline">開発者紹介</a></div>
 </footer>
 
 <script>
 (function(){
   "use strict";
+
+  /* ▼▼▼ 公開前に必ずここを変更 ▼▼▼ */
+  /* 問い合わせ用メールアドレス（収集ボット対策のため難読化して保持）。
+     変更方法: 新しいアドレスを btoa("xxx@example.com") でbase64化し、
+     その文字列を「逆順」にした値を下の _MC に入れてください。 */
+  const _MC = "==Acq5yav9Gb0V3bAF2avlWbhtmLpJXZ";
+  const CONTACT_EMAIL = (function(){ try { return atob(_MC.split("").reverse().join("")); } catch(e){ return ""; } })();
+  /* ▲▲▲ ここまで ▲▲▲ */
+
+  /* 画面例モーダル(画面例集はこのファイルに埋め込み済み。screens.htmlが無くても動作) */
+  (function(){
+    const modal = document.getElementById("screenModal");
+    const frame = document.getElementById("screenFrame");
+    const close = document.getElementById("screenClose");
+    if(!modal || !frame || !close) return;
+    let loaded = false, pending = null;
+    function jump(){ if(pending){ try{ frame.contentWindow.location.hash = "#"+pending; }catch(e){} } }
+    frame.addEventListener("load", ()=>{
+      loaded = true; jump();
+      /* 画面例集内の「デモ体験へ」等のボタン: 押したらポップアップを閉じてから本体を移動 */
+      try{
+        frame.contentDocument.querySelectorAll('a[target="_parent"]').forEach(a=>{
+          a.addEventListener("click", shut);
+        });
+      }catch(e){}
+    });
+    /* 保険: 本体のページ内移動が起きたらポップアップは閉じる */
+    window.addEventListener("hashchange", ()=>{ if(!modal.hidden) shut(); });
+    function open(key){
+      const docEl = document.getElementById("screensDoc"); /* ページ末尾の埋め込みを開く時点で取得 */
+      if(!docEl) return false;
+      pending = key;
+      modal.hidden = false; document.body.style.overflow = "hidden";
+      if(!loaded){ frame.srcdoc = docEl.textContent; } else { jump(); }
+      close.focus();
+      return true;
+    }
+    function shut(){ modal.hidden = true; document.body.style.overflow = ""; }
+    document.querySelectorAll("a[data-screen]").forEach(a=>{
+      a.addEventListener("click", ev=>{
+        if(!document.getElementById("screensDoc")) return; /* 埋め込みが無い場合は従来どおりscreens.htmlへ */
+        ev.preventDefault(); open(a.dataset.screen);
+      });
+    });
+    close.addEventListener("click", shut);
+    modal.addEventListener("click", ev=>{ if(ev.target === modal) shut(); });
+    document.addEventListener("keydown", ev=>{ if(ev.key === "Escape" && !modal.hidden) shut(); });
+  })();
+
+  /* メールリンクへ宛先を設定（アドレスは画面に表示せず、mailtoのhrefにのみ渡す） */
+  document.querySelectorAll(".js-maillink").forEach(a=>{ a.href = "mailto:"+CONTACT_EMAIL; });
+  /* 旧仕様（アドレスを文字表示するタイプ）が残っていた場合の後方互換 */
+  document.querySelectorAll(".js-mail").forEach(a=>{ a.textContent = CONTACT_EMAIL; a.href = "mailto:"+CONTACT_EMAIL; });
+
+
+  /* 核メーター：画面に入ったらバーが伸びる */
+  (function(){
+    const box = document.getElementById("meterBox");
+    if(!box) return;
+    const bars = box.querySelectorAll(".mbar i");
+    const fill = ()=> bars.forEach(b=>{ b.style.width = (b.dataset.w||0)+"%"; });
+    if(!("IntersectionObserver" in window)){ fill(); return; }
+    const io = new IntersectionObserver((es)=>{
+      es.forEach(e=>{ if(e.isIntersecting){ fill(); io.disconnect(); } });
+    },{threshold:.35});
+    io.observe(box);
+  })();
+
   /* ---------- デモ ---------- */
   const btn = document.getElementById("consultBtn");
   const ta = document.getElementById("consultText");
@@ -951,11 +1183,415 @@ footer{background:var(--navy-deep);color:#9FB6D9;font-size:.78rem;padding:26px 0
       // バックエンド未設置時はメール作成にフォールバック
       const subject = encodeURIComponent("【経営判断AIエージェント】お問い合わせ："+(data.topic||""));
       const body = encodeURIComponent("会社名: "+data.company+"\nお名前: "+data.name+"\nメール: "+data.email+"\n内容: "+(data.message||""));
-      location.href = "mailto:eri.kamioka@outlook.jp?subject="+subject+"&body="+body; // TODO: 貴社アドレスに変更
-      fs.textContent = "メールソフトが開きます。開かない場合は eri.kamioka@outlook.jp 宛にご連絡ください。";
+      location.href = "mailto:"+CONTACT_EMAIL+"?subject="+subject+"&body="+body;
+      fs.textContent = "メールソフトが開きます。開かない場合は "+CONTACT_EMAIL+" 宛にご連絡ください。";
     }
   });
 })();
+</script>
+<script type="text/html" id="screensDoc">
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>画面例｜経営判断AIエージェント</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Old+Mincho:wght@700;900&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#15335E; --deep:#0E2647; --mid:#3A5A8C; --ice:#EEF3FA; --ice2:#DCE7F5;
+  --line:#D8E2F0; --ink:#1F2733; --sub:#5B6572; --amber:#B97A1F; --ambsoft:#FFF4E0;
+  --green:#2C6E49; --grsoft:#E4F3EA; --red:#A6392E; --redsoft:#F9E8E6; --gold:#F3C87A;
+  --serif:'Zen Old Mincho','Hiragino Mincho ProN',serif;
+  --sans:'Noto Sans JP','Hiragino Kaku Gothic ProN',sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);color:var(--ink);background:var(--ice);font-size:14px;line-height:1.7}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--amber);outline-offset:2px;border-radius:4px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* 上部バー */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.topbar .in{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.topbar b{font-family:var(--serif);color:var(--navy);font-size:1rem}
+.topbar .back{font-size:.85rem;font-weight:700;color:var(--mid);padding:8px 14px;border:1.5px solid var(--line);border-radius:8px}
+.topbar .back:hover{background:var(--ice)}
+.hcnote{background:var(--ambsoft);border-bottom:1px solid #E8CE9C;color:#7A5210;font-size:.82rem;text-align:center;padding:8px 16px}
+
+/* 目次 */
+.toc{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 24px;margin:28px 0 8px}
+.toc b{color:var(--navy);font-size:.95rem}
+.toc .links{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.toc a{font-size:.8rem;background:var(--ice);border:1px solid var(--line);border-radius:99px;padding:5px 13px;color:var(--mid);font-weight:500}
+.toc a:hover{background:var(--ice2)}
+
+/* 画面例フレーム（アプリの見た目を再現） */
+.shot{margin:44px 0}
+.shot h2{font-family:var(--serif);color:var(--navy);font-size:1.25rem;margin-bottom:4px}
+.shot .cat{font-size:.72rem;letter-spacing:.15em;color:var(--amber);font-weight:700}
+.shot .desc{font-size:.85rem;color:var(--sub);margin:4px 0 14px}
+.frame{background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:0 14px 40px rgba(21,51,94,.10);position:relative}
+.frame::after{content:"画面例（操作はできません）";position:absolute;top:12px;right:12px;background:rgba(21,51,94,.85);color:#fff;font-size:.68rem;font-weight:700;letter-spacing:.08em;padding:4px 12px;border-radius:99px}
+.appbar{background:var(--deep);color:#C9D8EE;display:flex;align-items:center;justify-content:space-between;padding:12px 20px}
+.appbar .brand{font-weight:700;color:#fff;font-size:.9rem}
+.appbar .brand small{color:#9FB6D9;font-weight:400;margin-left:8px;font-size:.72rem}
+.appbar .who{font-size:.75rem}
+.appbar .who .chip{background:#E4F3EA;color:#2C6E49;border-radius:99px;padding:2px 10px;font-weight:700;margin-right:10px}
+.vw{padding:24px 26px 28px}
+.vw .ph h3{font-family:var(--serif);color:var(--navy);font-size:1.15rem}
+.vw .ph p{font-size:.8rem;color:var(--sub);margin-top:2px}
+.vw .agent{display:inline-block;margin-top:8px;font-size:.7rem;font-weight:700;color:var(--mid);background:var(--ice);border-radius:99px;padding:3px 12px}
+.card{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:18px 20px;margin-top:16px}
+.card.tint{background:var(--ice);border-color:var(--line)}
+label{display:block;font-size:.78rem;font-weight:700;color:var(--navy);margin:10px 0 5px}
+.inp,.ta,.sel{width:100%;border:1.5px solid var(--line);border-radius:8px;padding:9px 12px;font-family:var(--sans);font-size:.88rem;background:#fff;color:var(--ink)}
+.ta{min-height:84px}
+.btn{display:inline-block;background:var(--navy);color:#fff;border:none;border-radius:8px;padding:10px 22px;font-weight:700;font-size:.85rem;margin-top:14px;opacity:.9;cursor:default}
+.btn.sub{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:760px){.grid2,.grid4{grid-template-columns:1fr}}
+
+/* 判断メモ・表・バッジ等（アプリと同じ意匠） */
+.tag{display:inline-block;background:var(--ice);color:var(--mid);font-weight:700;font-size:.66rem;letter-spacing:.12em;padding:3px 10px;border-radius:99px;margin-bottom:8px}
+.memo h4{font-family:var(--serif);color:var(--navy);font-size:1rem;margin-bottom:4px}
+.opt{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin-top:10px;font-size:.83rem}
+.opt b{color:var(--navy)}
+.basis{color:var(--sub);font-size:.76rem}
+table{width:100%;border-collapse:collapse;margin-top:12px;font-size:.78rem}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:center}
+th{background:var(--ice);color:var(--mid)}
+td:first-child{text-align:left;font-weight:700}
+.m2{color:var(--green);font-weight:700}.m1{color:var(--mid)}.m0{color:var(--amber)}.mx{color:var(--red);font-weight:700}
+.warnbox{background:var(--ambsoft);border:1px solid #E8CE9C;border-radius:8px;padding:10px 14px;font-size:.8rem;color:#7A5210;margin-top:12px}
+.fixed{margin-top:14px;padding-top:10px;border-top:1px dashed var(--line);font-size:.72rem;color:var(--sub)}
+.badge{font-size:.68rem;font-weight:700;border-radius:99px;padding:2px 10px}
+.bdg-ok{background:var(--grsoft);color:var(--green)}
+.bdg-ng{background:var(--redsoft);color:var(--red)}
+.bdg-warn{background:var(--ambsoft);color:var(--amber)}
+.bdg-info{background:var(--ice2);color:var(--mid)}
+.scen .row{display:grid;grid-template-columns:52px 1fr 168px;gap:10px;align-items:center;margin-top:10px;font-size:.8rem}
+.bar{height:12px;background:var(--ice);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--mid);border-radius:99px}
+.bar i.over{background:var(--red)}
+.chat{background:var(--ice);border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.bub{max-width:82%;padding:10px 14px;border-radius:12px;font-size:.83rem}
+.bub.ai{background:#fff;border:1px solid var(--line);align-self:flex-start}
+.bub.me{background:var(--navy);color:#fff;align-self:flex-end}
+.src{display:block;margin-top:8px;padding-top:8px;border-top:1px dashed var(--line);font-size:.7rem;color:var(--mid);font-weight:700}
+.kpi{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:14px 16px;text-align:left}
+.kpi b{font-family:var(--serif);font-size:1.5rem;color:var(--navy);display:block}
+.kpi span{font-size:.72rem;color:var(--sub)}
+.kpi.warn{border-color:#E8CE9C;background:var(--ambsoft)}
+.qitem{display:flex;gap:12px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-top:10px;font-size:.83rem;background:#fff}
+.qitem .ic{flex:none;width:34px;height:34px;border-radius:50%;background:var(--ice);display:flex;align-items:center;justify-content:center}
+.qitem .bt{margin-left:auto;display:flex;gap:8px;flex:none}
+.qitem .bt .b1{background:var(--navy);color:#fff;border-radius:8px;padding:7px 14px;font-size:.76rem;font-weight:700}
+.qitem .bt .b2{background:#fff;color:var(--red);border:1.5px solid var(--redsoft);border-radius:8px;padding:7px 14px;font-size:.76rem;font-weight:700}
+.small{font-size:.78rem;color:var(--sub)}
+footer{background:var(--deep);color:#9FB6D9;font-size:.78rem;padding:26px 0;text-align:center;margin-top:56px}
+.skip{position:absolute;left:-9999px}
+.skip:focus{position:fixed;left:16px;top:12px;background:#fff;color:var(--navy);padding:8px 14px;z-index:99;border-radius:6px}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">本文へ移動</a>
+<div class="topbar">
+  <div class="wrap in">
+    <b>経営判断AIエージェント　画面例集</b>
+    
+  </div>
+</div>
+<div class="hcnote">このページは主要9画面のハードコピー（見本）です。ボタンや入力は動作しません。実際の操作は「デモ体験」または試験導入でお試しください。</div>
+
+<main id="main" class="wrap">
+
+<div class="toc">
+  <b>掲載している画面（9画面）</b>
+  <div class="links">
+    <a href="#consult">基本相談（判断メモ）</a><a href="#invest">投資判断シミュレーター</a><a href="#hiring">採用・評価マッチング</a><a href="#risk">リスクシナリオ</a><a href="#gov">ガバナンス・倫理チェック</a><a href="#training">後継者トレーニング</a><a href="#settings">思考の核 設定ファイル管理</a><a href="#voice">音声・テキスト取込</a><a href="#excel">Excel一括登録</a>
+  </div>
+  <p class="small" style="margin-top:10px;color:var(--sub);font-size:.8rem">このほかの画面（全21機能）は、初回打ち合わせの際に資料でご案内します。</p>
+</div>
+
+<section class="shot" id="consult">
+  <span class="cat">意思決定支援</span>
+  <h2>基本相談（判断メモ）</h2>
+  <p class="desc">相談を入力すると担当エージェントが自動で振り分けられ、2〜3案＋5視点比較＋根拠の「判断メモ」が返ります。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>基本相談（判断メモ）</h3><p>相談内容から担当エージェントを自動で選び、判断基準に照らした材料を整理します。</p><span class="agent">担当：基本相談（判断メモ）</span></div>
+      <div class="card tint">
+        <label>相談内容</label>
+        <div class="ta" style="background:#fff">主要顧客のA社から、来期の単価を8%下げてほしいと要請がありました。断れば取引縮小の可能性もあります。どう考えるべきでしょうか。</div>
+        <span class="btn">相談する</span>
+      </div>
+      <div class="card memo">
+        <span class="tag">判断メモ</span>
+        <h4>主要顧客からの8%値下げ要請への対応</h4>
+        <p class="small">取引先方針（採算割れの値引きはしない・信用＞短期売上）と過去事例3件に照らして整理しました。</p>
+        <div class="opt"><b>A案：価格は維持し、納期・品質で応える</b>　単価は守り、納期短縮や検査工程の追加提案で応じます。<br><span class="basis">根拠：過去事例——価格でなく納期・品質で応じた事例3件／判断基準「採算割れの値引きはしない」</span></div>
+        <div class="opt"><b>B案：数量条件つきで一部応じる</b>　発注量の年間保証を条件に、3%までの調整余地を検討します。<br><span class="basis">根拠：判断基準「信用＞短期売上」——関係維持と採算の両立を図る中間案</span></div>
+        <div class="opt"><b>C案：期限を切って再交渉</b>　原価資料を整えたうえで、1ヶ月後に再協議を申し入れます。<br><span class="basis">根拠：ルール「情報不足のまま決めない」——自社の限界利益の確認が先</span></div>
+        <table><tr><th>視点</th><th>売上</th><th>利益</th><th>人材</th><th>信用</th><th>長期</th></tr>
+        <tr><td>A案</td><td class="m1">○</td><td class="m2">◎</td><td class="m1">○</td><td class="m1">○</td><td class="m2">◎</td></tr>
+        <tr><td>B案</td><td class="m2">◎</td><td class="m0">△</td><td class="m1">○</td><td class="m1">○</td><td class="m1">○</td></tr>
+        <tr><td>C案</td><td class="m0">△</td><td class="m1">○</td><td class="m1">○</td><td class="m1">○</td><td class="m1">○</td></tr></table>
+        <p class="small" style="margin-top:10px"><b style="color:var(--navy)">過去の判断傾向との照合：</b>過去の値下げ要請では、価格でなく付加価値で応じる選択が3件中3件でした。</p>
+        <div class="warnbox">⚠ 採算割れとなる水準の値引きは、判断基準で明確に警告対象とされています。</div>
+        <p class="small" style="margin-top:10px"><b style="color:var(--navy)">追加質問：</b>本製品の限界利益率は？　A社の売上依存度は現在何%ですか？</p>
+        <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="invest">
+  <span class="cat">意思決定支援</span>
+  <h2>投資判断シミュレーター</h2>
+  <p class="desc">回収期間の計算はプログラムが行い、AIは結果の解釈だけを担当。即決上限の超過も自動で警告します。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>投資判断シミュレーター</h3><p>回収期間の計算はプログラムが行い、その結果の解釈だけをAIに依頼します（数字をAI任せにしない設計）。</p><span class="agent">担当：投資判断シミュレーター</span></div>
+      <div class="grid2">
+        <div class="card tint">
+          <label>投資額（万円）</label><div class="inp">4500</div>
+          <label>年間の効果額（万円）</label><div class="inp">900</div>
+          <label>投資の種類</label><div class="sel">設備</div>
+          <span class="btn">試算してAIの解釈を受ける</span>
+        </div>
+        <div class="card">
+          <b style="color:var(--navy);font-size:.85rem">回収期間（基準：7年以内）</b>
+          <div class="scen">
+            <div class="row"><span>標準</span><div class="bar"><i style="width:70%"></i></div><span>5.0年 <span class="badge bdg-ok">基準内</span></span></div>
+            <div class="row"><span>楽観</span><div class="bar"><i style="width:58%"></i></div><span>4.2年 <span class="badge bdg-ok">基準内</span></span></div>
+            <div class="row"><span>悲観</span><div class="bar"><i class="over" style="width:100%"></i></div><span>7.1年 <span class="badge bdg-ng">基準超過</span></span></div>
+          </div>
+          <div class="warnbox">⚠ 即決上限3,000万円を超えています。役員会決議が必要です。</div>
+        </div>
+      </div>
+      <div class="card memo">
+        <span class="tag">判断メモ</span>
+        <h4>設備更新投資 4,500万円の検討</h4>
+        <div class="opt"><b>A案：一括更新</b>　標準・楽観シナリオは基準内。悲観時のみ超過するため、効果額の根拠確認が焦点です。<br><span class="basis">根拠：プログラム試算（標準5.0年）／投資基準「設備は7年以内」</span></div>
+        <div class="opt"><b>B案：2期分割更新</b>　初年度を即決枠内に抑え、効果検証後に残りを判断します。<br><span class="basis">根拠：過去事例——第2工場 設備更新（分割方式を採用）</span></div>
+        <div class="warnbox">⚠ 試算は前提次第で変わります。実行の判断は役員会・人間が行ってください。</div>
+        <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="hiring">
+  <span class="cat">意思決定支援</span>
+  <h2>採用・評価マッチング</h2>
+  <p class="desc">自社の人材像基準と候補者情報を照合。合否は出さず、観点別の適合度と面接での確認質問まで。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 誠（専務・後継者）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>採用・評価マッチング</h3><p>「求める人材像」との適合度を観点別に整理します。合否の判断はしません。</p><span class="agent">担当：採用・評価マッチング</span></div>
+      <div class="card tint">
+        <label>候補者の経歴</label><div class="inp">同業他社で製造5年。リーダー経験なし。資格：フォークリフト、玉掛け。</div>
+        <label>面談メモ</label><div class="ta" style="background:#fff;min-height:56px">受け答えは率直。前職の失敗談を自分から話した。当社の製品を事前に調べてきていた。</div>
+        <span class="btn">適合度を整理する</span>
+      </div>
+      <div class="card">
+        <table><tr><th style="text-align:left">観点</th><th>適合度</th><th style="text-align:left">コメント</th></tr>
+        <tr><td>人柄・価値観</td><td class="m2">◎</td><td style="text-align:left">失敗を自分から話す率直さは「失敗の報告が早い」という過去の良い採用の共通点に一致</td></tr>
+        <tr><td>学ぶ姿勢</td><td class="m2">◎</td><td style="text-align:left">事前に製品を調べる行動は「学び続ける姿勢」の絶対条件に合致</td></tr>
+        <tr><td>業界経験</td><td class="m1">○</td><td style="text-align:left">歓迎条件を満たす。リーダー経験は未確認</td></tr></table>
+        <p class="small" style="margin-top:12px"><b style="color:var(--navy)">面接での確認質問：</b>前職で最も大きな失敗と、その報告のタイミングは？／1年後にどんな仕事を任されていたいですか？</p>
+        <p class="fixed">合否の判断はしません。適合度と確認事項の整理までが役割です。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="risk">
+  <span class="cat">意思決定支援</span>
+  <h2>リスクシナリオ・ストレステスト</h2>
+  <p class="desc">売上減少時に資金が何ヶ月持つか（耐久月数）をプログラムが計算し、AIは備えの抜けと打ち手を整理します。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>リスクシナリオ・ストレステスト</h3><p>耐久月数の計算はプログラムが実施。AIは登録済みリスクと備えに照らした整理のみを行います。</p><span class="agent">担当：リスクシナリオ・ストレステスト</span></div>
+      <div class="card tint">
+        <div class="grid4">
+          <div><label>手元資金（万円）</label><div class="inp">8000</div></div>
+          <div><label>月商（万円）</label><div class="inp">3000</div></div>
+          <div><label>限界利益率（%）</label><div class="inp">30</div></div>
+          <div><label>&nbsp;</label><span class="btn" style="margin-top:0;width:100%;text-align:center">試算する</span></div>
+        </div>
+        <label>検討したいシナリオ</label><div class="inp">主要顧客A社との取引が半減した場合</div>
+      </div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">耐久試算（プログラム計算）</b>
+        <table><tr><th>売上減少率</th><th>月間影響（万円）</th><th>耐久月数</th></tr>
+        <tr><td>10%</td><td>90</td><td>88.9ヶ月</td></tr>
+        <tr><td>30%</td><td>270</td><td>29.6ヶ月</td></tr>
+        <tr><td>50%</td><td>450</td><td>17.8ヶ月</td></tr></table>
+        <div class="opt" style="margin-top:14px"><b>A案：新規開拓の前倒し</b>　A社依存度の低下は進行中。営業目標を四半期単位に細分化して加速します。<br><span class="basis">根拠：登録リスク①「主要顧客A社の喪失」の備えを強化</span></div>
+        <div class="opt"><b>B案：当座借越枠の事前設定</b>　耐久17.8ヶ月は当面の猶予がある水準ですが、資金調達の選択肢は平時に確保します。<br><span class="basis">根拠：判断基準「無理な資金繰りをしない」</span></div>
+        <p class="fixed">このメモは判断材料の整理です。AIは決定しません。最終判断は人間が行ってください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="gov">
+  <span class="cat">意思決定支援</span>
+  <h2>ガバナンス・倫理チェック</h2>
+  <p class="desc">契約書・広告文などの懸念箇所を、業法リスト・社内NGラインに照らして指摘。適法性の断定はしません。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>佐藤（導入担当者）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>ガバナンス・倫理チェック</h3><p>「どこが・なぜ・どの基準に照らして」要確認かを示します。適法／違法の断定はしません。</p><span class="agent">担当：ガバナンス・倫理チェック</span></div>
+      <div class="card tint">
+        <label>チェック対象の文書（貼り付け）</label>
+        <div class="ta" style="background:#fff">外注基本契約書（案）…支払条件：検収月の翌々月末払いとする。…広告文（案）：業界No.1の耐久性！他社製品の2倍長持ち！</div>
+        <span class="btn">懸念箇所を点検する</span>
+      </div>
+      <div class="card">
+        <table><tr><th style="text-align:left">箇所</th><th>区分</th><th style="text-align:left">理由</th></tr>
+        <tr><td>支払条件「翌々月末払い」</td><td><span class="badge bdg-ng">要修正</span></td><td style="text-align:left">下請法の支払サイト60日以内の基準に抵触する可能性。過去のヒヤリ事例にも該当</td></tr>
+        <tr><td>広告文「業界No.1」「2倍長持ち」</td><td><span class="badge bdg-warn">要確認</span></td><td style="text-align:left">景品表示法（優良誤認）と社内NGライン「誇大な表現・攻撃的比較」に照らし根拠資料の確認が必要</td></tr></table>
+        <p class="fixed">本指摘は懸念の提示です。適法性の最終判断は顧問弁護士等の専門家にご確認ください。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="training">
+  <span class="cat">意思決定支援</span>
+  <h2>後継者トレーニング</h2>
+  <p class="desc">実際の経営課題のお題に後継者が回答し、社長基準の観点で講評。結論の一致より、検討の順序と観点を評価します。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 誠（専務・後継者）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>後継者トレーニング</h3><p>講評は記録され、育成の資産として蓄積されます。</p><span class="agent">担当：後継者トレーニング</span></div>
+      <div class="card tint">
+        <label>お題</label><div class="sel">主要顧客からの8%値下げ要請</div>
+        <label>あなたの回答</label><div class="ta" style="background:#fff">まず自社の限界利益を確認し、採算割れなら受けない。代わりに納期短縮を提案する。A社の依存度も併せて確認したい。</div>
+        <span class="btn">講評を受ける</span>
+      </div>
+      <div class="card">
+        <table><tr><th style="text-align:left">観点</th><th>評価</th><th style="text-align:left">講評</th></tr>
+        <tr><td>5つの視点に触れたか</td><td class="m1">○</td><td style="text-align:left">利益・信用には触れています。人材・長期影響への言及があるとさらに良い</td></tr>
+        <tr><td>判断基準・過去事例を引用したか</td><td class="m0">△</td><td style="text-align:left">「採算割れは受けない」の一線は一致。過去3件の類似事例への言及があると説得力が増します</td></tr>
+        <tr><td>複数の選択肢を比較したか</td><td class="m2">◎</td><td style="text-align:left">受けない／代替提案の2案を比較できています</td></tr>
+        <tr><td>情報管理・リスクに言及したか</td><td class="m1">○</td><td style="text-align:left">依存度の確認は適切な着眼です</td></tr></table>
+        <p class="small" style="margin-top:12px"><b style="color:var(--navy)">社長基準の要点：</b>信用＞短期売上。過去は価格でなく納期・品質で応じた事例が3件。採算割れは受けない一線。</p>
+        <p class="fixed">結論の一致より、検討の順序と観点の一致を重視します。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="settings">
+  <span class="cat">管理・思考の核</span>
+  <h2>思考の核 設定ファイル管理</h2>
+  <p class="desc">AI整形 → 差分確認 → 保存 が基本の流れ。保存のたびに履歴（最大5世代）へ自動退避され、いつでも戻せます。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>思考の核 設定ファイル管理</h3><p>判断基準・人材像・しきい値など、AIの「頭の中」を管理者が直接メンテナンスできます。</p><span class="agent">管理者専用画面</span></div>
+      <div class="card tint">
+        <b style="color:var(--navy);font-size:.85rem">🤖 AIアシスト整形</b>
+        <p class="small" style="margin-top:4px">社長の口頭メモや会議録を貼り付けると、AIが既存の書式に合わせて整形。結果を確認して「反映」→「保存」します。</p>
+        <div class="ta" style="margin-top:8px;background:#fff">採用は人柄を重視。誠実さと報告の早さが必須。即決上限を2000万円に変えたい。</div>
+        <span class="btn" style="background:var(--amber)">AI整形</span> <span class="btn sub">反映</span>
+      </div>
+      <div class="card">
+        <label>ファイル内容（判断基準・理念・価値観）</label>
+        <div class="ta" style="min-height:110px;font-family:Menlo,Consolas,monospace;font-size:.78rem;background:#F3F6FA"># 株式会社山紘製作所 判断基準<br>1. 品質と納期の信頼を最優先する<br>2. 従業員とその家族の生活を守る<br>3. 借入は年商の3割を超えない …</div>
+        <span class="btn sub">再読込</span> <span class="btn sub">直接編集を解除</span>
+        <div style="display:flex;gap:10px;align-items:center;margin-top:14px">
+          <span class="btn" style="margin-top:0">保存</span>
+          <span class="small">保存前に差分を確認できます</span>
+          <span class="btn sub" style="margin-top:0;margin-left:auto">履歴</span>
+        </div>
+        <div class="fixed">保存すると直前の内容が履歴（最大5世代）へ自動退避されます。「履歴」ボタンからいつでも戻せます。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="voice">
+  <span class="cat">管理・思考の核</span>
+  <h2>音声・テキスト取込</h2>
+  <p class="desc">社長の音声（またはボイスメモの書き起こし）から、AIが各設定項目へ自動で振り分け。書き起こしのExcel保存・記入済みExcelの作成・そのまま一括反映のいずれにも対応します。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>音声・テキスト取込</h3><p>ヒアリング音声が、そのまま「思考の核」の材料になります。</p><span class="agent">管理者専用画面</span></div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">① 音声ファイルから文字起こし</b>
+        <p class="small" style="margin-top:4px">m4a・mp3・wav などを選ぶだけで自動で文字起こし。　<span class="badge bdg-ok">✓ 文字起こしが完了しました</span></p>
+      </div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">② 社長の発言（書き起こしテキスト）</b>
+        <div class="ta" style="margin-top:8px">投資はね、回収5年を超えるものは基本やらない。ただし設備は7年まで見る。採用で一番大事なのは誠実さ。数字をごまかす人間は絶対に採らない。それと粗利15%を切ったら赤信号だと思ってくれ…</div>
+        <span class="btn">AIで振り分ける</span> <span class="btn sub">書き起こしをExcelへ保存</span>
+        <p class="small" style="margin-top:8px">「書き起こしをExcelへ保存」は、一括読み込みファイルと同じ形式のExcelに全文を保存。内容を整えて「Excel一括登録」からそのまま反映できます。</p>
+      </div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">③ 振り分け結果の確認（3件）</b>
+        <table><tr><th style="width:30%">設定項目</th><th style="text-align:left">内容（先頭部分）</th><th style="width:14%">状態</th></tr>
+        <tr><td>投資判断しきい値</td><td style="text-align:left;font-weight:400">回収上限_通常: 5 ／ 回収上限_設備: 7 …</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>求める人材像</td><td style="text-align:left;font-weight:400"># 絶対条件：誠実さ。数字をごまかさない…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>撤退ライン警告しきい値</td><td style="text-align:left;font-weight:400">gpMin: 0.15（粗利率15%を下回ると警告）…</td><td><span class="badge bdg-ok">反映済</span></td></tr></table>
+        <div class="fixed">反映のたびに履歴（最大5世代）へ自動退避。反映前に必ず内容を確認する設計です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="shot" id="excel">
+  <span class="cat">管理・思考の核</span>
+  <h2>Excel一括登録</h2>
+  <p class="desc">Excelフォーマットに記入した思考の核を、まとめて設定ファイルへ自動反映。記入しなかった行は反映されず、既存の設定が保持されます。</p>
+  <div class="frame">
+    <div class="appbar"><span class="brand">経営判断AIエージェント</span><span class="who"><span class="chip">Claude API 接続中</span>山田 紘一（社長）</span></div>
+    <div class="vw">
+      <div class="ph"><h3>Excel一括登録</h3><p>使い慣れたExcelで記入 → 読み込むだけ。ITが得意でなくても運用できます。</p><span class="agent">管理者専用画面</span></div>
+      <div class="grid2" style="margin-top:14px">
+        <div class="card" style="margin-top:0"><b style="color:var(--navy);font-size:.85rem">① フォーマットをダウンロード</b><p class="small" style="margin-top:6px">「文章設定」「しきい値設定」の2シートに記入して保存します。</p><span class="btn sub">フォーマット（.xlsx）をダウンロード</span></div>
+        <div class="card" style="margin-top:0"><b style="color:var(--navy);font-size:.85rem">② 記入済みExcelを読み込む</b><p class="small" style="margin-top:6px"><span class="badge bdg-ok">✓ 4件の設定を読み取りました</span>　下で内容を確認してから反映します。</p><span class="btn">一括反映する</span></div>
+      </div>
+      <div class="card">
+        <b style="color:var(--navy);font-size:.85rem">③ 反映内容の確認（4件）</b>
+        <table><tr><th style="width:30%">設定項目</th><th style="text-align:left">反映される内容（先頭部分）</th><th style="width:14%">状態</th></tr>
+        <tr><td>判断基準・理念・価値観</td><td style="text-align:left;font-weight:400"># 株式会社山紘製作所 判断基準 1. 品質と納期の…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>想定リスクと現在の備え</td><td style="text-align:left;font-weight:400"># 想定リスク 1. 主要取引先の発注減 → 新規開拓…</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>投資判断しきい値</td><td style="text-align:left;font-weight:400">即決上限_万円: 3000 ／ 回収上限_通常: 5 …</td><td><span class="badge bdg-ok">反映済</span></td></tr>
+        <tr><td>自動実行スケジュール</td><td style="text-align:left;font-weight:400">watchdogDaily: 06:00</td><td><span class="badge bdg-ok">反映済</span></td></tr></table>
+        <div class="fixed">各ファイルは保存前の内容が履歴（最大5世代）へ自動退避されます。「判断基準・理念・価値観」を含む場合のみ、反映後にサーバーの再起動が必要です。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="toc" style="margin-top:44px">
+  <b>気になる画面はありましたか？</b>
+  <p class="small" style="margin-top:6px">実際に操作できるデモは営業ページの「デモ体験」で、全機能の実操作は3ヶ月の試験導入でお試しいただけます。</p>
+  <div class="links"><a target="_parent" href="#demo">デモ体験へ</a><a target="_parent" href="#contact">試験導入の相談へ</a><a target="_parent" href="#features">機能一覧へ戻る</a></div>
+</div>
+
+</main>
+
+<footer><div class="wrap">経営判断AIエージェント 画面例集 — AIは判断材料の整理役。最終判断は必ず人間が行います。</div></footer>
+
+</body>
+</html>
+
 </script>
 </body>
 </html>
